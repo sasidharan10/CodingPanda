@@ -16,13 +16,13 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
-// app.get('/about', (req, res) => {
-//     res.render(__dirname + '/views/about.html');
-// });
+app.get('/about', (req, res) => {
+    res.render('about');
+});
 
-// app.get('/mentor', (req, res) => {
-//     res.render(__dirname + '/views/mentor.html');
-// });
+app.get('/courses', (req, res) => {
+    res.render('courses');
+});
 
 // app.get('/join', (req, res) => {
 //     res.render(__dirname + '/views/join.html');

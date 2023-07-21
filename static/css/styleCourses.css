@@ -115,15 +115,18 @@ html {
     justify-content: center;
     height: 40%;
     width: 30%;
+    color: #000000;
     background-color: #6b6868;
     margin: 20px;
     border: 4px solid rgb(178, 248, 225);
     border-radius: 10px;
     overflow: hidden;
+    text-decoration: none;
 }
 
 #coursesContentSection .coursesContentBody .courseBox:hover{
     border-color: rgb(64, 241, 182);
+    cursor: pointer;
 }
 
 #coursesContentSection .coursesContentBody .courseBox .courseHeading{

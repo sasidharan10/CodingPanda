@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Reggae+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+/* font-family: 'Reggae One', cursive; */
+/* font-family: 'Mate SC', serif; */
+/* font-family: 'Josefin Sans', sans-serif; */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#aboutIntroSection{
+    height: 90vh;
+    background-color: blanchedalmond;
+}
+
+#aboutIntroSection .introBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#aboutIntroSection .introBody .introContent{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    word-wrap: break-word;
+    margin:  0 0 0 150px;
+}
+
+#aboutIntroSection .introBody .introContent h1{
+    margin: 20px 30px;
+    font-size: 2.5rem;
+}
+
+ #aboutIntroSection .introBody .introContent p{
+    margin: 5px 30px;
+    font-size: 1.5rem;
+}
+
+#aboutIntroSection .introBody .introImage{
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0 0 0;
+}
+
+#aboutIntroSection .introBody .introImage img{
+    height: 400px;
+    width: 400px;
+    border-radius: 50%;
+}
+
+#aboutStorySection{
+    height: 90vh;
+    background-color:rgb(154, 185, 241);
+}
+
+#aboutStorySection .storyBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#aboutStorySection .storyBody .storyContent{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 60%;
+    word-wrap: break-word;
+    margin:  0 0 0 30px;
+}
+
+#aboutStorySection .storyBody .storyContent h1{
+    margin: 20px 30px;
+    font-size: 2.5rem;
+}
+
+ #aboutStorySection .storyBody .storyContent p{
+    margin: 5px 30px;
+    font-size: 1.5rem;
+}
+
+#aboutStorySection .storyBody .storyImage{
+    display: flex;
+    width: 40%;
+    justify-content: center;
+    align-items: center;
+    margin: 100px 0 0 100px;
+}
+
+#aboutStorySection .storyBody .storyImage img{
+    height: 400px;
+    width: 400px;
+    border-radius: 2%;
+}
+
+#aboutInstructorSection{
+    background-color: rgb(218, 248, 194);
+    height: 100vh;
+    overflow: hidden;
+}
+
+#aboutInstructorSection .instructorBody{
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;  */
+}
+
+#aboutInstructorSection .instructorTitle{
+    font-size: 1.8rem;
+    text-align: left;
+    margin: 30px;
+    
+ }
+#aboutInstructorSection .instructorBody .instructorBox {
+    margin: 30px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: -1px 10px 20px #16161633;
+}
+
+#aboutInstructorSection .instructorBody .instructorBox .instructorHeading{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#aboutInstructorSection .instructorBody .instructorBox .instructorHeading .headingImg img{
+    height: 100px;
+    width: 100px;
+}
+
+#aboutInstructorSection .instructorBody .instructorBox .instructorHeading .headingContent{
+    margin-left: 30px;
+}
+
+#aboutInstructorSection .instructorBody .instructorBox .instructorHeading .headingContent h2{
+    margin-bottom: 10px;
+}
+
+#aboutInstructorSection .instructorBody .instructorBox .instructorHeading .headingContent h3{
+    font-weight: 450;
+    font-size: 0.9rem;
+}
+
+#aboutInstructorSection .instructorBody .instructorBox .instructorContent p{
+    color: #4d4c4c;
+}

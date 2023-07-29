@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const ejsMate = require('ejs-mate');
+const userRoutes = require('./routes/users');
 const app = express();
 const host = "127.0.0.1";
 const port = process.env.PORT || 5000;  // hosting step 1
@@ -9,12 +10,14 @@ const port = process.env.PORT || 5000;  // hosting step 1
 // var fullData = model.find({});
 
 // EXPRESS SPECIFIC STUFFS
-app.use('/static', express.static('static'));
 app.set('views', path.join(__dirname, "views"));
-app.use(express.urlencoded({ extended: true }));
+app.set('view engine', 'ejs');
 app.engine('ejs', ejsMate);
 
-app.set('view engine', 'ejs');
+app.use('/static', express.static('static'));
+app.use(express.urlencoded({ extended: true }));
+app.use('/', userRoutes);
+
 
 app.get('/', (req, res) => {
     res.render('home');
@@ -27,6 +30,7 @@ app.get('/about', (req, res) => {
 app.get('/courses', (req, res) => {
     res.render('courses');
 });
+
 
 // app.get('/join', (req, res) => {
 //     res.render(__dirname + '/views/join.html');

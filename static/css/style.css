@@ -28,8 +28,8 @@ html {
 }
 
 #navbar .mainLogo {
-    display: flex;
-    flex-direction: row;
+    display: inline-block;
+    /* flex-direction: row; */
 }
 
 #navbar .mainLogo img {
@@ -37,19 +37,25 @@ html {
     width: 100px;
 }
 
-#navbar ul {
+#navbar .navContent{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#navbar .navContent ul {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#navbar ul li {
+#navbar .navContent ul li {
     list-style: none;
     position: relative;
     z-index: 99;
 }
 
-#navbar ul li a {
+#navbar .navContent ul li a {
     font-family: 'Josefin Sans', sans-serif;
     text-decoration: none;
     color: white;
@@ -59,7 +65,7 @@ html {
     cursor: pointer;
 }
 
-#navbar ul>li>a::after {
+#navbar .navContent ul>li>a::after {
     content: '';
     position: absolute;
     left: 15px;
@@ -75,8 +81,15 @@ html {
     overflow: hidden;
 }
 
-#navbar ul li a:hover::after {
+#navbar .navContent ul li a:hover::after {
     transform: scaleX(1);
+}
+
+#navbar .navBtn ul{
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    list-style: none;
 }
 
 #introSection {

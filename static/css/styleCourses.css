@@ -31,10 +31,6 @@ html {
     margin-left: 100px;
 }
 
-/* #coursesIntroSection .coursesIntroBody .coursesIntroContent{
-    
-} */
-
 #coursesIntroSection .coursesIntroBody .coursesIntroContent h1 {
     margin: 20px 0;
 }
@@ -49,45 +45,6 @@ html {
 }
 
 
-.btn {
-    font-family: 'Josefin Sans', sans-serif;
-    text-decoration: none;
-    color: #000000;
-    background: linear-gradient(92.12deg, #0fadf6 .78%, #f3f730 99.43%);
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 5px 8px;
-    line-height: -1px;
-    cursor: pointer;
-    border: none;
-}
-
-.btn:hover {
-    border-radius: 5px;
-    color: black;
-    background: linear-gradient(92.12deg, #f3f730 .78%,  #0fadf6 99.43%);
-}
-
-.btn2{
-    font-family: 'Josefin Sans', sans-serif;
-    text-decoration: none;
-    color: #0f98f3;
-    background-color: #fff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 5px;
-    padding: 5px 8px;
-    line-height: -1px;
-    cursor: pointer;
-    border: none;
-}
-
-.btn2:hover {
-    border-radius: 5px;
-    color: black;
-    background-color: #6b6868;
-}
 
 #coursesContentSection{
     height: 90vh;
@@ -210,4 +167,45 @@ html {
 
 #coursesContentSection .coursesContentBody .courseBox .courseFooter .courseReview p{
     margin-left: 10px;
+}
+
+
+.customBtn {
+    font-family: 'Josefin Sans', sans-serif;
+    text-decoration: none;
+    color: #000000;
+    background: linear-gradient(92.12deg, #0fadf6 .78%, #f3f730 99.43%);
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 8px;
+    line-height: -1px;
+    cursor: pointer;
+    border: none;
+}
+
+.customBtn:hover {
+    border-radius: 5px;
+    color: black;
+    background: linear-gradient(92.12deg, #f3f730 .78%,  #0fadf6 99.43%);
+}
+
+.custonBtn2{
+    font-family: 'Josefin Sans', sans-serif;
+    text-decoration: none;
+    color: #0f98f3;
+    background-color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 8px;
+    line-height: -1px;
+    cursor: pointer;
+    border: none;
+}
+
+.custonBtn2:hover {
+    border-radius: 5px;
+    color: black;
+    background-color: #6b6868;
 }

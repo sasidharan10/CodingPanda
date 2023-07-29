@@ -421,7 +421,7 @@ html {
 
 
 
-.btn {
+.customBtn {
     font-family: 'Josefin Sans', sans-serif;
     text-decoration: none;
     color: #000000;
@@ -430,12 +430,13 @@ html {
     font-weight: bold;
     border-radius: 5px;
     padding: 5px 8px;
+    margin: 0px 5px;
     line-height: -1px;
     cursor: pointer;
     border: none;
 }
 
-.btn:hover {
+.customBtn:hover {
     border-radius: 5px;
     color: black;
     background-color: #c2c1c1;

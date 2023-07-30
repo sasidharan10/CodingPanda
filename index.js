@@ -1,13 +1,29 @@
+require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const ejsMate = require('ejs-mate');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const session = require('express-session');
+
+const userModel = require("./models/user");
 const userRoutes = require('./routes/users');
 const app = express();
 const host = "127.0.0.1";
 const port = process.env.PORT || 5000;  // hosting step 1
-// var model = require("./static/js/model");
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cppDB';
 
-// var fullData = model.find({});
+mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+
+const db = mongoose.connection;
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", () => {
+    console.log("Database connected");
+});
 
 // EXPRESS SPECIFIC STUFFS
 app.set('views', path.join(__dirname, "views"));
@@ -17,6 +33,30 @@ app.engine('ejs', ejsMate);
 app.use('/static', express.static('static'));
 app.use(express.urlencoded({ extended: true }));
 app.use('/', userRoutes);
+
+const secret = process.env.SECRET || 'mypetbirdnameisunknown!';
+
+const sessionConfig = {
+    name: 'session',
+    secret,
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        // secure: true,
+        expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7
+    }
+}
+
+app.use(session(sessionConfig));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(userModel.authenticate()));
+
+passport.serializeUser(userModel.serializeUser());
+passport.deserializeUser(userModel.deserializeUser());
 
 
 app.get('/', (req, res) => {
@@ -29,6 +69,12 @@ app.get('/about', (req, res) => {
 
 app.get('/courses', (req, res) => {
     res.render('courses');
+});
+
+app.get('/fakeUser', async (req, res) => {
+    const user = new userModel({ email: 'colt@gmail. com' });
+    const newUser = await userModel.register(user, 'chicken');
+    res.send(newUser);
 });
 
 

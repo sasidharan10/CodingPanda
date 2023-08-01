@@ -7,6 +7,10 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const session = require('express-session');
 
+
+const Errorhandler = require('./utils/errorHandler');
+const asyncError = require('./utils/asyncErrorHandler');
+
 const userModel = require("./models/user");
 const userRoutes = require('./routes/users');
 const app = express();
@@ -58,18 +62,19 @@ passport.use(new LocalStrategy(userModel.authenticate()));
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
 
+const pt = path.join(__dirname, "views/");
 
-app.get('/', (req, res) => {
+app.get('/', asyncError((req, res) => {
     res.render('home');
-});
+}));
 
 app.get('/about', (req, res) => {
-    res.render('about');
+    res.sendFile(__dirname + '/views/about.html');
 });
 
-app.get('/courses', (req, res) => {
+app.get('/courses', asyncError((req, res) => {
     res.render('courses');
-});
+}));
 
 app.get('/fakeUser', async (req, res) => {
     const user = new userModel({ email: 'colt@gmail. com' });
@@ -77,105 +82,16 @@ app.get('/fakeUser', async (req, res) => {
     res.send(newUser);
 });
 
+app.all('*', (req, res, next) => {
+    next(new Errorhandler("Page Not Found", 404));
+});
 
-// app.get('/join', (req, res) => {
-//     res.render(__dirname + '/views/join.html');
-// });
-
-// storing data in DB
-
-// app.post('/join', (req, res) => {
-//     var mydata = new model({
-//         name: req.body.name,
-//         phone: req.body.phone,
-//         email: req.body.email,
-//         address: req.body.address,
-//         course: req.body.course,
-//     });
-//     mydata.save((err,data)=>{
-//         if(err) throw err;
-//         fullData.exec((err, data) => {
-//             if(err) throw err;
-//             res.render(__dirname + '/views/join.html', { message:'success' });
-//         })
-//     })
-// });
-
-
-
-// old code
-
-
-
-
-// app.post('/join', (req, res) => {
-//     var mydata = new model(req.body);
-//     mydata.save().then(() => {
-//         res.status(200).render(__dirname + '/views/join.html', { message: 'success' });
-//     }).catch(() => {
-//         res.status(404).render(__dirname + '/views/join.html', { message: 'failed' });
-//     })
-// });
-
-// // showing data
-
-// app.get('/student', (req, res) => {
-//     fullData.exec((err, data) => {
-//         if (err) throw err;
-//         res.render(__dirname + '/views/student.html', { record: data,message:''});
-//     })
-// });
-
-// // deleting data
-
-// app.get('/delete/:id', (req, res) => {
-//     let id = req.params.id;
-//     var del = model.findByIdAndDelete(id);
-//     del.exec((err, data1) => {
-//         if (err) throw err;
-//         // console.log(data1);
-//         // console.log("data1 over");
-//         fullData.exec((err, data2) => {
-//             if (err) throw err;
-//             // console.log(data2);
-//             res.render(__dirname + '/views/student.html', { record: data2,message:'deleted' });
-//         })
-//     })
-// });
-
-// // updating data
-
-// app.get('/edit/:id', (req, res) => {
-//     let id = req.params.id;
-//     let edit = model.findById(id);
-//     edit.exec((err, data) => {
-//         if (err) throw err;
-//         res.render(__dirname + '/views/edit.html', { record: data });
-//     })
-
-// });
-
-// app.post('/update', (req, res) => {
-//     let id = req.body.id;
-//     let update = model.findByIdAndUpdate(id, {
-//         name: req.body.name,
-//         phone: req.body.phone,
-//         email: req.body.email,
-//         address: req.body.address,
-//         course: req.body.course,
-//     });
-//     update.exec((err,data1) => {
-//         if (err) throw err;
-//         // console.log(data1);
-//         // console.log("data1 over");
-//         fullData.exec((err, data2) => {
-//             // console.log(data2);
-//             if (err) throw err;
-//             res.render(__dirname + '/views/student.html', { record: data2,message:'updated' });
-//         })
-//     })
-
-// });
+app.use((err, req, res, next) => {
+    const { statusCode = 500 } = err;
+    err.statusCode=statusCode;
+    if (!err.message) err.message = 'Oh No, Something Went Wrong!'
+    res.status(statusCode).render("error", { err });
+});
 
 
 app.listen(port, () => {

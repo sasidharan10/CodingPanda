@@ -313,3 +313,6 @@
     
 } 
 
+.capitalize {
+    text-transform: capitalize;
+  }

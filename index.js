@@ -4,8 +4,10 @@ const path = require('path');
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const joi = require('joi');
 const LocalStrategy = require('passport-local');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 
 const Errorhandler = require('./utils/errorHandler');
@@ -36,7 +38,7 @@ app.engine('ejs', ejsMate);
 
 app.use('/static', express.static('static'));
 app.use(express.urlencoded({ extended: true }));
-app.use('/', userRoutes);
+
 
 const secret = process.env.SECRET || 'mypetbirdnameisunknown!';
 
@@ -54,6 +56,7 @@ const sessionConfig = {
 }
 
 app.use(session(sessionConfig));
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -64,7 +67,15 @@ passport.deserializeUser(userModel.deserializeUser());
 
 const pt = path.join(__dirname, "views/");
 
-app.get('/', asyncError((req, res) => {
+app.use((req, res, next) => {
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
+    next();
+});
+
+app.use('/', userRoutes);
+
+app.get('/', asyncError(async (req, res) => {
     res.render('home');
 }));
 
@@ -72,15 +83,15 @@ app.get('/about', (req, res) => {
     res.sendFile(__dirname + '/views/about.html');
 });
 
-app.get('/courses', asyncError((req, res) => {
+app.get('/courses', (req, res) => {
     res.render('courses');
-}));
-
-app.get('/fakeUser', async (req, res) => {
-    const user = new userModel({ email: 'colt@gmail. com' });
-    const newUser = await userModel.register(user, 'chicken');
-    res.send(newUser);
 });
+
+// app.get('/fakeUser', async (req, res) => {
+//     const user = new userModel({ email: 'colt@gmail. com' });
+//     const newUser = await userModel.register(user, 'chicken');
+//     res.send(newUser);
+// });
 
 app.all('*', (req, res, next) => {
     next(new Errorhandler("Page Not Found", 404));
@@ -88,7 +99,7 @@ app.all('*', (req, res, next) => {
 
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
-    err.statusCode=statusCode;
+    err.statusCode = statusCode;
     if (!err.message) err.message = 'Oh No, Something Went Wrong!'
     res.status(statusCode).render("error", { err });
 });

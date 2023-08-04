@@ -28,22 +28,34 @@
 
 
 
+    <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%=success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+    <% if(error && error.length){%>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%=error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% }%>
     <section id="loginIntroSection">
         <div class="loginTitle">
             <h1>Login Form</h1>
         </div>
-        <form class="loginForm col-lg-3 d-flex flex-column validated-form" action="/login" method="post" novalidate>
+        <form class="loginForm col-lg-3 d-flex flex-column validated-form" action="/login" method="POST" novalidate>
             <div class="form-group mb-3">
-                <label for="exampleInputEmail1" class="mb-2">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <label for="email" class="mb-2">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
                     placeholder="Enter email" name="email" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="form-group mb-3">
-                <label for="exampleInputPassword1" class="mb-2">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password"
+                <label for="password" class="mb-2">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password"
                     name="password" required>
                 <div class="valid-feedback">
                     Looks good!

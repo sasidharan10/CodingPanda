@@ -13,8 +13,8 @@ const flash = require('connect-flash');
 const Errorhandler = require('./utils/errorHandler');
 const asyncError = require('./utils/asyncErrorHandler');
 
-const userModel = require("./models/user");
-const userRoutes = require('./routes/users');
+const userModel = require("./models/userModel");
+const userRoutes = require('./routes/userRoutes');
 const app = express();
 const host = "127.0.0.1";
 const port = process.env.PORT || 5000;  // hosting step 1
@@ -43,7 +43,6 @@ app.use(express.urlencoded({ extended: true }));
 const secret = process.env.SECRET || 'mypetbirdnameisunknown!';
 
 const sessionConfig = {
-    name: 'session',
     secret,
     resave: false,
     saveUninitialized: true,
@@ -67,6 +66,12 @@ passport.deserializeUser(userModel.deserializeUser());
 
 const pt = path.join(__dirname, "views/");
 
+function getPath(newPath) {
+    let np = path.join(__dirname, "views", newPath);
+    np = np + ".html";
+    return np;
+}
+
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -80,7 +85,7 @@ app.get('/', asyncError(async (req, res) => {
 }));
 
 app.get('/about', (req, res) => {
-    res.sendFile(__dirname + '/views/about.html');
+    res.sendFile(getPath("about"));
 });
 
 app.get('/courses', (req, res) => {

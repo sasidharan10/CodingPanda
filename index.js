@@ -59,7 +59,10 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(userModel.authenticate()));
+passport.use(new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'password'
+}, userModel.authenticate()));
 
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
@@ -91,6 +94,11 @@ app.get('/about', (req, res) => {
 app.get('/courses', (req, res) => {
     res.render('courses');
 });
+
+app.get('/webdev', (req, res) => {
+    res.render('webdev');
+});
+
 
 // app.get('/fakeUser', async (req, res) => {
 //     const user = new userModel({ email: 'colt@gmail. com' });

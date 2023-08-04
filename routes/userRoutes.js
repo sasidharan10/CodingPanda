@@ -59,10 +59,11 @@ router.get('/login', asyncError(async (req, res) => {
     res.render('login');
 }));
 
-router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login', failureMessage: true }), asyncError(async (req, res) => {
-    // const { email, password } = req.body;
+router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login'}), asyncError(async (req, res) => {
+    const { email, password } = req.body;
+    console.log("Logged In");
     req.flash('success', 'Successfully Logged In');
-    res.redirect("webdev");
+    res.redirect("/webdev");
 }));
 
 router.get('/logout', (req, res) => {

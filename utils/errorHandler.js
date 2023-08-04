@@ -6,4 +6,12 @@ class Errorhandler extends Error {
     }
 }
 
-module.exports = Errorhandler;
+module.exports.Errorhandler = Errorhandler;
+
+module.exports.asyncError = (func) => {
+    return (req, res, next) => {
+        func(req, res, next).catch((err)=>{
+            return next(err);
+        });
+    }
+}

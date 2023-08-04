@@ -10,8 +10,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 
 
-const Errorhandler = require('./utils/errorHandler');
-const asyncError = require('./utils/asyncErrorHandler');
+const {Errorhandler, asyncError} = require('./utils/errorHandler');
+const { isLoggedIn } = require('./utils/middleware');
 
 const userModel = require("./models/userModel");
 const userRoutes = require('./routes/userRoutes');
@@ -78,6 +78,7 @@ function getPath(newPath) {
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
+    res.locals.currentUser = req.user;
     next();
 });
 
@@ -95,7 +96,7 @@ app.get('/courses', (req, res) => {
     res.render('courses');
 });
 
-app.get('/webdev', (req, res) => {
+app.get('/webdev', isLoggedIn, (req, res) => {
     res.render('webdev');
 });
 

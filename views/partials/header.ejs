@@ -17,9 +17,12 @@
 
     <div class="navBtn">
         <ul>
+            <% if(!currentUser){%>
             <li><a href="/login" class="customBtn">Login</a></li>
             <li><a href="/register" class="customBtn">Register</a></li>
+            <% } else { %>
             <li><a href="/logout" class="customBtn">Logout</a></li>
+            <% }%>
         </ul>
     </div>
 </div>

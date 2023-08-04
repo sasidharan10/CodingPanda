@@ -1,22 +1,32 @@
 <% layout('./layouts/boilerplate') -%>
 
-<title>Coding Panda</title>
+    <title>Coding Panda</title>
 
     <section id="introSection" class="gradient-background">
-        <!-- <div class="introImg">
+        <% if(success && success.length){%>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%=success %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% }%>
+                <div class="introBody">
+
+                    <!-- <div class="introImg">
             <img src="../static/bg/l1.png" alt="Error not found!!!" />
         </div> -->
-        <div class="introContent">
-            <h1>Online Coding Courses</h1>
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure optio perspiciatis rem corporis nisi
-                repudiandae quaerat voluptatem molestias obcaecati ullam.
-            </p>
-            <button class="customBtn">Explore Courses</button>
-        </div>
-        <div class="introImage">
-            <img src="../static/img/photos/programmer.jpg alt=" Not Found">
-        </div>
+                    <div class="introContent">
+                        <h1>Online Coding Courses</h1>
+                        <p>
+                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iure optio perspiciatis rem
+                            corporis nisi
+                            repudiandae quaerat voluptatem molestias obcaecati ullam.
+                        </p>
+                        <button class="customBtn">Explore Courses</button>
+                    </div>
+                    <div class="introImage">
+                        <img src="../static/img/photos/programmer.jpg alt=" Not Found">
+                    </div>
+                </div>
     </section>
     <section id="joinSection">
         <div class="joinLeft">

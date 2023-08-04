@@ -1,29 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const Joi = require('joi');
 const passport = require('passport');
-const passportLocalMongoose = require('passport-local-mongoose');
 const userModel = require("../models/userModel");
 
-const { userSchema } = require('../utils/schemaValidation');
-const Errorhandler = require('../utils/errorHandler');
-const asyncError = require('../utils/asyncErrorHandler');
 
-const validateUserSchema = (req, res, next) => {
-    const { error } = userSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(', ');
-        throw new Errorhandler(msg, 400);
-    }
-    else {
-        next();
-    }
-}
-
-// const userAuthenticate = (req, res, next) => {
-//     passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' });
-//     next();
-// }
+const {asyncError} = require('../utils/errorHandler');
+const { validateUserSchema } = require('../utils/middleware');
 
 function getPath(pageName) {
     let tempPath = "C:\\Users\\Lenovo\\Desktop\\Coding Panda";
@@ -59,15 +41,19 @@ router.get('/login', asyncError(async (req, res) => {
     res.render('login');
 }));
 
-router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login'}), asyncError(async (req, res) => {
-    const { email, password } = req.body;
-    console.log("Logged In");
+router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), asyncError(async (req, res) => {
     req.flash('success', 'Successfully Logged In');
     res.redirect("/webdev");
 }));
 
 router.get('/logout', (req, res) => {
-    res.render('home');
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        req.flash('success', "Successfully Logged out!");
+        res.redirect('/');
+    });
 });
 
 module.exports = router;

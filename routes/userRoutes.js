@@ -4,8 +4,8 @@ const passport = require('passport');
 const userModel = require("../models/userModel");
 
 
-const {asyncError} = require('../utils/errorHandler');
-const { validateUserSchema } = require('../utils/middleware');
+const { asyncError } = require('../utils/errorHandler');
+const { validateUserSchema, storeUrl } = require('../utils/middleware');
 
 function getPath(pageName) {
     let tempPath = "C:\\Users\\Lenovo\\Desktop\\Coding Panda";
@@ -25,11 +25,12 @@ router.post('/register', validateUserSchema, asyncError(async (req, res) => {
     try {
         const { firstName, lastName, email, password } = req.body;
         const userData = new userModel({ firstName, lastName, email });
-        // console.log(userData);
         const newUser = await userModel.register(userData, password);
-        req.flash('success', 'Successfully Registered');
-        // res.send(newUser);
-        res.redirect("/register");
+        req.login(newUser, (err) => {
+            if (err) return next(err);
+            req.flash('success', 'Successfully Registered');
+            res.redirect("/register");
+        });
     }
     catch (error) {
         req.flash('error', error.message);
@@ -41,9 +42,11 @@ router.get('/login', asyncError(async (req, res) => {
     res.render('login');
 }));
 
-router.post('/login', passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), asyncError(async (req, res) => {
+router.post('/login', storeUrl, passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), asyncError(async (req, res) => {
     req.flash('success', 'Successfully Logged In');
-    res.redirect("/webdev");
+    // console.log("new: ", res.locals.returnUrl);
+    const redirectUrl = res.locals.returnUrl || "/webdev";
+    res.redirect(redirectUrl);
 }));
 
 router.get('/logout', (req, res) => {

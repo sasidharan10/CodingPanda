@@ -2,6 +2,7 @@ const { Errorhandler } = require('./errorHandler');
 const { userSchema } = require('./schemaValidation');
 
 module.exports.isLoggedIn = (req, res, next) => {
+    req.session.returnUrl = req.originalUrl;
     if (!req.isAuthenticated()) {
         req.flash('error', 'You must be signed in first!');
         return res.redirect('/login');
@@ -18,6 +19,12 @@ module.exports.validateUserSchema = (req, res, next) => {
     else {
         next();
     }
+}
+
+module.exports.storeUrl = (req, res, next) => {
+    if (req.session.returnUrl)
+        res.locals.returnUrl = req.session.returnUrl;
+    next();
 }
 
 

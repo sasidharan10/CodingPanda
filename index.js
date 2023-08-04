@@ -10,7 +10,7 @@ const session = require('express-session');
 const flash = require('connect-flash');
 
 
-const {Errorhandler, asyncError} = require('./utils/errorHandler');
+const { Errorhandler, asyncError } = require('./utils/errorHandler');
 const { isLoggedIn } = require('./utils/middleware');
 
 const userModel = require("./models/userModel");
@@ -89,7 +89,7 @@ app.get('/', asyncError(async (req, res) => {
 }));
 
 app.get('/about', (req, res) => {
-    res.sendFile(getPath("about"));
+    res.render('about');
 });
 
 app.get('/courses', (req, res) => {

@@ -1,5 +1,6 @@
 const { Errorhandler } = require('./errorHandler');
 const { userSchema } = require('./schemaValidation');
+const { instructorSchema } = require('./schemaValidation');
 
 module.exports.isLoggedIn = (req, res, next) => {
     req.session.returnUrl = req.originalUrl;
@@ -12,6 +13,17 @@ module.exports.isLoggedIn = (req, res, next) => {
 
 module.exports.validateUserSchema = (req, res, next) => {
     const { error } = userSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(', ');
+        throw new Errorhandler(msg, 400);
+    }
+    else {
+        next();
+    }
+}
+
+module.exports.validateInstructorSchema = (req, res, next) => {
+    const { error } = instructorSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ');
         throw new Errorhandler(msg, 400);

@@ -2,10 +2,11 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const userModel = require("../models/userModel");
+const instructorModel = require("../models/instructorModel");
 
 
 const { asyncError } = require('../utils/errorHandler');
-const { validateUserSchema, storeUrl } = require('../utils/middleware');
+const { validateUserSchema, validateInstructorSchema, storeUrl } = require('../utils/middleware');
 
 function getPath(pageName) {
     let tempPath = "C:\\Users\\Lenovo\\Desktop\\Coding Panda";
@@ -58,5 +59,23 @@ router.get('/logout', (req, res) => {
         res.redirect('/');
     });
 });
+
+router.get('/instructor', asyncError(async (req, res) => {
+    res.render('instructor');
+}));
+
+router.post('/instructor', validateInstructorSchema, asyncError(async (req, res) => {
+    try {
+        const { instructorName, instructorTitle, email, description } = req.body;
+        const newData = new instructorModel({ instructorName, instructorTitle, email, description });
+        const result = await newData.save();
+        req.flash('success', 'Successfully Added Instructor');
+        res.redirect("/instructor");
+    }
+    catch (error) {
+        req.flash('error', error.message);
+        res.redirect("/instructor");
+    }
+}));
 
 module.exports = router;

@@ -10,6 +10,10 @@ const courseSchema = new Schema({
         type: String,
         required: [true, "Instructor Title is required"]
     },
+    link: {
+        type: String,
+        required: [true, "title is required"]
+    },
     description: {
         type: String,
         required: [true, "Instructor description is required"]

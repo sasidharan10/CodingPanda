@@ -9,6 +9,7 @@ const LocalStrategy = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
 
+const instructorModel = require("./models/instructorModel");
 
 const { Errorhandler, asyncError } = require('./utils/errorHandler');
 const { isLoggedIn } = require('./utils/middleware');
@@ -88,9 +89,10 @@ app.get('/', asyncError(async (req, res) => {
     res.render('home');
 }));
 
-app.get('/about', (req, res) => {
-    res.render('about');
-});
+app.get('/about', asyncError(async (req, res) => {
+    const instructorData = await instructorModel.find({});
+    res.render('about', {instructorData: instructorData});
+}));
 
 app.get('/courses', (req, res) => {
     res.render('courses');

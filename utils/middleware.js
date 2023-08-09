@@ -1,12 +1,23 @@
 const { Errorhandler } = require('./errorHandler');
 const { userSchema } = require('./schemaValidation');
 const { instructorSchema } = require('./schemaValidation');
+const userModel = require("../models/userModel");
 
 module.exports.isLoggedIn = (req, res, next) => {
     req.session.returnUrl = req.originalUrl;
     if (!req.isAuthenticated()) {
         req.flash('error', 'You must be signed in first!');
         return res.redirect('/login');
+    }
+    next();
+}
+
+module.exports.isUser = async (req, res, next) => {
+    const id = req.params.userId;
+    const userId = await userModel.findById(id);
+    if (!userId._id.equals(req.user._id)) {
+        req.flash('error', 'You are not Authorized to view this page!');
+        return res.redirect(`/login`);
     }
     next();
 }

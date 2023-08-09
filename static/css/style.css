@@ -85,7 +85,7 @@ html {
     transform: scaleX(1);
 }
 
-#navbar .navBtn ul {
+#navbar .navBtn{
     display: flex;
     flex-direction: row;
     text-decoration: none;

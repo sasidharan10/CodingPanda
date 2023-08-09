@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Reggae+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+/* font-family: 'Reggae One', cursive; */
+/* font-family: 'Mate SC', serif; */
+/* font-family: 'Josefin Sans', sans-serif; */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#profileSection {
+    width: 100%;
+    height: 70vh;
+    background-color: antiquewhite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#profileSection .profileHeading h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 30px;
+}
+
+#profileSection .profileBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+#profileSection .profileBody .profileImage {
+    margin-right: 30px;
+}
+
+#profileSection .profileBody .profileImage img {
+    width: 120px;
+    height: 120px;
+    margin: 15px;
+    border-radius: 50%;
+}
+
+#profileSection .profileBody .profileContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 30px;
+}
+
+#profileSection .profileBody .profileContent .contentBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    /* margin: 15px; */
+}
+
+#profileSection .profileBody .profileContent .contentBox table{
+    margin: 15px;
+}

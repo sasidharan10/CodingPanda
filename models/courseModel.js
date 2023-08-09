@@ -6,17 +6,29 @@ const courseSchema = new Schema({
         type: String,
         required: [true, "title is required"]
     },
-    instructor: {
-        type: String,
-        required: [true, "Instructor Title is required"]
+    tutor: {
+        type: Schema.Types.ObjectId,
+        ref: 'instructor'
     },
     link: {
         type: String,
         required: [true, "title is required"]
     },
+    duration: {
+        type: Number,
+        required: [true, "Duration is required"]
+    },
     description: {
         type: String,
-        required: [true, "Instructor description is required"]
+        required: [true, "Description description is required"]
+    },
+    summary: {
+        type: String,
+        required: [true, "Summary description is required"]
+    },
+    techStack: {
+        type: Array,
+        required: [true, "TechStack description is required"]
     }
 });
 

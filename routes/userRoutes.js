@@ -6,13 +6,15 @@ const instructorModel = require("../models/instructorModel");
 
 
 const { asyncError } = require('../utils/errorHandler');
-const { validateUserSchema, validateInstructorSchema, storeUrl } = require('../utils/middleware');
+const { validateUserSchema, validateInstructorSchema, storeUrl, isLoggedIn, isUser } = require('../utils/middleware');
 
 function getPath(pageName) {
     let tempPath = "C:\\Users\\Lenovo\\Desktop\\Coding Panda";
     let newPath = tempPath + "\\views\\" + pageName + ".html";
     return newPath;
 }
+
+const passportAuthenticate = passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' });
 
 // router.get('/fakeUser', async (req, res) => {
 //     res.sendFile(getPath("webdev"));
@@ -43,7 +45,7 @@ router.get('/login', asyncError(async (req, res) => {
     res.render('login');
 }));
 
-router.post('/login', storeUrl, passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }), asyncError(async (req, res) => {
+router.post('/login', storeUrl, passportAuthenticate, asyncError(async (req, res) => {
     req.flash('success', 'Successfully Logged In');
     // console.log("new: ", res.locals.returnUrl);
     const redirectUrl = res.locals.returnUrl || "/webdev";
@@ -76,6 +78,17 @@ router.post('/instructor', validateInstructorSchema, asyncError(async (req, res)
         req.flash('error', error.message);
         res.redirect("/instructor");
     }
+}));
+
+router.get('/profile', asyncError(async (req, res) => {
+    res.render('profile');
+}));
+
+router.get('/profile/:userId', isLoggedIn, isUser, asyncError(async (req, res) => {
+    const userId = req.params.userId;
+    const userData = await userModel.findById(userId);
+    // res.send(userId);
+    res.render('profile2', { userData: userData });
 }));
 
 module.exports = router;

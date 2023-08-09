@@ -1,0 +1,34 @@
+<% layout('./layouts/boilerplate') -%>
+
+    <link rel="stylesheet" href="../static/css/styleProfile.css">
+    <title>user Profile</title>
+
+    <section id="profileSection">
+        <div class="profileHeading">
+            <h1>User profile</h1>
+        </div>
+        <div class="profileBody">
+            <div class="profileImage">
+                <img src="../static/img/avatar/profile.png" alt="Profile">
+            </div>
+            <div class="profileContent">
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th scope="row">First Name: </th>
+                            <td><%= userData.firstName %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Last Name: </th>
+                            <td><%= userData.flastName %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">E-mail: </th>
+                            <td><%= userData.email %></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </div>
+        </div>
+    </section>

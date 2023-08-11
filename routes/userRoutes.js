@@ -6,7 +6,7 @@ const instructorModel = require("../models/instructorModel");
 
 
 const { asyncError } = require('../utils/errorHandler');
-const { validateUserSchema, validateInstructorSchema, storeUrl, isLoggedIn, isUser } = require('../utils/middleware');
+const { validateUserSchema, validateInstructorSchema, validateEditUserSchema, alreadyLoggedIn, storeUrl, isLoggedIn, isUser } = require('../utils/middleware');
 
 function getPath(pageName) {
     let tempPath = "C:\\Users\\Lenovo\\Desktop\\Coding Panda";
@@ -20,7 +20,7 @@ const passportAuthenticate = passport.authenticate('local', { failureFlash: true
 //     res.sendFile(getPath("webdev"));
 // });
 
-router.get('/register', asyncError(async (req, res) => {
+router.get('/register', alreadyLoggedIn, asyncError(async (req, res) => {
     res.render('register');
 }));
 
@@ -32,7 +32,7 @@ router.post('/register', validateUserSchema, asyncError(async (req, res) => {
         req.login(newUser, (err) => {
             if (err) return next(err);
             req.flash('success', 'Successfully Registered');
-            res.redirect("/register");
+            res.redirect("/");
         });
     }
     catch (error) {
@@ -41,14 +41,13 @@ router.post('/register', validateUserSchema, asyncError(async (req, res) => {
     }
 }));
 
-router.get('/login', asyncError(async (req, res) => {
+router.get('/login', alreadyLoggedIn, asyncError(async (req, res) => {
     res.render('login');
 }));
 
 router.post('/login', storeUrl, passportAuthenticate, asyncError(async (req, res) => {
     req.flash('success', 'Successfully Logged In');
-    // console.log("new: ", res.locals.returnUrl);
-    const redirectUrl = res.locals.returnUrl || "/webdev";
+    const redirectUrl = res.locals.returnUrl || "/";
     res.redirect(redirectUrl);
 }));
 
@@ -83,7 +82,7 @@ router.post('/instructor', validateInstructorSchema, asyncError(async (req, res)
 router.get('/profile/:userId', isLoggedIn, isUser, asyncError(async (req, res) => {
     const userId = req.params.userId;
     const userData = await userModel.findById(userId);
-    res.render('profile2', { userData: userData });
+    res.render('profile', { userData: userData });
 }));
 
 router.get('/profileEdit/:userId', isLoggedIn, isUser, asyncError(async (req, res) => {
@@ -92,7 +91,7 @@ router.get('/profileEdit/:userId', isLoggedIn, isUser, asyncError(async (req, re
     res.render("editUser", { userData: userData });
 }));
 
-router.put('/profileUpdate/:userId', isLoggedIn, isUser, asyncError(async (req, res) => {
+router.put('/profileUpdate/:userId', isLoggedIn, isUser, validateEditUserSchema, asyncError(async (req, res) => {
     try {
         const userId = req.params.userId;
         const userData = await userModel.findByIdAndUpdate(userId, { ...req.body });

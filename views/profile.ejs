@@ -9,26 +9,44 @@
         </div>
         <div class="profileBody">
             <div class="profileImage">
-                <img src="../static/img/avatar/profile.png" alt="Profile">
+                <img src="../static/img/avatar/profileImg.png" alt="Profile">
             </div>
             <div class="profileContent">
                 <table class="table">
                     <tbody>
                         <tr>
                             <th scope="row">First Name: </th>
-                            <td>Sasi</td>
+                            <td><%= userData.firstName %></td>
                         </tr>
                         <tr>
                             <th scope="row">Last Name: </th>
-                            <td>Dharan</td>
+                            <td><%= userData.lastName %></td>
                         </tr>
                         <tr>
                             <th scope="row">E-mail: </th>
-                            <td>Sasi@gmail.com</td>
+                            <td><%= userData.email %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">College: </th>
+                            <td><%= userData.college %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Country: </th>
+                            <td><%= userData.country %></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Github: </th>
+                            <td><a href="https://github.com/<%= userData.leetcode %>" target="_blank" class="btn btn-info" role="button">@<%= userData.github %></a></td>
+                        </tr>
+                        <tr>
+                            <th scope="row">Leetcode: </th>
+                            <td><a href="https://leetcode.com/<%=userData.leetcode%>/" target="_blank" class="btn btn-info" role="button">@<%= userData.leetcode %></a></td>
                         </tr>
                     </tbody>
                 </table>
-                
             </div>
+        </div>
+        <div>
+            <a href="/profileEdit/<%= currentUser._id%>" class="btn btn-info" role="button">Edit Profile</a>
         </div>
     </section>

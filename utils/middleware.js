@@ -1,6 +1,5 @@
 const { Errorhandler } = require('./errorHandler');
-const { userSchema } = require('./schemaValidation');
-const { instructorSchema } = require('./schemaValidation');
+const { userSchema, instructorSchema, editUserSchema } = require('./schemaValidation');
 const userModel = require("../models/userModel");
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -12,8 +11,16 @@ module.exports.isLoggedIn = (req, res, next) => {
     next();
 }
 
+module.exports.alreadyLoggedIn = (req, res, next) => {
+    if (req.isAuthenticated()) {
+        req.flash('success', 'Already Logged In');
+        return res.redirect("/");
+    }
+    next();
+}
+
 module.exports.isUser = async (req, res, next) => {
-    const {userId} = req.params;
+    const { userId } = req.params;
     const data = await userModel.findById(userId);
     if (!data._id.equals(req.user._id)) {
         req.flash('error', 'You are not Authorized to view this page!');
@@ -24,6 +31,17 @@ module.exports.isUser = async (req, res, next) => {
 
 module.exports.validateUserSchema = (req, res, next) => {
     const { error } = userSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(', ');
+        throw new Errorhandler(msg, 400);
+    }
+    else {
+        next();
+    }
+}
+
+module.exports.validateEditUserSchema = (req, res, next) => {
+    const { error } = editUserSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ');
         throw new Errorhandler(msg, 400);

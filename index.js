@@ -8,6 +8,7 @@ const joi = require('joi');
 const LocalStrategy = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
+const methodOverride = require('method-override');
 
 const instructorModel = require("./models/instructorModel");
 
@@ -36,9 +37,11 @@ db.once("open", () => {
 app.set('views', path.join(__dirname, "views"));
 app.set('view engine', 'ejs');
 app.engine('ejs', ejsMate);
+app.use(methodOverride('_method'));
 
 app.use('/static', express.static('static'));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 
 const secret = process.env.SECRET || 'mypetbirdnameisunknown!';

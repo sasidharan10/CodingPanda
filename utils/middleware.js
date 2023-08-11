@@ -13,9 +13,9 @@ module.exports.isLoggedIn = (req, res, next) => {
 }
 
 module.exports.isUser = async (req, res, next) => {
-    const id = req.params.userId;
-    const userId = await userModel.findById(id);
-    if (!userId._id.equals(req.user._id)) {
+    const {userId} = req.params;
+    const data = await userModel.findById(userId);
+    if (!data._id.equals(req.user._id)) {
         req.flash('error', 'You are not Authorized to view this page!');
         return res.redirect(`/login`);
     }

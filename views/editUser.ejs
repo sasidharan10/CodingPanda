@@ -1,0 +1,103 @@
+<% layout('./layouts/boilerplate') -%>
+
+    <link rel="stylesheet" href="../static/css/styleEditUser.css">
+    <title>Edit your profile</title>
+
+    <section id="editUserIntroSection">
+        <div class="editUserTitle">
+            <h1>User Details</h1>
+        </div>
+        <% if(success && success.length){%>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <%=success %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% }%>
+        <% if(error && error.length){%>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <%=error %>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                <% }%>
+        <form class="registerForm col-lg-3 d-flex flex-column validated-form" action="/profileUpdate/<%=currentUser._id%>?_method=PUT" method="post"
+            novalidate>
+            <div class="row">
+                <div class="col">
+                    <label for="firstName" class="mb-2">First Name</label>
+                    <input type="text" class="form-control mb-3" placeholder="First name" id="firstName"
+                        name="firstName" value="<%= userData.firstName %>" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter your First name.
+                    </div>
+                </div>
+                <div class="col">
+                    <label for="lastName" class="mb-2">Last Name</label>
+                    <input type="text" class="form-control mb-3" placeholder="Last name" id="lastName" name="lastName"
+                    value="<%= userData.lastName %>" >
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="email" class="mb-2">Email address</label>
+                <input type="email" class="form-control" id="email"
+                    placeholder="Enter email" name="email" value="<%= userData.email %>" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter valid E-mail.
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="country" class="mb-2">Country</label>
+                <input type="text" class="form-control" id="country"
+                    placeholder="Enter country" name="country" value="<%= userData.country %>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter valid E-mail.
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="college" class="mb-2">College</label>
+                <input type="text" class="form-control" id="college"
+                    placeholder="Enter college" name="college" value="<%= userData.college %>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter valid E-mail.
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="github" class="mb-2">Github Username</label>
+                <input type="text" class="form-control" id="github"
+                    placeholder="Enter github username" name="github" value="<%= userData.github %>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter valid E-mail.
+                </div>
+            </div>
+            <div class="form-group mb-3">
+                <label for="leetcode" class="mb-2">Leetcode Username</label>
+                <input type="text" class="form-control" id="leetcode"
+                    placeholder="Enter leetcode username" name="leetcode" value="<%= userData.leetcode %>">
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter valid E-mail.
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success mx-5">Update Profile</button>
+        </form>
+    </section>
+    <script src="../static/js/validateForm.js"></script>

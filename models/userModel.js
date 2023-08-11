@@ -7,12 +7,29 @@ const userSchema = new Schema({
         required: [true, "First Name is required"]
     },
     lastName: {
-        type: String
+        type: String,
+        default: ''
     }, 
     email: {
         type: String,
         required: [true, "E-Mail is required"]
     },
+    college: {
+        type: String,
+        default: ''
+    },
+    country: {
+        type: String,
+        default: ''
+    },
+    github: {
+        type: String,
+        default: ''
+    },
+    leetcode: {
+        type: String,
+        default: ''
+    }
 });
 
 userSchema.plugin(passportLocalMongoose, {

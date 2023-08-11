@@ -3,35 +3,33 @@
         <div class="mainLogo">
             <img src="../static/img/logo/logo.png" alt="Error not found!!!" />
         </div>
-        <div class="navroutes">
-
-
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About Us</a></li>
-                <li><a href="/courses">Our Courses</a></li>
-                <li><a href="/webdev">Web Dev</a></li>
-            </ul>
+        <div class="navRoutes">
+            <a href="/">Home</a>
+            <a href="/about">About Us</a>
+            <a href="/courses">Our Courses</a>
+            <a href="/webdev">Web Dev</a>
         </div>
     </div>
 
     <div class="navBtn">
         <% if(!currentUser){%>
-        <a href="/login" class="btn btn-info" role="button">Login</a>
-        <a href="/register" class="btn btn-info" role="button">Register</a>
+            <a href="/login" class="btn btn-info" role="button">Login</a>
+            <a href="/register" class="btn btn-info" role="button">Register</a>
             <% } else { %>
-        <div class="btn-group">
-            <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              Profile
-            </button>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="/profile/<%= currentUser._id %>">View Profile</a></li>
-              <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="/logout">Logout</a></li>
-            </ul>
-        </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Profile
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/profile/<%= currentUser._id%>">View Profile</a></li>
+                        <li><a class="dropdown-item" href="/profileEdit/<%= currentUser._id%>">Edit Profile</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                    </ul>
+                </div>
                 <% }%>
     </div>
 </div>
-

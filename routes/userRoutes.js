@@ -1,5 +1,5 @@
 const express = require('express');
-const router = express.Router();
+const router = express.Router({ mergeParams: true });
 const passport = require('passport');
 const userModel = require("../models/userModel");
 const instructorModel = require("../models/instructorModel");
@@ -80,15 +80,29 @@ router.post('/instructor', validateInstructorSchema, asyncError(async (req, res)
     }
 }));
 
-router.get('/profile', asyncError(async (req, res) => {
-    res.render('profile');
-}));
-
 router.get('/profile/:userId', isLoggedIn, isUser, asyncError(async (req, res) => {
     const userId = req.params.userId;
     const userData = await userModel.findById(userId);
-    // res.send(userId);
     res.render('profile2', { userData: userData });
+}));
+
+router.get('/profileEdit/:userId', isLoggedIn, isUser, asyncError(async (req, res) => {
+    const userId = req.params.userId;
+    const userData = await userModel.findById(userId);
+    res.render("editUser", { userData: userData });
+}));
+
+router.put('/profileUpdate/:userId', isLoggedIn, isUser, asyncError(async (req, res) => {
+    try {
+        const userId = req.params.userId;
+        const userData = await userModel.findByIdAndUpdate(userId, { ...req.body });
+        req.flash('success', 'Successfully Added Instructor');
+        res.redirect(`/profile/${userId}`);
+    }
+    catch (error) {
+        req.flash('error', error.message);
+        res.redirect(`/profile/${userId}`);
+    }
 }));
 
 module.exports = router;

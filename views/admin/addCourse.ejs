@@ -1,0 +1,89 @@
+<% layout('./layouts/adminLayout') -%>
+
+<link rel="stylesheet" href="../../static/css/admin/styleAddCourse.css">
+<title>Add Courses</title>
+
+<section id="addCourseIntroSection">
+    <div class="addCourseTitle">
+        <h1>Add Course</h1>
+    </div>
+    <% if(success && success.length){%>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%=success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
+    <% if(error && error.length){%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%=error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
+    <form class="addCourseForm col-xl-3 d-flex flex-column validated-form" action="/addCourse" method="post" novalidate>
+        <div class="form-group mb-3">
+            <label for="courseTitle" class="mb-2">Course Title</label>
+            <input type="text" class="form-control mb-3" placeholder="Course Title" id="courseTitle" name="courseTitle"
+                required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter valid E-mail.
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="instructor">Example select</label>
+            <select class="form-control" id="instructor">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="videoId" class="mb-2">Course Link</label>
+            <input type="text" class="form-control" id="videoId" placeholder="Enter YouTube Video ID" name="videoId"
+                required>
+            <small class="form-text text-muted">Enter only the Video ID</small>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter valid E-mail.
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="description" class="mb-2">Title</label>
+            <input type="text" class="form-control mb-3" placeholder="Enter the Course Description" id="description"
+                name="description" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter valid E-mail.
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="summary" class="mb-2">Summary</label>
+            <textarea type="text" class="form-control mb-3" placeholder="Enter Summary (less than 20 words)"
+                id="summary" name="summary" required></textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter valid E-mail.
+            </div>
+        </div>
+        <div class=" form-group mb-3">
+            <label for="tags-input" class="mb-2">Tech Stacks</label>
+            <input type="text" id="tags-input" class="tags-input" name="techStack" data-role="tagsinput"
+                placeholder="Add Tech Stack here" value="HTML">
+            <small class="form-text text-muted">Separate keywords with a comma or enter
+                key</small>
+        </div>
+        <button type="submit" class="btn btn-success mx-5">Submit</button>
+
+    </form>
+
+</section>

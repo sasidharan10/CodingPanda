@@ -1,7 +1,7 @@
-<% layout('./layouts/boilerplate') -%>
+<% layout('./layouts/adminLayout') -%>
 
     <link rel="stylesheet" href="../static/css/styleLogin.css">
-    <title>About US</title>
+    <title>Admin Login</title>
     
     <section id="loginIntroSection">
         <% if(success && success.length){%>
@@ -17,9 +17,9 @@
                 </div>
                 <% }%>
         <div class="loginTitle">
-            <h1>Login Form</h1>
+            <h1>Admin Login</h1>
         </div>
-        <form class="loginForm col-lg-3 d-flex flex-column validated-form" action="/login" method="POST" novalidate>
+        <form class="loginForm col-lg-3 d-flex flex-column validated-form" action="/adminLogin" method="POST" novalidate>
             <div class="form-group mb-3">
                 <label for="username" class="mb-2">Username</label>
                 <input type="text" class="form-control" id="username"

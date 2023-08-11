@@ -1,5 +1,5 @@
 const { Errorhandler } = require('./errorHandler');
-const { userSchema, instructorSchema, editUserSchema } = require('./schemaValidation');
+const { userSchema, instructorSchema, editUserSchema, adminSchema } = require('./schemaValidation');
 const userModel = require("../models/userModel");
 
 module.exports.isLoggedIn = (req, res, next) => {
@@ -53,6 +53,17 @@ module.exports.validateEditUserSchema = (req, res, next) => {
 
 module.exports.validateInstructorSchema = (req, res, next) => {
     const { error } = instructorSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(', ');
+        throw new Errorhandler(msg, 400);
+    }
+    else {
+        next();
+    }
+}
+
+module.exports.validateAdminSchema = (req, res, next) => {
+    const { error } = adminSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ');
         throw new Errorhandler(msg, 400);

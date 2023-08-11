@@ -35,3 +35,8 @@ module.exports.instructorSchema = Joi.object({
     email: Joi.string().required().email(),
     description: Joi.string().required().custom(validateWordCount).message('Description should contain 30 - 50 words')
 });
+
+module.exports.adminSchema = Joi.object({
+    username: Joi.string().required().regex(/^[A-Za-z]+$/).message('Username should only include alphabetic characters'),
+    password: Joi.string().required()
+});

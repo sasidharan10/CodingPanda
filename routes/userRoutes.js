@@ -14,7 +14,7 @@ function getPath(pageName) {
     return newPath;
 }
 
-const passportAuthenticate = passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' });
+const passportAuthenticate = passport.authenticate('user', { failureFlash: true, failureRedirect: '/login' });
 
 // router.get('/fakeUser', async (req, res) => {
 //     res.sendFile(getPath("webdev"));

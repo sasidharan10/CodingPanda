@@ -11,12 +11,14 @@ const flash = require('connect-flash');
 const methodOverride = require('method-override');
 
 const instructorModel = require("./models/instructorModel");
+const userModel = require("./models/userModel");
+const adminModel = require("./models/adminModel");
 
 const { Errorhandler, asyncError } = require('./utils/errorHandler');
 const { isLoggedIn } = require('./utils/middleware');
 
-const userModel = require("./models/userModel");
 const userRoutes = require('./routes/userRoutes');
+const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 const host = "127.0.0.1";
 const port = process.env.PORT || 5000;  // hosting step 1
@@ -63,13 +65,18 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy({
+passport.use("user", new LocalStrategy({
     usernameField: 'email',
     passwordField: 'password'
 }, userModel.authenticate()));
 
+passport.use("admin", new LocalStrategy(adminModel.authenticate()));
+
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
+
+passport.serializeUser(adminModel.serializeUser());
+passport.deserializeUser(adminModel.deserializeUser());
 
 const pt = path.join(__dirname, "views/");
 
@@ -87,6 +94,7 @@ app.use((req, res, next) => {
 });
 
 app.use('/', userRoutes);
+app.use('/', adminRoutes);
 
 app.get('/', asyncError(async (req, res) => {
     res.render('home');
@@ -94,7 +102,7 @@ app.get('/', asyncError(async (req, res) => {
 
 app.get('/about', asyncError(async (req, res) => {
     const instructorData = await instructorModel.find({});
-    res.render('about', {instructorData: instructorData});
+    res.render('about', { instructorData: instructorData });
 }));
 
 app.get('/courses', (req, res) => {

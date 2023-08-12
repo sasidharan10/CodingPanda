@@ -15,7 +15,7 @@ const courseSchema = new Schema({
         required: [true, "Video Id is required"]
     },
     duration: {
-        type: Number,
+        type: Schema.Types.Mixed,
         required: [true, "Duration is required"]
     },
     description: {

@@ -32,14 +32,16 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="instructor">Example select</label>
-            <select class="form-control" id="instructor">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+            <label for="instructorId">Select Instructor</label>
+            <select class="form-select" aria-label="Default select example" id="instructorId" name="instructorId">
+                <% for (const it of instructorData) { %>
+                <option value="<%= it._id%>"><%= it.instructorName%></option>
+                <% } %>
             </select>
+        </div>
+        <div class="newInstructorBtn">
+            <a href="/addInstructor" class="btn btn-secondary mx-4 my-2 col-lg-6" role="button">Add New
+                Instructor</a>
         </div>
         <div class="form-group mb-3">
             <label for="videoId" class="mb-2">Course Link</label>

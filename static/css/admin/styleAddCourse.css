@@ -21,3 +21,9 @@ html {
     text-align: center;
     margin: 30px 0;
 }
+
+#addCourseIntroSection .addCourseForm .newInstructorBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

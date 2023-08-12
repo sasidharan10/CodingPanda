@@ -1,6 +1,6 @@
 <% layout('./layouts/boilerplate') -%>
 
-    <link rel="stylesheet" href="../static/css/styleInstructor.css">
+    <link rel="stylesheet" href="../../static/css/admin/styleInstructor.css">
     <title>Instructor</title>
 
     <section id="instructorIntroSection">
@@ -19,7 +19,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
                 <% }%>
-        <form class="registerForm col-xl-3 d-flex flex-column validated-form" action="/instructor" method="post"
+        <form class="registerForm col-xl-3 d-flex flex-column validated-form" action="/addInstructor" method="post"
             novalidate>
             <div class="form-group mb-3">
                 <label for="firstName" class="mb-2">Instructor Name</label>

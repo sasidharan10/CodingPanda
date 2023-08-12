@@ -1,0 +1,69 @@
+[
+    {
+        "courseTitle": "Full Stack Web Development",
+        "instructor": "64d7467516979f9902017b7b",
+        "videoId": "Rp69edBmFFo",
+        "duration": {
+            "hours": 11,
+            "minutes": 20,
+            "seconds": 15
+        },
+        "description": "Explore the MERN (MongoDB, Express.js, React, Node.js) stack to build dynamic web applications. Learn to create interactive user interfaces, manage databases, and develop full-stack applications with real-world project experience.",
+        "summary": "Master the MERN stack in web development through hands-on learning of modern tools and technologies",
+        "techStack": [
+            "HTML",
+            "css",
+            "javascript",
+            "Node.js",
+            "Express.js"
+        ],
+        "thumbnail": "https://i.ytimg.com/vi/Rp69edBmFFo/hqdefault.jpg"
+    },
+    {
+        "courseTitle": "Data Structures and Algorithms",
+        "instructor": "64d7467516979f9902017b7f",
+        "videoId": "8hly31xKli0",
+        "duration": {
+            "hours": 5,
+            "minutes": 22,
+            "seconds": 9
+        },
+        "description": "Delve into the heart of computer science with a comprehensive study of data structures and algorithms. Learn how to optimize code for efficiency, solve complex problems, and enhance problem-solving skills.",
+        "summary": "Boost coding expertise with efficient problem-solving using advanced data structures and algorithms.",
+        "techStack": [
+            "python",
+            "array",
+            "linked list",
+            "stack",
+            "queue",
+            "tree",
+            "graph"
+        ],
+        "thumbnail": "https://i.ytimg.com/vi/8hly31xKli0/hqdefault.jpg"
+    },
+    {
+        "courseTitle": "Python Full Course for Beginners",
+        "instructor": "64d7467516979f9902017b7d",
+        "videoId": "rfscVS0vtbw",
+        "duration": {
+            "hours": 4,
+            "minutes": 26,
+            "seconds": 52
+        },
+        "description": "Dive into the world of Python programming. Acquire fundamental skills in syntax, data manipulation, and object-oriented programming. Build practical projects and gain a strong foundation for software development.",
+        "summary": "Learn Python through hands-on projects for versatile software development.",
+        "techStack": [
+            "variables",
+            "data types",
+            "lists",
+            "tuple",
+            "while-loop",
+            "for-loop",
+            "array",
+            "class",
+            "inheritance",
+            "dictionaries"
+        ],
+        "thumbnail": "https://i.ytimg.com/vi/rfscVS0vtbw/hqdefault.jpg"
+    }
+]

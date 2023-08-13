@@ -13,6 +13,7 @@ const methodOverride = require('method-override');
 const instructorModel = require("./models/instructorModel");
 const userModel = require("./models/userModel");
 const adminModel = require("./models/adminModel");
+const courseModel = require("./models/courseModel");
 
 const { Errorhandler, asyncError } = require('./utils/errorHandler');
 const { isLoggedIn } = require('./utils/middleware');
@@ -106,13 +107,23 @@ app.get('/about', asyncError(async (req, res) => {
     res.render('about', { instructorData: instructorData });
 }));
 
-app.get('/courses', (req, res) => {
-    res.render('courses');
-});
+app.get('/courses', asyncError(async (req, res) => {
+    const coursesData = await courseModel.find({}).populate("instructor");
+    res.render('courses', { coursesData: coursesData });
+}));
 
-app.get('/courses2', (req, res) => {
-    res.render('courses2');
-});
+app.get('/desc', asyncError(async (req, res) => {
+    // const coursesData = await courseModel.find({}).populate("instructor");
+    res.render('courseDescription');
+}));
+
+
+app.get('/courses/:courseId', asyncError(async (req, res) => {
+    const courseId = req.params.courseId;
+    const courseData = await courseModel.findById(courseId).populate("instructor");
+    res.render('courseDescription', { courseData: courseData });
+    // res.send(courseData);
+}));
 
 app.get('/webdev', isLoggedIn, (req, res) => {
     res.render('webdev');

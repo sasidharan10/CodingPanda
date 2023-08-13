@@ -1,2 +1,76 @@
 <% layout('./layouts/boilerplate') -%>
+<link rel="stylesheet" href="../static/css/styleCourseDescription.css">
+<title>About US</title>
 
+<section id="courseIntroSection">
+    <div class="courseIntroSectionBox">
+        <div class="courseIntroContent">
+            <div class="courseTitle">
+                <h1><%= courseData.courseTitle%></h1>
+            </div>
+            <div class="courseIntroBody">
+                <div class="courseSummary">
+                    <p><%= courseData.summary%></p>
+                </div>
+                <div class="courseInstructor">
+                    <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
+                    <h3><%= courseData.instructor.instructorName%></h3>
+                </div>
+                <div class="courseTime">
+                    <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
+                    <h3><%= courseData.duration.hours%>hrs <%= courseData.duration.minutes%>mins</h3>
+                </div>
+            </div>
+            <div class="submitBtn">
+                <a href="/webdev" class="btn btn-info mx-2" role="button">Enroll Now</a>
+            </div>
+        </div>
+        <div class="courseImage">
+            <img src="<%= courseData.thumbnail%>" alt="coures image">
+        </div>
+    </div>
+</section>
+
+<section id="courseDescriptionSection">
+    <div class="courseDescriptionBox topbox">
+        <div class="courseDescriptionTitle">
+            <h2>Description</h2>
+        </div>
+        <div class="courseFullDescription">
+            <p><%= courseData.description%></p>
+        </div>
+    </div>
+    <div class="courseDescriptionBox">
+        <div class="courseDescriptionTitle">
+            <h2>What you'll learn</h2>
+        </div>
+        <div class="courseContentBody">
+            <% for (const it of courseData.techStack) { %>
+            <p><%= it%></p>
+            <%} %>
+        </div>
+    </div>
+    <div class="courseDescriptionBox">
+        <div class="courseDescriptionTitle">
+            <h2>Instructor</h2>
+        </div>
+        <div class="instructorBody">
+            <div class="instructorHeader">
+                <div class="instructorImage">
+                    <img src="../static/img/avatar/1.png" alt="">
+                </div>
+                <div class="headerContent">
+                    <div class="instructorName">
+                        <h3><%= courseData.instructor.instructorName%></h3>
+                    </div>
+                    <div class="instructorTitle">
+                        <h5><%= courseData.instructor.instructorTitle%></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="instructorDescription">
+                <p><%= courseData.instructor.description%></p>
+            </div>
+        </div>
+    </div>
+</section>

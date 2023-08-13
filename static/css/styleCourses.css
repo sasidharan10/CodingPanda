@@ -40,134 +40,130 @@ html {
     margin: 10px 0;
 }
 
-#coursesIntroSection .coursesIntroBody .coursesButtons{
+#coursesIntroSection .coursesIntroBody .coursesButtons {
     margin: 20px 0;
 }
 
 
 
-#coursesContentSection{
-    height: 90vh;
+#coursesContentSection {
+    height: auto;
     background-color: rgb(193, 248, 230);
-    overflow: hidden;
-}
-
-#coursesContentSection h1{
-    text-align: left;
-    font-size: 2rem;
-    margin: 50px;
-}
-
-#coursesContentSection .coursesContentBody{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    margin-left: 70px;
-}
-
-#coursesContentSection .coursesContentBody .courseBox{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 40%;
-    width: 30%;
-    color: #000000;
-    background-color: #6b6868;
-    margin: 20px;
-    border: 4px solid rgb(178, 248, 225);
-    border-radius: 10px;
     overflow: hidden;
-    text-decoration: none;
 }
 
-#coursesContentSection .coursesContentBody .courseBox:hover{
-    border-color: rgb(64, 241, 182);
-    cursor: pointer;
+#coursesContentSection .coursesContentSectionTitle h1 {
+    text-align: left;
+    font-size: 2rem;
+    margin: 30px 50px;
 }
 
-#coursesContentSection .coursesContentBody .courseBox .courseHeading{
+#coursesContentSection .coursesContentBody {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+#coursesContentSection .coursesContentBody .courseBox {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    background-color: rgb(173, 172, 170);
-    padding: 0 30px;
-    
+    height: auto;
+    width: 30%;
+    color: #000000;
+    background-color: #e6fcd9;
+    margin: auto;
+    margin-bottom: 30px;
+    border: 2px solid rgb(207 207 207);
+    box-shadow: -1px 10px 20px #16161633;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-#coursesContentSection .coursesContentBody .courseBox .courseHeading .courseTitle{
-    width: 70%;
+#coursesContentSection .coursesContentBody .courseBox .courseImage img {
+    height: 170px;
+    width: 320px;
+    margin: 16px;
+    border: 2px solid white;
+    border-radius: 10px;
 }
 
-#coursesContentSection .coursesContentBody .courseBox .courseHeading .courseIcon img{
-    height: 100px;
-    width: 100px;
+#coursesContentSection .coursesContentBody .courseBox .courseTitle h2 {
+    font-size: 1.2rem;
+    text-align: center;
     margin: 10px;
 }
 
-
-
-#coursesContentSection .coursesContentBody .courseBox .courseFooter{
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: flex-start;
+    margin: 10px;
 }
 
-#coursesContentSection .coursesContentBody .courseBox .courseFooter .courseDescription{
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0px 8px;
+}
+
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent p {
+    font-size: 0.9rem;
+    margin: 0px 0px;
+}
+
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent .courseDescription {
+    height: 60px;
+}
+
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent .courseInstructor {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-start;
-    margin: 20px;
-    margin: 20px 20px 20px 60px;
+    margin: 6px 0px;
 }
 
-#coursesContentSection .coursesContentBody .courseBox .courseFooter .courseDescription p{
-    padding-left: 10px;
-    padding-top: 3px;
-}
-
-#coursesContentSection .coursesContentBody .courseBox .courseFooter .courseDescription img{
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent .courseInstructor img {
     width: 18px;
     height: 18px;
 }
 
-#coursesContentSection .coursesContentBody .courseBox .courseFooter .courseDescription .courseTime{
+
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent .courseTime {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     align-items: center;
+    margin: 6px 0px;
 }
 
-#coursesContentSection .coursesContentBody .courseBox .courseFooter .courseDescription .courseProjects{
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent .courseTime img {
+    width: 18px;
+    height: 18px;
+}
+
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent .courseReview {
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     align-items: center;
-    margin-left: 30px;
+    margin: 6px 0px;
 }
 
-
-#coursesContentSection .coursesContentBody .courseBox .courseFooter .courseReview{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    margin-left: 60px;
-    margin-bottom: 20px;
-}
-
-#coursesContentSection .coursesContentBody .courseBox .courseFooter .courseReview h3{
-    /* margin: 10px; */
-}
-
-#coursesContentSection .coursesContentBody .courseBox .courseFooter .courseReview img{
+#coursesContentSection .coursesContentBody .courseBox .courseBoxContent .courseReview img {
     width: 80px;
     padding-bottom: 1px;
-    margin-left: 10px;
+    margin: 0px 10px;
 }
 
-#coursesContentSection .coursesContentBody .courseBox .courseFooter .courseReview p{
-    margin-left: 10px;
-}
+
+
+
+
+
 
 
 .customBtn {
@@ -187,10 +183,10 @@ html {
 .customBtn:hover {
     border-radius: 5px;
     color: black;
-    background: linear-gradient(92.12deg, #f3f730 .78%,  #0fadf6 99.43%);
+    background: linear-gradient(92.12deg, #f3f730 .78%, #0fadf6 99.43%);
 }
 
-.custonBtn2{
+.custonBtn2 {
     font-family: 'Josefin Sans', sans-serif;
     text-decoration: none;
     color: #0f98f3;

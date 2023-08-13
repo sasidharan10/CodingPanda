@@ -8,6 +8,9 @@ module.exports.isLoggedIn = (req, res, next) => {
         req.flash('error', 'You must be signed in first!');
         return res.redirect('/login');
     }
+    console.log("req: ", req);
+    // console.log("user: ", req.user);
+    // console.log("user.role: ", req.user.role);
     next();
 }
 

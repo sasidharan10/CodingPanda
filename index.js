@@ -110,6 +110,10 @@ app.get('/courses', (req, res) => {
     res.render('courses');
 });
 
+app.get('/courses2', (req, res) => {
+    res.render('courses2');
+});
+
 app.get('/webdev', isLoggedIn, (req, res) => {
     res.render('webdev');
 });

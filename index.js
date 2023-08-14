@@ -125,7 +125,7 @@ app.get('/courses/:courseId', asyncError(async (req, res) => {
     // res.send(courseData);
 }));
 
-app.get('/webdev', isLoggedIn, (req, res) => {
+app.get('/webdev', (req, res) => {
     res.render('webdev');
 });
 

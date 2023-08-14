@@ -16,23 +16,94 @@ html {
 }
 
 
-#webdevIntroSection {
+#courseSection {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 90vh;
+    height: auto;
     background-color:bisque;
     overflow: hidden;
 }
 
-#webdevIntroSection .webdevHeading{
-    height: 20%;
-    text-align: left;
-    font-size: 2rem;
-    margin: 20px;
+#courseSection .courseVideo iframe{
+    width: 90vw;
+    height: 70vh;
+    margin: 40px;
 }
 
-#webdevIntroSection .webdevContent iframe{
-    width: 60vw;
-    height: 60vh;
+#courseSection .aboutCourse {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    width: 90%;
+    background-color: #e2e2e2;
+    padding: 20px;
+}
+
+#courseSection .aboutCourse .courseTitle h1{
+    font-size: 1.2;
+}
+
+#courseSection .aboutCourse h3 {
+    font-size: 1.1rem;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+#courseSection .aboutCourse p {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+}
+
+#courseSection .aboutCourse .descIcon {
+    width: 25px;
+    height: 25px;
+}
+
+#courseSection .aboutCourse .courseInstructor {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+
+#courseSection .aboutCourse .courseTime {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#courseCodeSection{
+    height: 70vh;
+    background-color: aliceblue;
+}
+
+#courseCodeSection .codeEditor{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+
+#courseCodeSection .codeEditor .editorForm{
+    display: flex;
+    flex-direction: column;
+    width: 40vh;
+}
+
+#courseCodeSection .codeEditor .editorHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: aqua;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#courseCodeSection .codeEditor .editorForm textarea{
+    font-family: Consolas, "Courier New", monospace;
+    background-color: rgb(46, 46, 46);
+    /* color:#fff; */
+    cursor: text;
+    /* caret-shape: 2px; */
 }

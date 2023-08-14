@@ -1,23 +1,31 @@
 <% layout('./layouts/boilerplate') -%>
 
-    <link rel="stylesheet" href="../static/css/styleWebdev.css">
-    <title>About US</title>
-    
-    <section id="webdevIntroSection">
-        <% if(success && success.length){%>
-            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <%=success %>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <% }%>
-        <div class="webdevHeading">
-            <h1>Web Development Course</h1>
+<link rel="stylesheet" href="../static/css/styleWebdev.css">
+<link rel="stylesheet" href="../static/css/prism.css">
+<title>Watch Course</title>
+
+<section id="courseSection">
+    <div class="courseVideo">
+        <iframe src="https://www.youtube.com/embed/nu_pCVPKzTk"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+    </div>
+    <div class="aboutCourse">
+        <div class="courseTitle">
+            <h1>Web Development</h1>
         </div>
-        <div class="webdevContent">
-            <iframe src="https://www.youtube.com/embed/nu_pCVPKzTk"
-                title="Full Stack Web Development for Beginners (Full Course on HTML, CSS, JavaScript, Node.js, MongoDB)"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowfullscreen></iframe>
+        <div class="courseSummary">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum qui corrupti eos praesentium dolorum vel
+                aliquam ipsum ea dicta esse.</p>
         </div>
-    </section>
+        <div class="courseInstructor">
+            <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
+            <h3>John Stones</h3>
+        </div>
+        <div class="courseTime">
+            <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
+            <h3>14 hrs 45 mins</h3>
+        </div>
+    </div>
+</section>
+

@@ -1,7 +1,28 @@
 <% layout('./layouts/boilerplate') -%>
-<link rel="stylesheet" href="../static/css/styleCourses.css">
-<title>About US</title>
 
-<section id="coursesContentSection">
+<link rel="stylesheet" href="../static/css/styleCoursePage.css">
+<title>Watch Course</title>
 
+<section id="courseSection">
+    <div class="courseVideo">
+        <iframe src="https://www.youtube.com/embed/<%= courseData.videoId%>"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+    </div>
+    <div class="aboutCourse">
+        <div class="courseTitle">
+            <h1><%= courseData.courseTitle%></h1>
+        </div>
+        <div class="courseSummary">
+            <p><%= courseData.summary%></p>
+        </div>
+        <div class="courseInstructor">
+            <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
+            <h3><%= courseData.instructor.instructorName%></h3>
+        </div>
+        <div class="courseTime">
+            <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
+            <h3><%= courseData.duration.hours%>hrs <%= courseData.duration.minutes%>mins</h3>
+        </div>
+    </div>
 </section>

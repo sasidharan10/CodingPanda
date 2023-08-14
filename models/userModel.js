@@ -9,10 +9,15 @@ const userSchema = new Schema({
     lastName: {
         type: String,
         default: ''
-    }, 
+    },
     email: {
         type: String,
         required: [true, "E-Mail is required"]
+    },
+    role: {
+        type: String,
+        default: 'user',
+        get: v => 'user'
     },
     college: {
         type: String,

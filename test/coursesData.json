@@ -2,11 +2,11 @@
     {
         "courseTitle": "Full Stack Web Development",
         "instructor": "64d7467516979f9902017b7b",
-        "videoId": "Rp69edBmFFo",
+        "videoId": "nu_pCVPKzTk",
         "duration": {
-            "hours": 11,
-            "minutes": 20,
-            "seconds": 15
+            "hours": 7,
+            "minutes": 29,
+            "seconds": 12
         },
         "description": "Explore the MERN (MongoDB, Express.js, React, Node.js) stack to build dynamic web applications. Learn to create interactive user interfaces, manage databases, and develop full-stack applications with real-world project experience.",
         "summary": "Master the MERN stack in web development through hands-on learning of modern tools and technologies",
@@ -17,7 +17,7 @@
             "Node.js",
             "Express.js"
         ],
-        "thumbnail": "https://i.ytimg.com/vi/Rp69edBmFFo/hqdefault.jpg"
+        "thumbnail": "https://i.ytimg.com/vi/nu_pCVPKzTk/hqdefault.jpg"
     },
     {
         "courseTitle": "Data Structures and Algorithms",

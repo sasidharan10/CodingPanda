@@ -10,14 +10,16 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
 
-const instructorModel = require("./models/instructorModel");
+
 const userModel = require("./models/userModel");
 const adminModel = require("./models/adminModel");
 const courseModel = require("./models/courseModel");
 
-const { Errorhandler, asyncError } = require('./utils/errorHandler');
-const { isLoggedIn } = require('./utils/middleware');
 
+const { Errorhandler, asyncError } = require('./utils/errorHandler');
+
+
+const homeRoutes = require('./routes/homeRoutes');
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const app = express();
@@ -71,10 +73,13 @@ passport.use("user", new LocalStrategy({
     passwordField: 'password'
 }, userModel.authenticate()));
 
-passport.use("admin", new LocalStrategy(adminModel.authenticate()));
-
 passport.serializeUser(userModel.serializeUser());
 passport.deserializeUser(userModel.deserializeUser());
+
+passport.use("admin", new LocalStrategy({
+    usernameField: 'username',
+    passwordField: 'password'
+},adminModel.authenticate()));
 
 passport.serializeUser(adminModel.serializeUser());
 passport.deserializeUser(adminModel.deserializeUser());
@@ -95,39 +100,9 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/', homeRoutes);
 app.use('/', userRoutes);
 app.use('/', adminRoutes);
-
-app.get('/', asyncError(async (req, res) => {
-    res.render('home');
-}));
-
-app.get('/about', asyncError(async (req, res) => {
-    const instructorData = await instructorModel.find({});
-    res.render('about', { instructorData: instructorData });
-}));
-
-app.get('/courses', asyncError(async (req, res) => {
-    const coursesData = await courseModel.find({}).populate("instructor");
-    res.render('courses', { coursesData: coursesData });
-}));
-
-app.get('/desc', asyncError(async (req, res) => {
-    // const coursesData = await courseModel.find({}).populate("instructor");
-    res.render('courseDescription');
-}));
-
-
-app.get('/courses/:courseId', asyncError(async (req, res) => {
-    const courseId = req.params.courseId;
-    const courseData = await courseModel.findById(courseId).populate("instructor");
-    res.render('courseDescription', { courseData: courseData });
-    // res.send(courseData);
-}));
-
-app.get('/webdev', (req, res) => {
-    res.render('webdev');
-});
 
 
 // app.get('/fakeUser', async (req, res) => {

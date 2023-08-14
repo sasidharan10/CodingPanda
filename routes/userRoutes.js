@@ -4,19 +4,9 @@ const passport = require('passport');
 const userModel = require("../models/userModel");
 
 const { asyncError } = require('../utils/errorHandler');
-const { validateUserSchema, validateEditUserSchema, alreadyLoggedIn, storeUrl, isLoggedIn, isUser } = require('../utils/middleware');
-
-function getPath(pageName) {
-    let tempPath = "C:\\Users\\Lenovo\\Desktop\\Coding Panda";
-    let newPath = tempPath + "\\views\\" + pageName + ".html";
-    return newPath;
-}
+const { validateUserSchema, validateEditUserSchema, alreadyLoggedIn, storeUrl, isLoggedInUser, isUser } = require('../utils/middleware');
 
 const passportAuthenticate = passport.authenticate('user', { failureFlash: true, failureRedirect: '/login' });
-
-// router.get('/fakeUser', async (req, res) => {
-//     res.sendFile(getPath("webdev"));
-// });
 
 router.get('/register', alreadyLoggedIn, asyncError(async (req, res) => {
     res.render('register');
@@ -59,19 +49,19 @@ router.get('/logout', (req, res) => {
     });
 });
 
-router.get('/profile/:userId', isLoggedIn, isUser, asyncError(async (req, res) => {
+router.get('/profile/:userId', isLoggedInUser, isUser, asyncError(async (req, res) => {
     const userId = req.params.userId;
     const userData = await userModel.findById(userId);
     res.render('profile', { userData: userData });
 }));
 
-router.get('/profileEdit/:userId', isLoggedIn, isUser, asyncError(async (req, res) => {
+router.get('/profileEdit/:userId', isLoggedInUser, isUser, asyncError(async (req, res) => {
     const userId = req.params.userId;
     const userData = await userModel.findById(userId);
     res.render("editUser", { userData: userData });
 }));
 
-router.put('/profileUpdate/:userId', isLoggedIn, isUser, validateEditUserSchema, asyncError(async (req, res) => {
+router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSchema, asyncError(async (req, res) => {
     try {
         const userId = req.params.userId;
         const userData = await userModel.findByIdAndUpdate(userId, { ...req.body });

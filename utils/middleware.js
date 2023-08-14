@@ -2,15 +2,35 @@ const { Errorhandler } = require('./errorHandler');
 const { userSchema, instructorSchema, editUserSchema, adminSchema } = require('./schemaValidation');
 const userModel = require("../models/userModel");
 
-module.exports.isLoggedIn = (req, res, next) => {
+module.exports.isLoggedInUser = (req, res, next) => {
     req.session.returnUrl = req.originalUrl;
-    if (!req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user.role === 'user') {
+        // console.log("user: ", req.user);
+        // console.log("user.role: ", req.user.role);
+        // console.log("Authenticated");
+        next();
+    }
+    else {
         req.flash('error', 'You must be signed in first!');
         return res.redirect('/login');
     }
-    // console.log("user: ", req.user);
-    // console.log("user.role: ", req.user.role);
-    next();
+}
+
+module.exports.isLoggedInAdmin = (req, res, next) => {
+    console.log("user: ", req.user);
+    if (req.isAuthenticated() && req.user.role === 'admin') {
+        // console.log("user: ", req.admin);
+        // console.log("user: ", req.user);
+        // console.log("user.role: ", req.user.role);
+        console.log("Authenticated");
+        next();
+    }
+    else {
+        // console.log("user: ", req.admin);
+        // console.log("user.role: ", req.user.role);
+        req.flash('error', 'You must be signed in first!');
+        return res.redirect('/admin');
+    }
 }
 
 module.exports.alreadyLoggedIn = (req, res, next) => {
@@ -80,5 +100,3 @@ module.exports.storeUrl = (req, res, next) => {
         res.locals.returnUrl = req.session.returnUrl;
     next();
 }
-
-// req.session.returnTo = req.originalUrl

@@ -34,7 +34,11 @@ const userSchema = new Schema({
     leetcode: {
         type: String,
         default: ''
-    }
+    },
+    enrolledCourses: [{
+        type: Schema.Types.ObjectId,
+        ref: 'enrolled'
+    }]
 });
 
 userSchema.plugin(passportLocalMongoose, {

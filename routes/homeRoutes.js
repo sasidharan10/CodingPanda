@@ -19,13 +19,14 @@ router.get('/about', asyncError(async (req, res) => {
 }));
 
 router.get('/courses', asyncError(async (req, res) => {
-    console.log("user: ", req.user);
+    console.log(req.user);
     const coursesData = await courseModel.find({}).populate("instructor");
     res.render('courses', { coursesData: coursesData });
 }));
 
 router.get('/courses/:courseId', asyncError(async (req, res) => {
     const courseId = req.params.courseId;
+    console.log(req.user);
     const courseData = await courseModel.findById(courseId).populate("instructor");
     res.render('courseDescription', { courseData: courseData });
 }));

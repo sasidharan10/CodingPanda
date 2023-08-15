@@ -3,6 +3,18 @@
 <title>About US</title>
 
 <section id="coursesIntroSection">
+    <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%=success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+    <% if(error && error.length){%>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%=error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% }%>
     <div class="coursesIntroBody">
         <div class="coursesIntroContent">
             <h1>Online Coding Courses</h1>
@@ -45,7 +57,7 @@
                     <p>(2K+ students)</p>
                 </div>
             </div>
-            <a href="courses/<%= it._id%>" class="btn btn-info mx-2 my-3" role="button">Enroll Now</a>
+            <a href="courses/<%= it._id%>" class="btn btn-info mx-2 my-3" role="button">View Course</a>
         </div>
         <% } %>
     </div>

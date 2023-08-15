@@ -5,7 +5,8 @@ const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const joi = require('joi');
-const LocalStrategy = require('passport-local');
+const LocalStrategyUser = require('passport-local');
+const LocalStrategyAdmin = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
@@ -68,29 +69,50 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use("user", new LocalStrategy({
+passport.use("user", new LocalStrategyUser({
     usernameField: 'email',
     passwordField: 'password'
 }, userModel.authenticate()));
 
-passport.serializeUser(userModel.serializeUser());
-passport.deserializeUser(userModel.deserializeUser());
+// passport.serializeUser(userModel.serializeUser());
+// passport.deserializeUser(userModel.deserializeUser());
 
-passport.use("admin", new LocalStrategy({
+passport.use("admin", new LocalStrategyAdmin({
     usernameField: 'username',
     passwordField: 'password'
-},adminModel.authenticate()));
+}, adminModel.authenticate()));
 
-passport.serializeUser(adminModel.serializeUser());
-passport.deserializeUser(adminModel.deserializeUser());
+// passport.serializeUser(adminModel.serializeUser());
+// passport.deserializeUser(adminModel.deserializeUser());
 
-const pt = path.join(__dirname, "views/");
+passport.serializeUser(function (user, done) {
+    done(null, user);
+});
 
-function getPath(newPath) {
-    let np = path.join(__dirname, "views", newPath);
-    np = np + ".html";
-    return np;
-}
+passport.deserializeUser(function (userSession, done) {
+    let user;
+    if (userSession.role === 'user') {
+        user = {
+            _id: userSession._id,
+            firstName: userSession.firstName,
+            lastName: userSession.lastName,
+            email: userSession.email,
+            role: userSession.role,
+            college: userSession.college,
+            country: userSession.country,
+            github: userSession.github,
+            leetcode: userSession.leetcode
+        };
+    } else if (userSession.role === 'admin') {
+        user = {
+            _id: userSession._id,
+            username: userSession.username,
+            role: userSession.role
+        };
+    }
+    if (user != null)
+        done(null, user);
+});
 
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
@@ -103,13 +125,6 @@ app.use((req, res, next) => {
 app.use('/', homeRoutes);
 app.use('/', userRoutes);
 app.use('/', adminRoutes);
-
-
-// app.get('/fakeUser', async (req, res) => {
-//     const user = new userModel({ email: 'colt@gmail. com' });
-//     const newUser = await userModel.register(user, 'chicken');
-//     res.send(newUser);
-// });
 
 app.all('*', (req, res, next) => {
     next(new Errorhandler("Page Not Found", 404));

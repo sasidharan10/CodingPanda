@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Reggae+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
+/* font-family: 'Reggae One', cursive; */
+/* font-family: 'Mate SC', serif; */
+/* font-family: 'Josefin Sans', sans-serif; */
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#enrolledCoursesSection {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: antiquewhite;
+    height: 100vh;
+    width: 100%;
+}
+
+#enrolledCoursesSection .enrolledTitle h1 {
+    font-size: 2.5rem;
+    margin: 40px;
+}
+
+#enrolledCoursesSection .coursesBody {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: 30%;
+    color: #000000;
+    background-color: #e6fcd9;
+    margin: auto;
+    margin-bottom: 30px;
+    border: 2px solid rgb(207 207 207);
+    box-shadow: -1px 10px 20px #16161633;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .submitBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .submitBtn a{
+    margin: 0px 20px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseImage img {
+    height: 170px;
+    width: 320px;
+    margin: 16px;
+    border: 2px solid white;
+    border-radius: 10px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseTitle h2 {
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 10px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin: 0px 8px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent p {
+    font-size: 0.9rem;
+    margin: 0px 0px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseDescription {
+    height: 60px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseInstructor {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 6px 0px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseInstructor img {
+    width: 18px;
+    height: 18px;
+}
+
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseTime {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 6px 0px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseTime img {
+    width: 18px;
+    height: 18px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseReview {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: 6px 0px;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseReview img {
+    width: 80px;
+    padding-bottom: 1px;
+    margin: 0px 10px;
+}

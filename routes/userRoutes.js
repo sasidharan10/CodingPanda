@@ -74,4 +74,9 @@ router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSch
     }
 }));
 
+router.get('/enrolledCourses',  asyncError(async (req, res) => {
+    res.render('enrolledCourses');
+}));
+
+
 module.exports = router;

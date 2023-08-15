@@ -25,9 +25,11 @@ module.exports.isLoggedInAdmin = (req, res, next) => {
         console.log("Authenticated");
         next();
     }
+    // else if (req.isAuthenticated() && req.user.role === 'user') {
+    //     req.flash('error', 'You are NOT AUTHORIZED to view this page!!!');
+    //     return res.redirect('/home');
+    // }
     else {
-        // console.log("user: ", req.admin);
-        // console.log("user.role: ", req.user.role);
         req.flash('error', 'You must be signed in first!');
         return res.redirect('/admin');
     }

@@ -19,6 +19,7 @@ router.get('/about', asyncError(async (req, res) => {
 }));
 
 router.get('/courses', asyncError(async (req, res) => {
+    console.log("user: ", req.user);
     const coursesData = await courseModel.find({}).populate("instructor");
     res.render('courses', { coursesData: coursesData });
 }));

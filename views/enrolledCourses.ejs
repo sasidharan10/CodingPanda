@@ -1,30 +1,48 @@
 <% layout('./layouts/boilerplate') -%>
-    <link rel="stylesheet" href="../static/css/styleEnrolledCourses.css">
-    <title>Enrolled Courses</title>
+<link rel="stylesheet" href="../static/css/styleEnrolledCourses.css">
+<title>Enrolled Courses</title>
 
 <section id="enrolledCoursesSection">
+    <% if(success && success.length){%>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%=success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
+    <% if(error && error.length){%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%=error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
     <div class="enrolledTitle">
         <h1>My Courses</h1>
     </div>
     <div class="coursesBody">
+        <% if(coursesData.length === 0){ %>
+        <div class="alert alert-info" role="alert">
+            You have not Enrolled in any Course. <a href="/courses" class="alert-link">Click Here</a> to explore our
+            courses
+        </div>
+        <% }else{for (const it of coursesData) { %>
         <div class="courseBox">
             <div class="courseImage">
-                <img src="../static/img/photos/programmer.jpg" alt="DSA Logo">
+                <img src="<%= it.courseId.thumbnail%>" alt="DSA Logo">
             </div>
             <div class="courseTitle">
-                <h2>Full Stack Web Development</h2>
+                <h2><%= it.courseId.courseTitle%></h2>
             </div>
             <div class="courseBoxContent">
                 <div class="courseDescription">
-                    <p>Master the MERN stack in web development through hands-on learning of modern tools and technologies</p>
+                    <p><%= it.courseId.summary%></p>
                 </div>
                 <div class="courseInstructor">
                     <img src="../static/img/logo/tutor.png" alt="Tutor Image">
-                    <h3>John Stones</h3>
+                    <h3><%= it.courseId.instructor.instructorName%></h3>
                 </div>
                 <div class="courseTime">
                     <img src="../static/img/logo/timeline.svg" alt="time image">
-                    <h3>11hrs+</h3>
+                    <h3><%= it.courseId.duration.hours%>hrs+</h3>
                 </div>
                 <div class="courseReview">
                     <h3>4.8</h3>
@@ -33,10 +51,11 @@
                 </div>
             </div>
             <div class="submitBtn">
-                <a href="#" class="btn btn-info mx-2 my-3" role="button">Watch</a>
-                <a href="#" class="btn btn-danger mx-2 my-3" role="button">Unenroll</a>
+                <a href="/coursePage/<%= it.courseId._id%>" class="btn btn-info mx-2 my-3" role="button">Watch Now</a>
+                <a href="/deleteCourse/<%= it._id%>" class="btn btn-danger mx-2 my-3" role="button">Delete</a>
             </div>
         </div>
+        <% }} %>
     </div>
 
 </section>

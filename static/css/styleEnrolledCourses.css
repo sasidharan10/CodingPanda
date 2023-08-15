@@ -20,7 +20,8 @@ html {
     flex-direction: column;
     align-items: flex-start;
     background-color: antiquewhite;
-    height: 100vh;
+    height: auto;
+    min-height: 80vh;
     width: 100%;
 }
 

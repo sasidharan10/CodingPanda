@@ -101,7 +101,8 @@ passport.deserializeUser(function (userSession, done) {
             college: userSession.college,
             country: userSession.country,
             github: userSession.github,
-            leetcode: userSession.leetcode
+            leetcode: userSession.leetcode,
+            enrolledCourses: userSession.enrolledCourses
         };
     } else if (userSession.role === 'admin') {
         user = {

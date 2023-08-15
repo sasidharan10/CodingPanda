@@ -33,7 +33,11 @@ const courseSchema = new Schema({
     thumbnail: {
         type: String,
         required: [true, "Thumbnail description is required"]
-    }
+    },
+    users: [{
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    }]
 });
 
 module.exports = mongoose.model("course", courseSchema);

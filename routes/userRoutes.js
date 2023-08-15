@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 const passport = require('passport');
+
 const userModel = require("../models/userModel");
+const courseModel = require("../models/courseModel");
+const enrollCourseModel = require("../models/enrolledCourses");
 
 const { asyncError } = require('../utils/errorHandler');
 const { validateUserSchema, validateEditUserSchema, alreadyLoggedIn, storeUrl, isLoggedInUser, isUser } = require('../utils/middleware');
@@ -74,8 +77,59 @@ router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSch
     }
 }));
 
-router.get('/enrolledCourses',  asyncError(async (req, res) => {
-    res.render('enrolledCourses');
+router.get('/enrolledCourses', asyncError(async (req, res) => {
+    const userId = req.user._id;
+    const userData = await userModel.findById(userId);
+    const coursesArray = userData.enrolledCourses;
+    let coursesData = [];
+    for (const it of coursesArray) {
+        const course = await enrollCourseModel.findById(it).populate({
+            path: "courseId", populate: {
+                path: "instructor"
+            }
+        });
+        coursesData.push(course);
+    }
+    // res.send(coursesData);
+    res.render('enrolledCourses', { coursesData: coursesData });
+}));
+
+router.get('/enrollCourse/:courseId', asyncError(async (req, res) => {
+    const courseId = req.params.courseId;
+    const userId = req.user._id;
+    const newEnroll = new enrollCourseModel({
+        courseId: courseId
+    });
+    try {
+        await newEnroll.save();   // saving courseId in enroll
+        const getUser = await userModel.findById(userId);
+        getUser.enrolledCourses.push(newEnroll._id);
+        await getUser.save();     // saving courseId in user
+        const getCourse = await courseModel.findById(courseId);
+        getCourse.users.push(userId);
+        const finalResult = await getCourse.save();   // saving userId in course
+        req.flash('success', 'Successfully Enrolled the Course');
+        res.redirect('/courses');
+    } catch (error) {
+        req.flash('error', error.message);
+        res.redirect(`/courses`);
+    }
+}));
+
+router.get('/deleteCourse/:enrollId', asyncError(async (req, res) => {
+    const enrollId = req.params.enrollId;
+    const courseId = enrollId.courseId;
+    const userId = req.user._id;
+    try {
+        const getUser = await userModel.findByIdAndUpdate(userId, { $pull: { enrolledCourses: enrollId } });
+        const getCourse = await courseModel.findByIdAndUpdate(courseId, { $pull: { users: userId } });
+        const getEnroll = await enrollCourseModel.findByIdAndDelete(enrollId);
+        req.flash('success', 'Successfully Deleted the Course');
+        res.redirect("/enrolledCourses");
+    } catch (error) {
+        req.flash('error', error.message);
+        res.redirect(`/courses`);
+    }
 }));
 
 

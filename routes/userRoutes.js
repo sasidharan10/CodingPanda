@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router({ mergeParams: true });
 const passport = require('passport');
+const mongoose = require('mongoose');
+const ObjectId = mongoose.Types.ObjectId;
 
 const userModel = require("../models/userModel");
 const courseModel = require("../models/courseModel");
@@ -100,19 +102,28 @@ router.get('/enrollCourse/:courseId', asyncError(async (req, res) => {
     const newEnroll = new enrollCourseModel({
         courseId: courseId
     });
-    try {
-        await newEnroll.save();   // saving courseId in enroll
-        const getUser = await userModel.findById(userId);
-        getUser.enrolledCourses.push(newEnroll._id);
-        await getUser.save();     // saving courseId in user
-        const getCourse = await courseModel.findById(courseId);
-        getCourse.users.push(userId);
-        const finalResult = await getCourse.save();   // saving userId in course
-        req.flash('success', 'Successfully Enrolled the Course');
+    console.log("Course Id: ", courseId);
+    const userData = await userModel.findById(userId).populate("enrolledCourses");
+    const result = userData.enrolledCourses.find((temp) => temp.courseId.equals(new ObjectId(courseId)));
+    if (result) {
+        req.flash('error', 'You have already enrolled in this course');
         res.redirect('/courses');
-    } catch (error) {
-        req.flash('error', error.message);
-        res.redirect(`/courses`);
+    }
+    else {
+        try {
+            await newEnroll.save();   // saving courseId in enroll
+            const getUser = await userModel.findById(userId);
+            getUser.enrolledCourses.push(newEnroll._id);
+            await getUser.save();     // saving courseId in user
+            const getCourse = await courseModel.findById(courseId);
+            getCourse.users.push(userId);
+            const finalResult = await getCourse.save();   // saving userId in course
+            req.flash('success', 'Successfully Enrolled the Course');
+            res.redirect('/courses');
+        } catch (error) {
+            req.flash('error', error.message);
+            res.redirect(`/courses`);
+        }
     }
 }));
 

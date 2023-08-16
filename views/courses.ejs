@@ -4,17 +4,17 @@
 
 <section id="coursesIntroSection">
     <% if(success && success.length){%>
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <%=success %>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        <% }%>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%=success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
     <% if(error && error.length){%>
-            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <%=error %>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <% }%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%=error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
     <div class="coursesIntroBody">
         <div class="coursesIntroContent">
             <h1>Online Coding Courses</h1>
@@ -31,7 +31,11 @@
         <h1>Explore our courses</h1>
     </div>
     <div class="coursesContentBody">
-        <% for (const it of coursesData) { %>
+        <% if(coursesData.length === 0){ %>
+        <div class="alert alert-info" role="alert">
+            No Courses Currently Available, Please come Back Later.
+        </div>
+        <% }else{for (const it of coursesData) { %>
         <div class="courseBox">
             <div class="courseImage">
                 <img src="<%= it.thumbnail%>" alt="DSA Logo">
@@ -57,8 +61,12 @@
                     <p>(2K+ students)</p>
                 </div>
             </div>
+            <% if(alreadyEnrolled.find((temp) => temp.courseId.equals(it._id))){ %>
+            <a href="/coursePage/<%= it._id%>" class="btn btn-success mx-2 my-3" role="button">Watch Now</a>
+            <%}else{%>
             <a href="courses/<%= it._id%>" class="btn btn-info mx-2 my-3" role="button">View Course</a>
+            <% } %>
         </div>
-        <% } %>
+        <% }} %>
     </div>
 </section>

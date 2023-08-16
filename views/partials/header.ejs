@@ -17,8 +17,7 @@
             <a href="/register" class="btn btn-info" role="button">Register</a>
             <% } else { %>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-success dropdown-toggle" data-bs-toggle="dropdown"
-                        aria-expanded="false">Profile</button>
+                        <img src="../../static/img/avatar/user3.png" class="btn-secondary dropdown-toggle profileIcon" type="button" data-bs-toggle="dropdown" aria-expanded="false"  alt="icon">
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/profile/<%= currentUser._id%>">View Profile</a></li>
                         <li><a class="dropdown-item" href="/profileEdit/<%= currentUser._id%>">Edit Profile</a></li>

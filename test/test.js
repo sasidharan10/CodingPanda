@@ -42,4 +42,4 @@ async function addCourseData() {
 }
 
 // addInstructorData();
-// addCourseData();
+addCourseData();

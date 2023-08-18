@@ -86,7 +86,7 @@ router.get('/enrolledCourses', asyncError(async (req, res) => {
     let coursesData = [];
     for (const it of coursesArray) {
         const course = await enrollCourseModel.findById(it).populate({
-            path: "courseId", populate: {
+            path: "course", populate: {
                 path: "instructor"
             }
         });
@@ -99,12 +99,14 @@ router.get('/enrolledCourses', asyncError(async (req, res) => {
 router.get('/enrollCourse/:courseId', asyncError(async (req, res) => {
     const courseId = req.params.courseId;
     const userId = req.user._id;
+    const getCourse = await courseModel.findById(courseId);
+    const totalTime = getCourse.duration.hours * 3600 + getCourse.duration.minutes * 60 + getCourse.duration.seconds;
     const newEnroll = new enrollCourseModel({
-        courseId: courseId
+        course: courseId,
+        duration: totalTime
     });
-    console.log("Course Id: ", courseId);
     const userData = await userModel.findById(userId).populate("enrolledCourses");
-    const result = userData.enrolledCourses.find((temp) => temp.courseId.equals(new ObjectId(courseId)));
+    const result = userData.enrolledCourses.find((temp) => temp.course.equals(new ObjectId(courseId)));
     if (result) {
         req.flash('error', 'You have already enrolled in this course');
         res.redirect('/courses');
@@ -115,7 +117,6 @@ router.get('/enrollCourse/:courseId', asyncError(async (req, res) => {
             const getUser = await userModel.findById(userId);
             getUser.enrolledCourses.push(newEnroll._id);
             await getUser.save();     // saving courseId in user
-            const getCourse = await courseModel.findById(courseId);
             getCourse.users.push(userId);
             const finalResult = await getCourse.save();   // saving userId in course
             req.flash('success', 'Successfully Enrolled the Course');
@@ -129,7 +130,7 @@ router.get('/enrollCourse/:courseId', asyncError(async (req, res) => {
 
 router.get('/deleteCourse/:enrollId', asyncError(async (req, res) => {
     const enrollId = req.params.enrollId;
-    const courseId = enrollId.courseId;
+    const courseId = enrollId.course;
     const userId = req.user._id;
     try {
         const getUser = await userModel.findByIdAndUpdate(userId, { $pull: { enrolledCourses: enrollId } });
@@ -142,6 +143,19 @@ router.get('/deleteCourse/:enrollId', asyncError(async (req, res) => {
         res.redirect(`/courses`);
     }
 }));
+
+router.post("/saveProgress", async (req, res) => {
+    const tm = req.body.timestamp;
+    const eid = req.body.enrollId;
+    const enrollData = await enrollCourseModel.findById(eid);
+    enrollData.progress = Math.round((tm / enrollData.duration) * 100);
+    enrollData.timestamp = tm;
+    // console.log(enrollData);
+    // const data = await timeModel.findById("64cf582f689d3cc5a53c6c04");
+    // data.time = tm;
+    const result = await enrollData.save();
+    // console.log(result);
+});
 
 
 module.exports = router;

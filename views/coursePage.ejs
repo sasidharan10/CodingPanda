@@ -5,24 +5,28 @@
 
 <section id="courseSection">
     <div class="courseVideo">
-        <iframe src="https://www.youtube.com/embed/<%= courseData.videoId%>"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-    </div>
-    <div class="aboutCourse">
-        <div class="courseTitle">
-            <h1><%= courseData.courseTitle%></h1>
+        <div class="courseVideo">
+            <iframe id="videoIframe" vidData="<%=enrollData._id %>"
+                src="https://www.youtube.com/embed/<%= courseData.videoId%>?enablejsapi=1&start=<%=Math.round(enrollData.timestamp) %>"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
         </div>
-        <div class="courseSummary">
-            <p><%= courseData.summary%></p>
+        <div class="aboutCourse">
+            <div class="courseTitle">
+                <h1><%= courseData.courseTitle%></h1>
+            </div>
+            <div class="courseSummary">
+                <p><%= courseData.summary%></p>
+            </div>
+            <div class="courseInstructor">
+                <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
+                <h3><%= courseData.instructor.instructorName%></h3>
+            </div>
+            <div class="courseTime">
+                <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
+                <h3><%= courseData.duration.hours%>hrs <%= courseData.duration.minutes%>mins</h3>
+            </div>
         </div>
-        <div class="courseInstructor">
-            <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
-            <h3><%= courseData.instructor.instructorName%></h3>
-        </div>
-        <div class="courseTime">
-            <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
-            <h3><%= courseData.duration.hours%>hrs <%= courseData.duration.minutes%>mins</h3>
-        </div>
-    </div>
 </section>
+<script src="https://www.youtube.com/iframe_api"></script>
+<script src="../static/js/saveProgress.js"></script>

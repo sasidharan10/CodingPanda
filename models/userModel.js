@@ -37,7 +37,7 @@ const userSchema = new Schema({
     },
     enrolledCourses: [{
         type: Schema.Types.ObjectId,
-        ref: 'enrolled'
+        ref: 'enroll'
     }]
 });
 

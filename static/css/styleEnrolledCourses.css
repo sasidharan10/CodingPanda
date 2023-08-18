@@ -96,6 +96,11 @@ html {
     margin: 0px 0px;
 }
 
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .descIcon {
+    width: 18px;
+    height: 18px;
+}
+
 #enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseDescription {
     height: 60px;
 }
@@ -107,23 +112,32 @@ html {
     margin: 6px 0px;
 }
 
-#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseInstructor img {
-    width: 18px;
-    height: 18px;
-}
-
-
 #enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseTime {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     margin: 6px 0px;
 }
 
-#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseTime img {
-    width: 18px;
-    height: 18px;
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseProgress {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 6px 0px;
+    width: 100%;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseProgress .progress{
+    margin: 0px 8px;
+    width: 80%;
+}
+
+#enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseProgress .progress-bar{
+    background-color: rgb(2, 194, 130);
+    color: #000000;
+    font-weight: 600;
 }
 
 #enrolledCoursesSection .coursesBody .courseBox .courseBoxContent .courseReview {

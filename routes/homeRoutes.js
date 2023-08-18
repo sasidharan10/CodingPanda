@@ -45,8 +45,19 @@ router.get('/courses/:courseId', asyncError(async (req, res) => {
 
 router.get('/coursePage/:courseId', isLoggedInUser, asyncError(async (req, res) => {
     const courseId = req.params.courseId;
-    const courseData = await courseModel.findById(courseId).populate("instructor");
-    res.render('coursePage', { courseData: courseData });
+    const userId = req.user._id;
+    const userData = await userModel.findById(userId).populate({
+        path: "enrolledCourses", populate: {
+            path: "course",
+            populate:{
+                path: "instructor"
+            }
+        }
+    });
+    const courseData = userData.enrolledCourses.find((temp) => temp.course.equals(new ObjectId(courseId)));
+    // console.log(result);
+    // const courseData = await courseModel.findById(courseId).populate("instructor");
+    res.render('coursePage', { courseData: courseData.course, enrollData: courseData });
 }));
 
 module.exports = router;

@@ -2,9 +2,14 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const enrolledCoursesSchema = new Schema({
-    courseId: {
+    course: {
         type: Schema.Types.ObjectId,
         ref: 'course'
+    },
+    duration: {
+        type: Number,
+        required: [true, "Number is required"],
+        default: 0
     },
     progress: {
         type: Number,
@@ -18,4 +23,4 @@ const enrolledCoursesSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model("enrolled", enrolledCoursesSchema);
+module.exports = mongoose.model("enroll", enrolledCoursesSchema);

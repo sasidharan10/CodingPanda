@@ -27,22 +27,29 @@
         <% }else{for (const it of coursesData) { %>
         <div class="courseBox">
             <div class="courseImage">
-                <img src="<%= it.courseId.thumbnail%>" alt="DSA Logo">
+                <img src="<%= it.course.thumbnail%>" alt="DSA Logo">
             </div>
             <div class="courseTitle">
-                <h2><%= it.courseId.courseTitle%></h2>
+                <h2><%= it.course.courseTitle%></h2>
             </div>
             <div class="courseBoxContent">
                 <div class="courseDescription">
-                    <p><%= it.courseId.summary%></p>
+                    <p><%= it.course.summary%></p>
                 </div>
                 <div class="courseInstructor">
-                    <img src="../static/img/logo/tutor.png" alt="Tutor Image">
-                    <h3><%= it.courseId.instructor.instructorName%></h3>
+                    <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
+                    <h3><%= it.course.instructor.instructorName%></h3>
                 </div>
                 <div class="courseTime">
-                    <img src="../static/img/logo/timeline.svg" alt="time image">
-                    <h3><%= it.courseId.duration.hours%>hrs+</h3>
+                    <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
+                    <h3><%= it.course.duration.hours%>hrs+</h3>
+                </div>
+                <div class="courseProgress">
+                    <img class="descIcon" src="../static/img/logo/progress.png" alt="progress image">
+                    <!-- <h3><%= it.progress%>%</h3> -->
+                    <div class="progress">
+                        <div class="progress-bar" role="progressbar"style="width: <%= it.progress%>%;" aria-valuenow="<%= it.progress%>" aria-valuemin="0" aria-valuemax="100"><%= it.progress%>%</div>
+                    </div>
                 </div>
                 <div class="courseReview">
                     <h3>4.8</h3>
@@ -51,7 +58,7 @@
                 </div>
             </div>
             <div class="submitBtn">
-                <a href="/coursePage/<%= it.courseId._id%>" class="btn btn-info mx-2 my-3" role="button">Watch Now</a>
+                <a href="/coursePage/<%= it.course._id%>" class="btn btn-info mx-2 my-3" role="button">Watch Now</a>
                 <a href="/deleteCourse/<%= it._id%>" class="btn btn-danger mx-2 my-3" role="button">Delete</a>
             </div>
         </div>

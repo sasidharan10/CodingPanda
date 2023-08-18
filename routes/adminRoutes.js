@@ -90,6 +90,30 @@ router.post('/deleteCourse/:courseId', asyncError(async (req, res) => {
     }
 }));
 
+router.get('/editCourse/:courseId', asyncError(async (req, res) => {
+    const courseId = req.params.courseId;
+    try {
+        const coursesData = await courseModel.findById(courseId).populate('instructor');
+        const instructorData = await instructorModel.find({});
+        res.render('admin/editCourse', { coursesData: coursesData, instructorData: instructorData });
+    } catch (error) {
+        req.flash('error', "Error while redirecting to Edit Course");
+        res.redirect("/viewCourses");
+    }
+}));
+
+router.post('/UpdateCourse/:courseId', asyncError(async (req, res) => {
+    const courseId = req.params.courseId;
+    try {
+        await courseModel.findByIdAndUpdate(courseId, { ...req.body });
+        req.flash('success', 'Successfully Updated the Course');
+        res.redirect('/viewCourses');
+    } catch (error) {
+        req.flash('error', "Erro while deleting the Course");
+        res.redirect("/viewCourses");
+    }
+}));
+
 router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
     const { courseTitle, instructor, videoId, description, summary, techStack } = req.body;
     const techArray = techStack.split(',');

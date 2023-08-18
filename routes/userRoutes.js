@@ -13,6 +13,12 @@ const { validateUserSchema, validateEditUserSchema, alreadyLoggedIn, storeUrl, i
 
 const passportAuthenticate = passport.authenticate('user', { failureFlash: true, failureRedirect: '/login' });
 
+// router.get('/fakeUser', asyncError(async (req, res) => {
+//     const dt = await enrollCourseModel.find({ course: "64de2294585d860f9a172f79" });
+//     res.send(dt);
+// }));
+
+
 router.get('/register', alreadyLoggedIn, asyncError(async (req, res) => {
     res.render('register');
 }));
@@ -128,7 +134,7 @@ router.get('/enrollCourse/:courseId', asyncError(async (req, res) => {
     }
 }));
 
-router.get('/deleteCourse/:enrollId', asyncError(async (req, res) => {
+router.get('/unenrollCourse/:enrollId', asyncError(async (req, res) => {
     const enrollId = req.params.enrollId;
     const courseId = enrollId.course;
     const userId = req.user._id;

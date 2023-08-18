@@ -1,5 +1,5 @@
 const { Errorhandler } = require('./errorHandler');
-const { userSchema, instructorSchema, editUserSchema, adminSchema } = require('./schemaValidation');
+const { userSchema, instructorSchema, editUserSchema, adminSchema, courseSchema } = require('./schemaValidation');
 const userModel = require("../models/userModel");
 
 module.exports.isLoggedInUser = (req, res, next) => {
@@ -17,7 +17,6 @@ module.exports.isLoggedInUser = (req, res, next) => {
 }
 
 module.exports.isLoggedInAdmin = (req, res, next) => {
-    console.log("user: ", req.user);
     if (req.isAuthenticated() && req.user.role === 'admin') {
         // console.log("user: ", req.admin);
         // console.log("user: ", req.user);
@@ -88,6 +87,17 @@ module.exports.validateInstructorSchema = (req, res, next) => {
 
 module.exports.validateAdminSchema = (req, res, next) => {
     const { error } = adminSchema.validate(req.body);
+    if (error) {
+        const msg = error.details.map(el => el.message).join(', ');
+        throw new Errorhandler(msg, 400);
+    }
+    else {
+        next();
+    }
+}
+
+module.exports.validateCourseSchema = (req, res, next) => {
+    const { error } = courseSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ');
         throw new Errorhandler(msg, 400);

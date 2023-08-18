@@ -25,8 +25,5 @@ module.exports.getVideoData = async function getVideoData(vidId) {
 
     const thumbnail = thumbnails.high.url;
 
-    // console.log('High Thumbnail:', thumbnail);
-    // console.log('Duration:', duration);
-
     return { duration, thumbnail };
 }

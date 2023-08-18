@@ -200,3 +200,38 @@ html {
 #courseDescriptionSection .topbox{
     margin-top: 50px;
 }
+
+#courseReviewSection{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: aliceblue;
+    height: 100vh;
+}
+
+#courseReviewSection h1{
+    text-align: left;
+    width: 100%;
+}
+
+#courseReviewSection .reviewBody{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#courseReviewSection .reviewBody .reviewBox{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: rgb(176, 198, 240);
+    margin: 10px;
+    padding: 10px;
+}
+
+#courseReviewSection .reviewBody .reviewBox .reviewHeading{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}

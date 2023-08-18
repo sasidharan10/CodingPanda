@@ -32,8 +32,8 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="instructorId">Select Instructor</label>
-            <select class="form-select" aria-label="Default select example" id="instructorId" name="instructorId">
+            <label for="instructor">Select Instructor</label>
+            <select class="form-select" aria-label="Default select example" id="instructor" name="instructor">
                 <% for (const it of instructorData) { %>
                 <option value="<%= it._id%>"><%= it.instructorName%></option>
                 <% } %>
@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="form-group mb-3">
-            <label for="description" class="mb-2">Title</label>
+            <label for="description" class="mb-2">Course Description</label>
             <input type="text" class="form-control mb-3" placeholder="Enter the Course Description" id="description"
                 name="description" required>
             <div class="valid-feedback">

@@ -1,6 +1,6 @@
 <% layout('./layouts/boilerplate') -%>
 <link rel="stylesheet" href="../static/css/styleEnrolledCourses.css">
-<title>Enrolled Courses</title>
+<title>View Courses</title>
 
 <section id="enrolledCoursesSection">
     <% if(success && success.length){%>
@@ -21,45 +21,37 @@
     <div class="coursesBody">
         <% if(coursesData.length === 0){ %>
         <div class="alert alert-info" role="alert">
-            You have not Enrolled in any Course. <a href="/courses" class="alert-link">Click Here</a> to explore our
-            courses
+            There are no Courses.<a href="/courses" class="alert-link">Click Here</a> to add New
+            course.
         </div>
         <% }else{for (const it of coursesData) { %>
         <div class="courseBox">
             <div class="courseImage">
-                <img src="<%= it.course.thumbnail%>" alt="DSA Logo">
+                <img src="<%= it.thumbnail%>" alt="DSA Logo">
             </div>
             <div class="courseTitle">
-                <h2><%= it.course.courseTitle%></h2>
+                <h2><%= it.courseTitle%></h2>
             </div>
             <div class="courseBoxContent">
                 <div class="courseDescription">
-                    <p><%= it.course.summary%></p>
+                    <p><%= it.summary%></p>
                 </div>
                 <div class="courseInstructor">
                     <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
-                    <h3><%= it.course.instructor.instructorName%></h3>
+                    <h3><%= it.instructor.instructorName%></h3>
                 </div>
                 <div class="courseTime">
                     <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
-                    <h3><%= it.course.duration.hours%>hrs+</h3>
-                </div>
-                <div class="courseProgress">
-                    <img class="descIcon" src="../static/img/logo/progress.png" alt="progress image">
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar"style="width: <%= it.progress%>%;" aria-valuenow="<%= it.progress%>" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                    <h3><%= it.progress%>%</h3>
-                </div>
-                <div class="courseReview">
-                    <h3>4.8</h3>
-                    <img src="../static/img/logo/4-8-star.png" alt="review image">
-                    <p>(2K+ students)</p>
+                    <h3><%= it.duration.hours%>hrs+</h3>
                 </div>
             </div>
             <div class="submitBtn">
-                <a href="/coursePage/<%= it.course._id%>" class="btn btn-info mx-2 my-3" role="button">Watch Now</a>
-                <a href="/unenrollCourse/<%= it._id%>" class="btn btn-danger mx-2 my-3" role="button">Delete</a>
+                <form action="" method="post">
+                    <a href="#" class="btn btn-secondary mx-2 my-3" role="button">Edit</a>
+                </form>
+                <form action="/deleteCourse/<%= it._id%>" method="post">
+                    <button type="submit" class="btn btn-danger mx-2 my-3">Delete</button>
+                </form>
             </div>
         </div>
         <% }} %>

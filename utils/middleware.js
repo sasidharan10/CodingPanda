@@ -21,7 +21,6 @@ module.exports.isLoggedInAdmin = (req, res, next) => {
         // console.log("user: ", req.admin);
         // console.log("user: ", req.user);
         // console.log("user.role: ", req.user.role);
-        console.log("Authenticated");
         next();
     }
     // else if (req.isAuthenticated() && req.user.role === 'user') {

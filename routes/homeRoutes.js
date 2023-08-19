@@ -22,7 +22,6 @@ router.get('/about', asyncError(async (req, res) => {
 }));
 
 router.get('/courses', asyncError(async (req, res) => {
-    // console.log(req.user);
     const coursesData = await courseModel.find({}).populate("instructor");
     if (!req.isAuthenticated()) {
         res.render('courses', { coursesData: coursesData });
@@ -31,16 +30,22 @@ router.get('/courses', asyncError(async (req, res) => {
         const userId = req.user._id;
         const userData = await userModel.findById(userId).populate("enrolledCourses");
         const alreadyEnrolled = userData.enrolledCourses;
-        // console.log(alreadyEnrolled);
         res.render('courses', { coursesData: coursesData, alreadyEnrolled: alreadyEnrolled });
     }
 }));
 
 router.get('/courses/:courseId', asyncError(async (req, res) => {
     const courseId = req.params.courseId;
-    // console.log(req.user);
     const courseData = await courseModel.findById(courseId).populate("instructor");
-    res.render('courseDescription', { courseData: courseData });
+    if (!req.isAuthenticated()) {
+        res.render('courseDescription', { courseData: courseData });
+    }
+    else {
+        const userId = req.user._id;
+        const userData = await userModel.findById(userId).populate("enrolledCourses");
+        const isEnrolled = userData.enrolledCourses.find((temp) => temp.course.equals(courseId));
+        res.render('courseDescription', { courseData: courseData, isEnrolled: isEnrolled });
+    }
 }));
 
 router.get('/coursePage/:courseId', isLoggedInUser, asyncError(async (req, res) => {
@@ -49,7 +54,7 @@ router.get('/coursePage/:courseId', isLoggedInUser, asyncError(async (req, res) 
     const userData = await userModel.findById(userId).populate({
         path: "enrolledCourses", populate: {
             path: "course",
-            populate:{
+            populate: {
                 path: "instructor"
             }
         }

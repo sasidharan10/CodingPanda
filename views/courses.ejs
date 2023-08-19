@@ -61,11 +61,14 @@
                     <p>(2K+ students)</p>
                 </div>
             </div>
-            <% if(alreadyEnrolled.find((temp) => temp.course.equals(it._id))){ %>
-            <a href="/coursePage/<%= it._id%>" class="btn btn-success mx-2 my-3" role="button">Watch Now</a>
-            <%}else{%>
-            <a href="courses/<%= it._id%>" class="btn btn-info mx-2 my-3" role="button">View Course</a>
-            <% } %>
+            <div class="submitBtn">
+                <% if( currentUser && alreadyEnrolled.find((temp) => temp.course.equals(it._id))){ %>
+                <a href="/coursePage/<%= it._id%>" class="btn btn-success mx-2 my-3" role="button">Watch Now</a>
+                <a href="courses/<%= it._id%>" class="btn btn-info mx-2 my-3" role="button">View Course</a>
+                <%}else{%>
+                <a href="courses/<%= it._id%>" class="btn btn-info mx-2 my-3" role="button">Enroll Now</a>
+                <% } %>
+            </div>
         </div>
         <% }} %>
     </div>

@@ -47,7 +47,7 @@
                 <div class="courseProgress">
                     <img class="descIcon" src="../static/img/logo/progress.png" alt="progress image">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar"style="width: <%= it.progress%>%;" aria-valuenow="<%= it.progress%>" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar"style="width:<%= it.progress%>%;" aria-valuenow="<%= it.progress%>" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <h3><%= it.progress%>%</h3>
                 </div>
@@ -58,11 +58,12 @@
                 </div>
             </div>
             <div class="submitBtn">
+                <form action="/unenrollCourse/<%= it._id%>?_method=DELETE" method="post">
                 <a href="/coursePage/<%= it.course._id%>" class="btn btn-info mx-2 my-3" role="button">Watch Now</a>
-                <a href="/unenrollCourse/<%= it._id%>" class="btn btn-danger mx-2 my-3" role="button">Delete</a>
+                <button type="submit" class="btn btn-danger mx-2 my-3">Delete</button>
+            </form>
             </div>
         </div>
         <% }} %>
     </div>
-
 </section>

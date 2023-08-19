@@ -1,8 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Reggae+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Mate+SC&display=swap');
-/* font-family: 'Reggae One', cursive; */
-/* font-family: 'Mate SC', serif; */
-/* font-family: 'Josefin Sans', sans-serif; */
 
 * {
     margin: 0px;
@@ -16,18 +12,17 @@ html {
 }
 
 #enrolledCoursesSection {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
     background-color: antiquewhite;
     height: auto;
     min-height: auto;
     width: 100%;
+    overflow: hidden;
 }
 
 #enrolledCoursesSection .enrolledTitle h1 {
     font-size: 2.5rem;
     margin: 40px;
+    text-align: left;
 }
 
 #enrolledCoursesSection .coursesBody {
@@ -152,4 +147,15 @@ html {
     width: 80px;
     padding-bottom: 1px;
     margin: 0px 10px;
+}
+
+.addNew {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.addNew h3 {
+    font-size: 1.5rem;
 }

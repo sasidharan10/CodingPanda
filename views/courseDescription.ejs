@@ -22,7 +22,13 @@
                 </div>
             </div>
             <div class="submitBtn">
-                <a href="/enrollCourse/<%= courseData._id%>" class="btn btn-info mx-2" role="button">Enroll Now</a>
+                <form action="/enrollCourse/<%= courseData._id%>" method="post">
+                <% if(currentUser && isEnrolled){%>
+                <a href="/coursePage/<%= courseData._id%>" class="btn btn-success mx-2 my-3" role="button">Watch Now</a>
+                <% }else{ %>
+                    <button type="submit" class="btn btn-info mx-2">Enroll Now</button>
+                <% } %>
+                </form>
             </div>
         </div>
         <div class="courseImage">

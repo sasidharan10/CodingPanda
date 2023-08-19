@@ -25,7 +25,7 @@ html {
 }
 
 
-#InstructorSection .PageTitle h1{
+#InstructorSection .PageTitle h1 {
     font-size: 2rem;
     text-align: left;
     margin: 30px;
@@ -69,9 +69,19 @@ html {
     color: #4d4c4c;
 }
 
-.submitBtn{
+.submitBtn {
     display: flex;
     flex-direction: row;
     justify-content: center;
     width: 100%;
+}
+
+.addNew {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.addNew h3 {
+    font-size: 1.5rem;
 }

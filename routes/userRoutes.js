@@ -101,7 +101,7 @@ router.get('/enrolledCourses', asyncError(async (req, res) => {
     res.render('enrolledCourses', { coursesData: coursesData });
 }));
 
-router.get('/enrollCourse/:courseId', asyncError(async (req, res) => {
+router.post('/enrollCourse/:courseId', asyncError(async (req, res) => {
     const courseId = req.params.courseId;
     const userId = req.user._id;
     const getCourse = await courseModel.findById(courseId);
@@ -133,14 +133,14 @@ router.get('/enrollCourse/:courseId', asyncError(async (req, res) => {
     }
 }));
 
-router.get('/unenrollCourse/:enrollId', asyncError(async (req, res) => {
+router.delete('/unenrollCourse/:enrollId', asyncError(async (req, res) => {
     const enrollId = req.params.enrollId;
     const courseId = enrollId.course;
     const userId = req.user._id;
     try {
-        const getUser = await userModel.findByIdAndUpdate(userId, { $pull: { enrolledCourses: enrollId } });
-        const getCourse = await courseModel.findByIdAndUpdate(courseId, { $pull: { users: userId } });
-        const getEnroll = await enrollCourseModel.findByIdAndDelete(enrollId);
+        await userModel.findByIdAndUpdate(userId, { $pull: { enrolledCourses: enrollId } });
+        await courseModel.findByIdAndUpdate(courseId, { $pull: { users: userId } });
+        await enrollCourseModel.findByIdAndDelete(enrollId);
         req.flash('success', 'Successfully Deleted the Course');
         res.redirect("/enrolledCourses");
     } catch (error) {

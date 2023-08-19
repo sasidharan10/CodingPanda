@@ -1,52 +1,45 @@
 <% layout('./layouts/boilerplate') -%>
 
-    <link rel="stylesheet" href="../static/css/styleProfile.css">
-    <title>user Profile</title>
+<link rel="stylesheet" href="../static/css/styleProfile.css">
+<title>user Profile</title>
 
-    <section id="profileSection">
-        <div class="profileHeading">
-            <h1>User profile</h1>
-        </div>
-        <div class="profileBody">
+<section id="profileSection">
+    <div class="profileHeading">
+        <h1>User profile</h1>
+    </div>
+    <div class="profileContent">
+        <div class="profileHeader">
             <div class="profileImage">
                 <img src="../static/img/avatar/profileImg.png" alt="Profile">
             </div>
-            <div class="profileContent">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <th scope="row">First Name: </th>
-                            <td><%= userData.firstName %></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Last Name: </th>
-                            <td><%= userData.lastName %></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">E-mail: </th>
-                            <td><%= userData.email %></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">College: </th>
-                            <td><%= userData.college %></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Country: </th>
-                            <td><%= userData.country %></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Github: </th>
-                            <td><a href="https://github.com/<%= userData.leetcode %>" target="_blank" class="btn btn-info" role="button">@<%= userData.github %></a></td>
-                        </tr>
-                        <tr>
-                            <th scope="row">Leetcode: </th>
-                            <td><a href="https://leetcode.com/<%=userData.leetcode%>/" target="_blank" class="btn btn-info" role="button">@<%= userData.leetcode %></a></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div class="headerContent">
+                <h3><%= userData.firstName %> <%= userData.lastName %></h3>
+                <h5><%= userData.country %></h5>
             </div>
         </div>
-        <div>
-            <a href="/profileEdit/<%= currentUser._id%>" class="btn btn-info" role="button">Edit Profile</a>
+        <div class="profileBody">
+            <div class="profileDetails">
+                <img class="descIcon" src="../static/img/contact/mail.png" alt="mail">
+                <p><%= userData.email %></p>
+            </div>
+            <div class="profileDetails">
+                <img class="descIcon" src="../static/img/logo/clg.png" alt="mail">
+                <p><%= userData.college %></p>
+            </div>
+            <div class="profileDetails">
+                <img class="descIcon" src="../static/img/logo/git.png" alt="mail">
+                <p><a href="https://github.com/<%= userData.github %>" target="_blank" class="btn btn-dark"
+                    role="button">@<%= userData.github %></a></p>
+            </div>
+            <div class="profileDetails">
+                <img class="descIcon" src="../static/img/logo/lc.png" alt="mail">
+                <p><a href="https://leetcode.com/<%=userData.leetcode%>/" target="_blank" class="btn btn-dark"
+                    role="button">@<%= userData.leetcode %></a></p>
+            </div>
         </div>
-    </section>
+    </div>
+    <div class="submitBtn">
+        <a href="/enrolledCourses" class="btn btn-info" role="button">Enrolled Courses</a>
+        <a href="/profileEdit/<%= currentUser._id%>" class="btn btn-warning" role="button">Edit Profile</a>
+    </div>
+</section>

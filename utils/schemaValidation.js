@@ -24,7 +24,7 @@ module.exports.editUserSchema = Joi.object({
     firstName: Joi.string().required().regex(/^[A-Za-z]+$/).message('First Name should only include alphabetic characters'),
     lastName: Joi.string().allow('').regex(/^[A-Za-z]+$/).message('Last Name should only include alphabetic characters'),
     email: Joi.string().required().email(),
-    college: Joi.string().allow('').alphanum(),
+    college: Joi.string().allow(''),
     country: Joi.string().allow('').regex(/^[A-Za-z]+$/).message('Country should only include alphabetic characters'),
     github: Joi.string().allow('').alphanum(),
     leetcode: Joi.string().allow('').alphanum()

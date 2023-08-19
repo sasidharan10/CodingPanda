@@ -12,7 +12,7 @@
 
 #profileSection {
     width: 100%;
-    height: 70vh;
+    height: auto;
     background-color: antiquewhite;
     display: flex;
     flex-direction: column;
@@ -25,41 +25,84 @@
     margin: 30px;
 }
 
-#profileSection .profileBody {
+
+#profileSection .profileContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-left: 30px;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(133, 232, 250);
+}
+
+#profileSection .profileContent .profileHeader{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-
 }
 
-#profileSection .profileBody .profileImage {
-    margin-right: 30px;
+#profileSection .profileContent .profileHeader h3{
+    color: black;
+    
 }
 
-#profileSection .profileBody .profileImage img {
+#profileSection .profileContent .profileHeader h5{
+    color: rgb(73, 73, 73);
+    font-size: 1.2rem;
+}
+
+#profileSection .profileContent .profileHeader .headerContent{
+    margin-left: 10px;
+}
+
+#profileSection .profileHeader .profileImage img {
     width: 120px;
     height: 120px;
     margin: 15px;
     border-radius: 50%;
 }
 
-#profileSection .profileBody .profileContent {
+#profileSection .profileContent .profileBody{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: flex-start;
-    margin-left: 30px;
 }
 
-#profileSection .profileBody .profileContent .contentBox {
+#profileSection .profileContent .profileBody .descIcon{
+    width: 25px;
+    height: 25px;
+}
+
+#profileSection .profileContent .profileBody .profileDetails{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
-    /* margin: 15px; */
+    margin: 10px 0px;
 }
 
-#profileSection .profileBody .profileContent .contentBox table{
-    margin: 15px;
+#profileSection .profileContent .profileBody .profileDetails p{
+    font-size: 1.3rem;
+    font-weight: 400;
+    margin: 0 15px;
+}
+
+#profileSection .profileContent .profileBody .profileDetails .btn{
+    /* background-color: rgb(0, 0, 0); */
+    color: #fff;
+}
+
+.submitBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    width: 100%;
+}
+
+.submitBtn .btn{
+    margin: 10px;
 }

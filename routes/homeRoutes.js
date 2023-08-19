@@ -60,8 +60,6 @@ router.get('/coursePage/:courseId', isLoggedInUser, asyncError(async (req, res) 
         }
     });
     const courseData = userData.enrolledCourses.find((temp) => temp.course.equals(new ObjectId(courseId)));
-    // console.log(result);
-    // const courseData = await courseModel.findById(courseId).populate("instructor");
     res.render('coursePage', { courseData: courseData.course, enrollData: courseData });
 }));
 

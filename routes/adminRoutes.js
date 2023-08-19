@@ -5,10 +5,10 @@ const passport = require('passport');
 const adminModel = require("../models/adminModel");
 const instructorModel = require("../models/instructorModel");
 const courseModel = require("../models/courseModel");
+const userModel = require('../models/userModel');
+
 const { getVideoData } = require("../utils/videoData");
-
 const { asyncError } = require('../utils/errorHandler');
-
 const { validateAdminSchema, validateInstructorSchema, validateCourseSchema, isLoggedInAdmin } = require('../utils/middleware');
 
 const passportAdminAuthenticate = passport.authenticate('admin', { failureFlash: true, failureRedirect: '/admin' });
@@ -178,6 +178,11 @@ router.delete('/deleteCourse/:courseId', asyncError(async (req, res) => {
         req.flash('error', "Error while deleting the Course");
         res.redirect("/viewCourses");
     }
+}));
+
+router.get('/viewUsers', asyncError(async (req, res) => {
+    const userData = await userModel.find({});
+    res.render('admin/viewUsers', { userData: userData });
 }));
 
 module.exports = router;

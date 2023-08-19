@@ -3,13 +3,13 @@
 <link rel="stylesheet" href="../static/css/styleProfile.css">
 <title>user Profile</title>
 
-<section id="profileSection">
-    <div class="profileHeading">
+<section id="userSection">
+    <div class="userHeading">
         <h1>User profile</h1>
     </div>
-    <div class="profileContent">
-        <div class="profileHeader">
-            <div class="profileImage">
+    <div class="userContent">
+        <div class="userHeader">
+            <div class="userImage">
                 <img src="../static/img/avatar/profileImg.png" alt="Profile">
             </div>
             <div class="headerContent">
@@ -17,21 +17,21 @@
                 <h5><%= userData.country %></h5>
             </div>
         </div>
-        <div class="profileBody">
-            <div class="profileDetails">
+        <div class="userFooter">
+            <div class="userDetails">
                 <img class="descIcon" src="../static/img/contact/mail.png" alt="mail">
                 <p><%= userData.email %></p>
             </div>
-            <div class="profileDetails">
+            <div class="userDetails">
                 <img class="descIcon" src="../static/img/logo/clg.png" alt="mail">
                 <p><%= userData.college %></p>
             </div>
-            <div class="profileDetails">
+            <div class="userDetails">
                 <img class="descIcon" src="../static/img/logo/git.png" alt="mail">
                 <p><a href="https://github.com/<%= userData.github %>" target="_blank" class="btn btn-dark"
                     role="button">@<%= userData.github %></a></p>
             </div>
-            <div class="profileDetails">
+            <div class="userDetails">
                 <img class="descIcon" src="../static/img/logo/lc.png" alt="mail">
                 <p><a href="https://leetcode.com/<%=userData.leetcode%>/" target="_blank" class="btn btn-dark"
                     role="button">@<%= userData.leetcode %></a></p>

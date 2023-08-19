@@ -20,6 +20,13 @@
     font-weight: 600;
     margin: 30px;
 }
+#userSection .userBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    margin: 10px;
+}
 
 #userSection .userContent {
     display: flex;
@@ -31,7 +38,7 @@
     padding: 10px;
     border-radius: 10px;
     background-color: rgb(133, 232, 250);
-    width: 30%;
+    width: 27%;
 }
 
 #userSection .userContent .userHeader{

@@ -185,4 +185,16 @@ router.get('/viewUsers', asyncError(async (req, res) => {
     res.render('admin/viewUsers', { userData: userData });
 }));
 
+router.delete('/deleteUser/:userId', asyncError(async (req, res) => {
+    const userId = req.params.userId;
+    try {
+        await userModel.findByIdAndDelete(userId);
+        req.flash('success', 'Successfully Deleted the User');
+        res.redirect('/viewUsers');
+    } catch (error) {
+        req.flash('error', "Error while deleting the User data");
+        res.redirect("/viewUsers");
+    }
+}));
+
 module.exports = router;

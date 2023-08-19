@@ -1,15 +1,78 @@
 <% layout('./layouts/adminLayout') -%>
 
-<link rel="stylesheet" href="../../static/css/admin/styleViewInstructors.css">
+<link rel="stylesheet" href="../../static/css/admin/styleViewUsers.css">
 <title>View Users</title>
 
-<section id="usersSection">
-    <div class="pageTitle">
+<section id="userSection">
+    <% if(success && success.length){%>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%=success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
+    <% if(error && error.length){%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%=error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
+    <div class="userHeading">
         <h1>Users</h1>
     </div>
-    <div class="usersContent">
-        <div class="userBox">
-            
+    <div class="userBox">
+        <% for (const it of userData) {%>
+        <div class="userContent">
+            <div class="userHeader">
+                <div class="userImage">
+                    <img src="../static/img/avatar/profileImg.png" alt="Profile">
+                </div>
+                <div class="headerContent">
+                    <h3><%= it.firstName %> <%= it.lastName %></h3>
+                    <% if(it.country){%>
+                    <h5><%=it.country%></h5>
+                    <%}else{%>
+                    <h5>-----</h5>
+                    <% } %>
+                </div>
+            </div>
+            <div class="userFooter">
+                <div class="userDetails">
+                    <img class="descIcon" src="../static/img/contact/mail.png" alt="mail">
+                    <p><%= it.email %></p>
+                </div>
+                <div class="userDetails">
+                    <img class="descIcon" src="../static/img/logo/clg.png" alt="mail">
+                    <% if(it.college){%>
+                    <p><%=it.college%></p>
+                    <%}else{%>
+                    <p>-----</p>
+                    <% } %>
+                </div>
+                <div class="userDetails">
+                    <img class="descIcon" src="../static/img/logo/git.png" alt="mail">
+                    <% if(it.github){%>
+                    <p><a href="https://github.com/<%= it.github %>" target="_blank" class="btn btn-dark"
+                            role="button">@<%= it.github %></a></p>
+                    <%}else{%>
+                    <p>-----</p>
+                    <% } %>
+                </div>
+                <div class="userDetails">
+                    <img class="descIcon" src="../static/img/logo/lc.png" alt="mail">
+                    <% if(it.leetcode){%>
+                    <p><a href="https://leetcode.com/<%=it.leetcode%>/" target="_blank" class="btn btn-dark"
+                            role="button">@<%= it.leetcode %></a></p>
+                    <%}else{%>
+                    <p>-----</p>
+                    <% } %>
+                </div>
+            </div>
+            <div class="submitBtn">
+                <form action="deleteUser/<%=it._id%>?_method=DELETE" method="post">
+                    <button type="submit" class="btn btn-danger mx-2 my-3">Delete</button>
+                </form>
+            </div>/
         </div>
+        <% } %>
     </div>
 </section>

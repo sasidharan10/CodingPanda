@@ -58,7 +58,7 @@ router.post('/addInstructor', validateInstructorSchema, asyncError(async (req, r
     try {
         const { instructorName, instructorTitle, email, description } = req.body;
         const newData = new instructorModel({ instructorName, instructorTitle, email, description });
-        const result = await newData.save();
+        await newData.save();
         req.flash('success', 'Successfully Added Instructor');
         res.redirect("/addInstructor");
     }
@@ -84,7 +84,7 @@ router.get('/editInstructor/:instructorId', asyncError(async (req, res) => {
     }
 }));
 
-router.post('/UpdateInstructor/:instructorId', asyncError(async (req, res) => {
+router.put('/UpdateInstructor/:instructorId', asyncError(async (req, res) => {
     const instructorId = req.params.instructorId;
     try {
         await instructorModel.findByIdAndUpdate(instructorId, { ...req.body });
@@ -96,7 +96,7 @@ router.post('/UpdateInstructor/:instructorId', asyncError(async (req, res) => {
     }
 }));
 
-router.post('/deleteInstructor/:instructorId', asyncError(async (req, res) => {
+router.delete('/deleteInstructor/:instructorId', asyncError(async (req, res) => {
     const instructorId = req.params.instructorId;
     try {
         await instructorModel.findByIdAndDelete(instructorId);
@@ -116,42 +116,6 @@ router.get('/viewCourses', asyncError(async (req, res) => {
 router.get('/addCourse', isLoggedInAdmin, asyncError(async (req, res) => {
     const instructorData = await instructorModel.find({});
     res.render('admin/addCourse', { instructorData: instructorData });
-}));
-
-router.post('/deleteCourse/:courseId', asyncError(async (req, res) => {
-    const courseId = req.params.courseId;
-    try {
-        await courseModel.findByIdAndDelete(courseId);
-        req.flash('success', 'Successfully Deleted the Course');
-        res.redirect('/viewCourses');
-    } catch (error) {
-        req.flash('error', "Error while deleting the Course");
-        res.redirect("/viewCourses");
-    }
-}));
-
-router.get('/editCourse/:courseId', asyncError(async (req, res) => {
-    const courseId = req.params.courseId;
-    try {
-        const coursesData = await courseModel.findById(courseId).populate('instructor');
-        const instructorData = await instructorModel.find({});
-        res.render('admin/editCourse', { coursesData: coursesData, instructorData: instructorData });
-    } catch (error) {
-        req.flash('error', "Error while redirecting to Edit Course");
-        res.redirect("/viewCourses");
-    }
-}));
-
-router.post('/UpdateCourse/:courseId', asyncError(async (req, res) => {
-    const courseId = req.params.courseId;
-    try {
-        await courseModel.findByIdAndUpdate(courseId, { ...req.body });
-        req.flash('success', 'Successfully Updated the Course');
-        res.redirect('/viewCourses');
-    } catch (error) {
-        req.flash('error', "Erro while Updating the Course");
-        res.redirect("/viewCourses");
-    }
 }));
 
 router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
@@ -177,6 +141,43 @@ router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
     const result = await newCourse.save();
     req.flash('success', 'Successfully Added New Course');
     res.redirect("/addCourse");
+}));
+
+router.get('/editCourse/:courseId', asyncError(async (req, res) => {
+    const courseId = req.params.courseId;
+    try {
+        const coursesData = await courseModel.findById(courseId).populate('instructor');
+        const instructorData = await instructorModel.find({});
+        res.render('admin/editCourse', { coursesData: coursesData, instructorData: instructorData });
+    } catch (error) {
+        req.flash('error', "Error while redirecting to Edit Course");
+        res.redirect("/viewCourses");
+    }
+}));
+
+router.put('/UpdateCourse/:courseId', asyncError(async (req, res) => {
+    const courseId = req.params.courseId;
+    try {
+        await courseModel.findByIdAndUpdate(courseId, { ...req.body });
+        req.flash('success', 'Successfully Updated the Course');
+        res.redirect('/viewCourses');
+    } catch (error) {
+        req.flash('error', "Erro while Updating the Course");
+        res.redirect("/viewCourses");
+    }
+}));
+
+
+router.delete('/deleteCourse/:courseId', asyncError(async (req, res) => {
+    const courseId = req.params.courseId;
+    try {
+        await courseModel.findByIdAndDelete(courseId);
+        req.flash('success', 'Successfully Deleted the Course');
+        res.redirect('/viewCourses');
+    } catch (error) {
+        req.flash('error', "Error while deleting the Course");
+        res.redirect("/viewCourses");
+    }
 }));
 
 module.exports = router;

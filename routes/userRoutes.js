@@ -75,7 +75,7 @@ router.get('/profileEdit/:userId', isLoggedInUser, isUser, asyncError(async (req
 router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSchema, asyncError(async (req, res) => {
     try {
         const userId = req.params.userId;
-        const userData = await userModel.findByIdAndUpdate(userId, { ...req.body });
+        await userModel.findByIdAndUpdate(userId, { ...req.body });
         req.flash('success', 'Successfully Added Instructor');
         res.redirect(`/profile/${userId}`);
     }
@@ -123,7 +123,7 @@ router.post('/enrollCourse/:courseId', asyncError(async (req, res) => {
             getUser.enrolledCourses.push(newEnroll._id);
             await getUser.save();     // saving courseId in user
             getCourse.users.push(userId);
-            const finalResult = await getCourse.save();   // saving userId in course
+            await getCourse.save();   // saving userId in course
             req.flash('success', 'Successfully Enrolled the Course');
             res.redirect('/courses');
         } catch (error) {
@@ -155,11 +155,7 @@ router.post("/saveProgress", async (req, res) => {
     const enrollData = await enrollCourseModel.findById(eid);
     enrollData.progress = Math.round((tm / enrollData.duration) * 100);
     enrollData.timestamp = tm;
-    // console.log(enrollData);
-    // const data = await timeModel.findById("64cf582f689d3cc5a53c6c04");
-    // data.time = tm;
-    const result = await enrollData.save();
-    // console.log(result);
+    await enrollData.save();
 });
 
 

@@ -21,3 +21,14 @@ html {
     text-align: center;
     margin: 30px 0;
 }
+
+.submitBtn{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+/* .submitBtn .btn{
+    width: 100%;
+} */

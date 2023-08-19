@@ -1,0 +1,74 @@
+<% layout('./layouts/adminLayout') -%>
+
+<link rel="stylesheet" href="../../static/css/admin/styleInstructor.css">
+<title>Edit Instructor</title>
+
+<section id="instructorIntroSection">
+    <div class="instructorTitle">
+        <h1>Edit Instructor</h1>
+    </div>
+    <% if(success && success.length){%>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <%=success %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
+    <% if(error && error.length){%>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%=error %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <% }%>
+    <form class="editInstructorForm col-xl-3 d-flex flex-column validated-form" action="/UpdateInstructor/<%=instructorData._id %>" method="post"
+        novalidate>
+        <div class="form-group mb-3">
+            <label for="firstName" class="mb-2">Instructor Name</label>
+            <input type="text" class="form-control mb-3" placeholder="First name" id="instructorName"
+                name="instructorName" value="<%=instructorData.instructorName %>" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter valid Instructor Name .
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="email" class="mb-2">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email"
+                name="email" value="<%=instructorData.email %>" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter valid E-mail.
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="instructorTitle" class="mb-2">Title</label>
+            <input type="text" class="form-control mb-3" placeholder="Title" id="instructorTitle" name="instructorTitle"
+                value="<%=instructorData.instructorTitle %>" required>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter valid Instructor Title.
+            </div>
+        </div>
+        <div class="form-group mb-3">
+            <label for="description" class="mb-2">Description</label>
+            <textarea type="text" class="form-control mb-3" placeholder="Description ( 30 - 50 words)" id="description"
+                name="description" required><%=instructorData.description %></textarea>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter valid Description.
+            </div>
+        </div>
+        <div class="submitBtn">
+            <button type="submit" class="btn btn-success mx-2">Submit</button>
+            <a href="/viewInstructors" class="btn btn-secondary mx-2" role="button">Cancel</a>
+        </div>
+    </form>
+
+</section>

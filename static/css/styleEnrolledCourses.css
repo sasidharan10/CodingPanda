@@ -21,7 +21,7 @@ html {
     align-items: flex-start;
     background-color: antiquewhite;
     height: auto;
-    min-height: 80vh;
+    min-height: auto;
     width: 100%;
 }
 

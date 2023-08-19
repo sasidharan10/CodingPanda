@@ -1,0 +1,49 @@
+<% layout('./layouts/adminLayout') -%>
+
+<link rel="stylesheet" href="../../static/css/admin/styleViewInstructors.css">
+<title>View Courses</title>
+
+<section id="InstructorSection">
+    <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%=success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+    <% if(error && error.length){%>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%=error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <% }%>
+    <div class="PageTitle">
+        <h1>Instructors</h1>
+    </div>
+    <div class="instructorBody">
+        <% let i = 1; %>
+        <% for(const it of instructorData) { if(i==5){i=1;}%>
+        <div class="instructorBox b<%=i %>">
+            <div class="instructorHeading">
+                <div class="headingImg">
+                    <img src="../static/img/avatar/<%=i++ %>.png" alt="image 1">
+                </div>
+                <div class="headingContent">
+                    <h2><%= it.instructorName %></h2>
+                    <h3><%= it.instructorTitle %></h3>
+                </div>
+            </div>
+            <div class="instructorContent">
+                <p><%= it.description %></p>
+            </div>
+            <div class="submitBtn">
+                <form action="/editInstructor/<%= it._id%>" method="get">
+                    <button type="submit" class="btn btn-secondary mx-2 my-3">Edit</button>
+                </form>
+                <form action="/deleteInstructor/<%= it._id%>" method="post">
+                    <button type="submit" class="btn btn-danger mx-2 my-3">Delete</button>
+                </form>
+            </div>
+        </div>
+        <% }%>
+    </div>
+</section>

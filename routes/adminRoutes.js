@@ -68,6 +68,46 @@ router.post('/addInstructor', validateInstructorSchema, asyncError(async (req, r
     }
 }));
 
+router.get('/viewInstructors', asyncError(async (req, res) => {
+    const instructorData = await instructorModel.find({});
+    res.render('admin/viewInstructors', { instructorData: instructorData });
+}));
+
+router.get('/editInstructor/:instructorId', asyncError(async (req, res) => {
+    const instructorId = req.params.instructorId;
+    try {
+        const instructorData = await instructorModel.findById(instructorId);
+        res.render('admin/editInstructor', { instructorData: instructorData });
+    } catch (error) {
+        req.flash('error', "Error while redirecting to Edit Instructor");
+        res.redirect("/viewInstructors");
+    }
+}));
+
+router.post('/UpdateInstructor/:instructorId', asyncError(async (req, res) => {
+    const instructorId = req.params.instructorId;
+    try {
+        await instructorModel.findByIdAndUpdate(instructorId, { ...req.body });
+        req.flash('success', 'Successfully Updated Instructor Data');
+        res.redirect('/viewInstructors');
+    } catch (error) {
+        req.flash('error', "Erro while Updating Instructor data");
+        res.redirect("/viewInstructors");
+    }
+}));
+
+router.post('/deleteInstructor/:instructorId', asyncError(async (req, res) => {
+    const instructorId = req.params.instructorId;
+    try {
+        await instructorModel.findByIdAndDelete(instructorId);
+        req.flash('success', 'Successfully Deleted the Instructor');
+        res.redirect('/viewInstructors');
+    } catch (error) {
+        req.flash('error', "Error while deleting the Instructor data");
+        res.redirect("/viewInstructors");
+    }
+}));
+
 router.get('/viewCourses', asyncError(async (req, res) => {
     const coursesData = await courseModel.find({}).populate("instructor");
     res.render('admin/viewCourses', { coursesData: coursesData });
@@ -85,7 +125,7 @@ router.post('/deleteCourse/:courseId', asyncError(async (req, res) => {
         req.flash('success', 'Successfully Deleted the Course');
         res.redirect('/viewCourses');
     } catch (error) {
-        req.flash('error', "Erro while deleting the Course");
+        req.flash('error', "Error while deleting the Course");
         res.redirect("/viewCourses");
     }
 }));
@@ -109,7 +149,7 @@ router.post('/UpdateCourse/:courseId', asyncError(async (req, res) => {
         req.flash('success', 'Successfully Updated the Course');
         res.redirect('/viewCourses');
     } catch (error) {
-        req.flash('error', "Erro while deleting the Course");
+        req.flash('error', "Erro while Updating the Course");
         res.redirect("/viewCourses");
     }
 }));

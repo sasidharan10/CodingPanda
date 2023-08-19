@@ -1,7 +1,7 @@
 <% layout('./layouts/adminLayout') -%>
 
 <link rel="stylesheet" href="../../static/css/admin/styleAddCourse.css">
-<title>Edit Courses</title>
+<title>Courses</title>
 
 <section id="addCourseIntroSection">
     <div class="addCourseTitle">
@@ -19,8 +19,8 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <% }%>
-    <form class="addCourseForm col-xl-3 d-flex flex-column validated-form" action="/updateCourse/<%=coursesData._id%>" method="post"
-        novalidate>
+    <form class="editCourseForm col-xl-3 d-flex flex-column validated-form" action="/updateCourse/<%=coursesData._id%>"
+        method="post" novalidate>
         <div class="form-group mb-3">
             <label for="courseTitle" class="mb-2">Course Title</label>
             <input type="text" class="form-control mb-3" placeholder="Course Title" id="courseTitle" name="courseTitle"
@@ -36,21 +36,22 @@
             <label for="instructor">Select Instructor</label>
             <select class="form-select" aria-label="Default select example" id="instructor" name="instructor">
                 <%let slt = ''; for (const it of instructorData) {%>
-                <option <%=it._id === coursesData.instructor._id ? 'selected' : '' %> value="<%= it._id%>">
+                <option <%  if(it.email === coursesData.instructor.email){ %>selected <% }  %> value="<%= it._id%>">
                     <%= it.instructorName%>
                 </option>
                 <% } %>
             </select>
+            <small class="form-text text-muted">If instructor not available, click below to add new Instructor</small>
         </div>
         <div class="newInstructorBtn">
-            <a href="/addInstructor" class="btn btn-secondary mx-4 my-2 col-lg-6" role="button">Add New
+            <a href="/addInstructor" class="btn btn-secondary mx-4 my-2" role="button">Add New
                 Instructor</a>
         </div>
         <div class="form-group mb-3">
             <label for="videoId" class="mb-2">Course Link</label>
             <input type="text" class="form-control" id="videoId" placeholder="Enter YouTube Video ID" name="videoId"
                 value="<%=coursesData.videoId %>" required>
-            <small class="form-text text-muted">Enter only the Video ID</small>
+            <small class="form-text text-muted">Enter only the Youtube Video ID</small>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -60,8 +61,9 @@
         </div>
         <div class="form-group mb-3">
             <label for="description" class="mb-2">Course Description</label>
-            <input type="text" class="form-control mb-3" placeholder="Enter the Course Description" id="description"
+            <input type="text" class="form-control" placeholder="Enter the Course Description" id="description"
                 name="description" value="<%=coursesData.description %>" required>
+            <small class="form-text text-muted">20 - 40 words</small>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -71,8 +73,9 @@
         </div>
         <div class="form-group mb-3">
             <label for="summary" class="mb-2">Summary</label>
-            <textarea type="text" class="form-control mb-3" placeholder="Enter Summary (less than 20 words)"
-                id="summary" name="summary" required><%=coursesData.summary %></textarea>
+            <textarea type="text" class="form-control" placeholder="Enter Summary (less than 20 words)" id="summary"
+                name="summary" required><%=coursesData.summary %></textarea>
+            <small class="form-text text-muted">10 - 20 words</small>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -89,7 +92,11 @@
             <small class="form-text text-muted">Separate keywords with a comma or enter
                 key</small>
         </div>
-        <button type="submit" class="btn btn-success mx-5">Submit</button>
+        <div class="submitBtn">
+            <button type="submit" class="btn btn-success mx-2">Submit</button>
+            <a href="/viewCourses" class="btn btn-secondary mx-2" role="button">Cancel</a>
+        </div>
+
     </form>
 
 </section>

@@ -98,7 +98,6 @@ router.get('/enrolledCourses', asyncError(async (req, res) => {
         });
         coursesData.push(course);
     }
-    // res.send(coursesData);
     res.render('enrolledCourses', { coursesData: coursesData });
 }));
 

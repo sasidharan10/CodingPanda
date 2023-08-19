@@ -35,70 +35,22 @@
             <h1>Our Instructors</h1>
         </div>
         <div class="instructorBody">
-            <div class="instructorBox b1">
+            <% let i = 1; %>
+            <% for(const iterator of instructorData) { if(i==5){i=1;}%>
+            <div class="instructorBox b<%=i %>">
                 <div class="instructorHeading">
                     <div class="headingImg">
-                        <img src="../static/img/avatar/1.png" alt="image 1">
+                        <img src="../static/img/avatar/<%=i++ %>.png" alt="image 1">
                     </div>
                     <div class="headingContent">
-                        <h2>John Stones</h2>
-                        <h3>Co-Founder & Instructor</h3>
+                        <h2><%= iterator.instructorName %></h2>
+                        <h3><%= iterator.instructorTitle %></h3>
                     </div>
                 </div>
                 <div class="instructorContent">
-                    <p>He holds a Bachelor’s degree in Computer Science from India’s most premier institute - IIT Delhi and a Master’s degree in Computer Science from Stanford University. He is a coding enthusiast and has worked with bigwigs like Amazon and Facebook in the past.</p>
+                    <p><%= iterator.description %></p>
                 </div>
             </div>
-            <div class="instructorBox b2">
-                <div class="instructorHeading">
-                    <div class="headingImg">
-                        <img src="../static/img/avatar/2.png" alt="image 2">
-                    </div>
-                    <div class="headingContent">
-                        <h2>Elizabeth Olsen</h2>
-                        <h3>Instructor & Founding Member</h3>
-                    </div>
-                </div>
-                <div class="instructorContent">
-                    <p>She holds a Master’s degree in Technology from IIIT Delhi and has a great command on programming
-                        concepts. She has taught the Fundamentals and Data Structures in Java & C++ for four years now.
-                    </p>
-                </div>
-            </div>
-            <div class="instructorBox b3">
-                <div class="instructorHeading">
-                    <div class="headingImg">
-                        <img src="../static/img/avatar/3.png" alt="image 3">
-                    </div>
-                    <div class="headingContent">
-                        <h2>Kyle Walker</h2>
-                        <h3>Software Engineer & Instructor</h3>
-                    </div>
-                </div>
-                <div class="instructorContent">
-                    <p>He is an expert in JavaScript & React (Front-end) and has worked on open-source projects like
-                        Firebug and
-                        Zulip. He has also served as a GCI (Google Code-In) Mentor with Zulip. In his previous role as a
-                        Software Engineer he has worked for Goibibo-MMT.</p>
-                </div>
-            </div>
-            <div class="instructorBox b4">
-                <div class="instructorHeading">
-                    <div class="headingImg">
-                        <img src="../static/img/avatar/4.png" alt="image 4">
-                    </div>
-                    <div class="headingContent">
-                        <h2>Scarlett Johansson</h2>
-                        <h3>Instructor & Founding Member</h3>
-                    </div>
-                </div>
-                <div class="instructorContent">
-                    <p>She holds a Master’s from IIIT Delhi and has more than four years of teaching experience in
-                        advanced
-                        level C++, Java and Android courses. Her data analytics research work has been published in
-                        prestigious
-                        conferences.</p>
-                </div>
-            </div>
+            <% }%>
         </div>
     </section>

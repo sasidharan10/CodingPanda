@@ -43,7 +43,7 @@ module.exports.adminSchema = Joi.object({
 });
 
 module.exports.courseSchema = Joi.object({
-    courseTitle: Joi.string().required(),
+    courseTitle: Joi.string().required().min(5).max(50),
     instructor: Joi.string().required().hex().length(24),
     videoId: Joi.string().required().pattern(/^[a-zA-Z0-9_-]{11}$/).message("Youtube video ID is WRONG, please provide valid ID"),
     description: Joi.string().required().custom(validateWordCount(20, 40)).message('Description should contain 20 - 40 words'),

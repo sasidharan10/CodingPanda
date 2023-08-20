@@ -18,7 +18,6 @@ const passportAdminAuthenticate = passport.authenticate('admin', { failureFlash:
 
 
 router.get('/adminHome', asyncError(async (req, res) => {
-    console.log("user: ", req.user);
     res.render('admin/adminHome');
 }));
 
@@ -30,6 +29,16 @@ router.post('/adminLogin', passportAdminAuthenticate, asyncError(async (req, res
     req.flash('success', 'Successfully Logged In');
     res.redirect("/adminHome");
 }));
+
+router.get('/adminLogout', (req, res) => {
+    req.logout((err) => {
+        if (err) {
+            return next(err);
+        }
+        req.flash('success', "Successfully Logged out!");
+        res.redirect('/admin');
+    });
+});
 
 router.get('/adminRegister', asyncError(async (req, res) => {
     res.render('admin/adminRegister');
@@ -51,7 +60,6 @@ router.post('/adminRegister', validateAdminSchema, asyncError(async (req, res) =
 
 router.get('/addInstructor', asyncError(async (req, res) => {
     res.render('admin/addInstructor');
-
 }));
 
 router.post('/addInstructor', validateInstructorSchema, asyncError(async (req, res) => {
@@ -138,7 +146,7 @@ router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
         techStack: techArray,
         thumbnail: dt.thumbnail
     });
-    const result = await newCourse.save();
+    await newCourse.save();
     req.flash('success', 'Successfully Added New Course');
     res.redirect("/addCourse");
 }));

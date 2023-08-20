@@ -1,4 +1,5 @@
 const express = require('express');
+const _ = require('lodash');
 const router = express.Router({ mergeParams: true });
 const passport = require('passport');
 const mongoose = require('mongoose');
@@ -25,7 +26,9 @@ router.get('/register', alreadyLoggedIn, asyncError(async (req, res) => {
 
 router.post('/register', validateUserSchema, asyncError(async (req, res) => {
     try {
-        const { firstName, lastName, email, password } = req.body;
+        let { firstName, lastName, email, password } = req.body;
+        // firstName = _.startCase(firstName);
+        // lastName = _.startCase(lastName);
         const userData = new userModel({ firstName, lastName, email });
         const newUser = await userModel.register(userData, password);
         req.login(newUser, (err) => {
@@ -73,9 +76,9 @@ router.get('/profileEdit/:userId', isLoggedInUser, isUser, asyncError(async (req
 }));
 
 router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSchema, asyncError(async (req, res) => {
+    const userId = req.params.userId;
     try {
-        const userId = req.params.userId;
-        await userModel.findByIdAndUpdate(userId, { ...req.body });
+        await userModel.findByIdAndUpdate(userId, { ...req.body }, { new: true });
         req.flash('success', 'Successfully Added Instructor');
         res.redirect(`/profile/${userId}`);
     }

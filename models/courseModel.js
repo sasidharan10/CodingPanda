@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const _ = require('lodash');
 const Schema = mongoose.Schema;
 
 const courseSchema = new Schema({
@@ -38,6 +39,19 @@ const courseSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'user'
     }]
+});
+
+courseSchema.pre('save', function (next) {
+    this.courseTitle = _.startCase(this.courseTitle);
+    this.instructorTitle = _.startCase(this.instructorTitle);
+    next();
+});
+
+courseSchema.pre('findOneAndUpdate', function (next) {
+    const update = this.getUpdate();
+    update.courseTitle = _.startCase(update.courseTitle);
+    update.instructorTitle = _.startCase(update.instructorTitle);
+    next();
 });
 
 module.exports = mongoose.model("course", courseSchema);

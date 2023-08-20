@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const _ = require('lodash');
 const passportLocalMongoose = require('passport-local-mongoose');
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
@@ -43,7 +44,22 @@ const userSchema = new Schema({
 
 userSchema.plugin(passportLocalMongoose, {
     usernameField: 'email',
-    usernameQueryFields: ['email'], // Allow querying user using 'email' instead of 'username'
+    usernameQueryFields: ['email'],
+});
+
+userSchema.pre('save', function (next) {
+    this.firstName = _.startCase(this.firstName);
+    this.lastName = _.startCase(this.lastName);
+    next();
+});
+
+userSchema.pre('findOneAndUpdate', function (next) {
+    const update = this.getUpdate();
+    update.firstName = _.startCase(update.firstName);
+    update.lastName = _.startCase(update.lastName);
+    update.college = _.startCase(update.college);
+    update.country = _.startCase(update.country);
+    next();
 });
 
 const userModel = mongoose.model("User", userSchema);  // (collection_name, Schema)

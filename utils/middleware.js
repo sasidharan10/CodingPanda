@@ -107,7 +107,28 @@ module.exports.validateCourseSchema = (req, res, next) => {
 }
 
 module.exports.storeUrl = (req, res, next) => {
-    if (req.session.returnUrl)
-        res.locals.returnUrl = req.session.returnUrl;
+    // if (!req.session.newPath) {
+    //     let pathArray = [];
+    //     pathArray.push(req.path);
+    //     req.session.newPath = pathArray;
+    // }
+    // else if(req.session.newPath.length === 1)
+    // {
+    //     req.session.newPath[1]=req.path;
+    //     req.session.prevRoute = req.session.newPath[0];
+    // }
+    // else if (req.session.newPath.length === 2) {
+    //     req.session.newPath[0] = req.session.newPath[1];
+    //     req.session.newPath[1] = req.path;
+    //     req.session.prevRoute = req.session.newPath[0];
+    // }
+
+    // if (!req.session.prevRoute)
+    //     req.session.prevRoute = req.path;
+
+    // req.session.newPath.push(req.path);
+    // console.log(req.session.newPath);
+    // if (req.session.returnUrl)
+    //     res.locals.returnUrl = req.session.returnUrl;
     next();
 }

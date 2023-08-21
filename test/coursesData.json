@@ -1,7 +1,7 @@
 [
     {
         "courseTitle": "Full Stack Web Development",
-        "instructor": "64d7467516979f9902017b7b",
+        "instructor": "64e3bbcc199a70d7028a1a0f",
         "videoId": "nu_pCVPKzTk",
         "duration": {
             "hours": 7,
@@ -21,7 +21,7 @@
     },
     {
         "courseTitle": "Data Structures and Algorithms",
-        "instructor": "64d7467516979f9902017b7f",
+        "instructor": "64e3bbcc199a70d7028a1a11",
         "videoId": "8hly31xKli0",
         "duration": {
             "hours": 5,
@@ -43,7 +43,7 @@
     },
     {
         "courseTitle": "Python Full Course for Beginners",
-        "instructor": "64d7467516979f9902017b7d",
+        "instructor": "64e3bbcc199a70d7028a1a13",
         "videoId": "rfscVS0vtbw",
         "duration": {
             "hours": 4,

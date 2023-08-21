@@ -68,9 +68,30 @@
                 </div>
             </div>
             <div class="submitBtn">
-                <form action="deleteUser/<%=it._id%>?_method=DELETE" method="post">
-                    <button type="submit" class="btn btn-danger mx-2 my-3">Delete</button>
-                </form>
+                <button type="button" class="btn btn-danger mx-2 my-3" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop<%=it._id%>">
+                    Delete User
+                </button>
+            </div>
+            <div class="modal fade" id="staticBackdrop<%=it._id%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Delete User?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete the User <b><%= it.firstName %> <%= it.lastName %></b>?
+                        </div>
+                        <div class="modal-footer">
+                            <form action="deleteUser/<%=it._id%>?_method=DELETE" method="post">
+                                <button type="submit" class="btn btn-danger mx-2 my-3">Delete</button>
+                            </form>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <% } %>

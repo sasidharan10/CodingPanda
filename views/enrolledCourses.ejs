@@ -47,7 +47,8 @@
                 <div class="courseProgress">
                     <img class="descIcon" src="../static/img/logo/progress.png" alt="progress image">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar"style="width:<%= it.progress%>%;" aria-valuenow="<%= it.progress%>" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="progress-bar" role="progressbar"style="width:<%= it.progress%>%;"
+                            aria-valuenow="<%= it.progress%>" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <h3><%= it.progress%>%</h3>
                 </div>
@@ -58,10 +59,29 @@
                 </div>
             </div>
             <div class="submitBtn">
-                <form action="/unenrollCourse/<%= it._id%>?_method=DELETE" method="post">
-                <a href="/coursePage/<%= it.course._id%>" class="btn btn-info mx-2 my-3" role="button">Watch Now</a>
-                <button type="submit" class="btn btn-danger mx-2 my-3">Delete</button>
-            </form>
+                <a href="/coursePage/<%= it.course._id%>" class="btn btn-success mx-2 my-3" role="button">Watch Now</a>
+                <button type="submit" class="btn btn-danger mx-2 my-3" data-bs-toggle="modal"
+                    data-bs-target="#staticBackdrop<%= it._id%>">Unenroll</button>
+            </div>
+            <div class="modal fade" id="staticBackdrop<%= it._id%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Unenroll?</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to Unenroll <b><%= it.course.courseTitle%></b> Course?
+                        </div>
+                        <div class="modal-footer">
+                            <form action="/unenrollCourse/<%= it._id%>?_method=DELETE" method="post">
+                                <button type="submit" class="btn btn-danger mx-2 my-3">Unenroll</button>
+                            </form>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <% }} %>

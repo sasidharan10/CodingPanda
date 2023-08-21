@@ -9,7 +9,7 @@ const userModel = require('../models/userModel');
 
 const { getVideoData } = require("../utils/videoData");
 const { asyncError } = require('../utils/errorHandler');
-const { validateAdminSchema, validateInstructorSchema, validateCourseSchema, isLoggedInAdmin } = require('../utils/middleware');
+const { validateAdminSchema, validateInstructorSchema, validateCourseSchema, isLoggedInAdmin, storeUrl } = require('../utils/middleware');
 
 const passportAdminAuthenticate = passport.authenticate('admin', { failureFlash: true, failureRedirect: '/admin' });
 
@@ -59,20 +59,26 @@ router.post('/adminRegister', validateAdminSchema, asyncError(async (req, res) =
 }));
 
 router.get('/addInstructor', asyncError(async (req, res) => {
+    req.session.prevUrl = req.session.prevRoute;
     res.render('admin/addInstructor');
 }));
 
-router.post('/addInstructor', validateInstructorSchema, asyncError(async (req, res) => {
+router.post('/addInstructor',storeUrl, validateInstructorSchema, asyncError(async (req, res) => {
     try {
+        let redirectUrl = "/viewInstructors";
+        if(req.session.prevUrl && req.session.prevUrl === '/addCourse')
+        {
+            redirectUrl = '/addCourse';
+        }
         const { instructorName, instructorTitle, email, description } = req.body;
         const newData = new instructorModel({ instructorName, instructorTitle, email, description });
         await newData.save();
         req.flash('success', 'Successfully Added Instructor');
-        res.redirect("/addInstructor");
+        res.redirect(redirectUrl);
     }
     catch (error) {
         req.flash('error', error.message);
-        res.redirect("/addInstructor");
+        res.redirect("/viewInstructors");
     }
 }));
 
@@ -121,7 +127,7 @@ router.get('/viewCourses', asyncError(async (req, res) => {
     res.render('admin/viewCourses', { coursesData: coursesData });
 }));
 
-router.get('/addCourse', isLoggedInAdmin, asyncError(async (req, res) => {
+router.get('/addCourse', isLoggedInAdmin, storeUrl, asyncError(async (req, res) => {
     const instructorData = await instructorModel.find({});
     res.render('admin/addCourse', { instructorData: instructorData });
 }));

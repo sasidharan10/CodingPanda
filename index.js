@@ -40,12 +40,12 @@ db.once("open", () => {
 });
 
 // EXPRESS SPECIFIC STUFFS
-app.set('views', path.join(__dirname, "views"));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('ejs', ejsMate);
 app.use(methodOverride('_method'));
 
-app.use('/static', express.static('static'));
+app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -119,7 +119,23 @@ app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     res.locals.currentUser = req.user;
-    previousRoute = req.path;
+
+    if (!req.session.pathArray) {
+        let tempArray = [];
+        tempArray.push(req.path);
+        req.session.pathArray = tempArray;
+    }
+    else if (req.session.pathArray.length === 1 && req.session.pathArray[0] != req.path) {
+        req.session.pathArray[1] = req.path;
+        req.session.prevRoute = req.session.pathArray[0];
+    }
+    else if (req.session.pathArray.length === 2) {
+        req.session.pathArray[0] = req.session.pathArray[1];
+        req.session.pathArray[1] = req.path;
+        req.session.prevRoute = req.session.pathArray[0];
+    }
+    // console.log("path: ", req.session.pathArray);
+    // console.log("prev: ", req.session.prevRoute);
     next();
 });
 

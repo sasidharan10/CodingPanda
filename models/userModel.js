@@ -55,10 +55,14 @@ userSchema.pre('save', function (next) {
 
 userSchema.pre('findOneAndUpdate', function (next) {
     const update = this.getUpdate();
-    update.firstName = _.startCase(update.firstName);
-    update.lastName = _.startCase(update.lastName);
-    update.college = _.startCase(update.college);
-    update.country = _.startCase(update.country);
+    if (update.firstName)
+        update.firstName = _.startCase(update.firstName);
+    if (update.lastName)
+        update.lastName = _.startCase(update.lastName);
+    if (update.college)
+        update.college = _.startCase(update.college);
+    if (update.country)
+        update.country = _.startCase(update.country);
     next();
 });
 

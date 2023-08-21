@@ -1,5 +1,4 @@
 const express = require('express');
-const _ = require('lodash');
 const router = express.Router({ mergeParams: true });
 const passport = require('passport');
 const mongoose = require('mongoose');
@@ -19,16 +18,13 @@ const passportAuthenticate = passport.authenticate('user', { failureFlash: true,
 //     res.send(dt);
 // }));
 
-
 router.get('/register', alreadyLoggedIn, asyncError(async (req, res) => {
     res.render('register');
 }));
 
 router.post('/register', validateUserSchema, asyncError(async (req, res) => {
     try {
-        let { firstName, lastName, email, password } = req.body;
-        // firstName = _.startCase(firstName);
-        // lastName = _.startCase(lastName);
+        const { firstName, lastName, email, password } = req.body;
         const userData = new userModel({ firstName, lastName, email });
         const newUser = await userModel.register(userData, password);
         req.login(newUser, (err) => {
@@ -78,7 +74,7 @@ router.get('/profileEdit/:userId', isLoggedInUser, isUser, asyncError(async (req
 router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSchema, asyncError(async (req, res) => {
     const userId = req.params.userId;
     try {
-        await userModel.findByIdAndUpdate(userId, { ...req.body }, { new: true });
+        await userModel.findByIdAndUpdate(userId, { ...req.body });
         req.flash('success', 'Successfully Added Instructor');
         res.redirect(`/profile/${userId}`);
     }
@@ -122,13 +118,12 @@ router.post('/enrollCourse/:courseId', asyncError(async (req, res) => {
     else {
         try {
             await newEnroll.save();   // saving courseId in enroll
-            const getUser = await userModel.findById(userId);
-            getUser.enrolledCourses.push(newEnroll._id);
-            await getUser.save();     // saving courseId in user
+            userData.enrolledCourses.push(newEnroll._id);
+            await userData.save();     // saving courseId in user
             getCourse.users.push(userId);
             await getCourse.save();   // saving userId in course
             req.flash('success', 'Successfully Enrolled the Course');
-            res.redirect('/courses');
+            res.redirect('/enrolledCourses');
         } catch (error) {
             req.flash('error', error.message);
             res.redirect(`/courses`);
@@ -138,7 +133,8 @@ router.post('/enrollCourse/:courseId', asyncError(async (req, res) => {
 
 router.delete('/unenrollCourse/:enrollId', asyncError(async (req, res) => {
     const enrollId = req.params.enrollId;
-    const courseId = enrollId.course;
+    const enrollData = await enrollCourseModel.findById(enrollId).populate('course');
+    const courseId = enrollData.course._id;
     const userId = req.user._id;
     try {
         await userModel.findByIdAndUpdate(userId, { $pull: { enrolledCourses: enrollId } });
@@ -160,6 +156,5 @@ router.post("/saveProgress", async (req, res) => {
     enrollData.timestamp = tm;
     await enrollData.save();
 });
-
 
 module.exports = router;

@@ -43,14 +43,13 @@ const courseSchema = new Schema({
 
 courseSchema.pre('save', function (next) {
     this.courseTitle = _.startCase(this.courseTitle);
-    this.instructorTitle = _.startCase(this.instructorTitle);
     next();
 });
 
 courseSchema.pre('findOneAndUpdate', function (next) {
     const update = this.getUpdate();
-    update.courseTitle = _.startCase(update.courseTitle);
-    update.instructorTitle = _.startCase(update.instructorTitle);
+    if (update.courseTitle)
+        update.courseTitle = _.startCase(update.courseTitle);
     next();
 });
 

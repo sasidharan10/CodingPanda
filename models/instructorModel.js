@@ -19,21 +19,27 @@ const instructorSchema = new Schema({
     description: {
         type: String,
         required: [true, "Instructor description is required"]
-    }
+    },
+    courses: [{
+        type: Schema.Types.ObjectId,
+        ref: 'course'
+    }]
 });
 
 instructorSchema.index({ email: 1 });
 
 instructorSchema.pre('save', function (next) {
     this.instructorName = _.startCase(this.instructorName);
-    this.instructorTitle = _.startCase(this.instructorTitle);
+    this.instructorTitle = _.map(_.split(this.instructorTitle, /\s+/), _.capitalize).join(' ');
     next();
 });
 
 instructorSchema.pre('findOneAndUpdate', function (next) {
     const update = this.getUpdate();
-    update.instructorName = _.startCase(update.instructorName);
-    update.instructorTitle = _.startCase(update.instructorTitle);
+    if (update.instructorName)
+        update.instructorName = _.startCase(update.instructorName);
+    if (update.instructorTitle)
+        update.instructorTitle = _.map(_.split(update.instructorTitle, /\s+/), _.capitalize).join(' ');
     next();
 });
 

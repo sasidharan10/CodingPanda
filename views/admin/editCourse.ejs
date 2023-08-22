@@ -19,7 +19,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <% }%>
-    <form class="editCourseForm col-xl-3 d-flex flex-column validated-form" action="/updateCourse/<%=coursesData._id%>?_method=PUT"
+    <form class="editCourseForm col-xl-3 d-flex flex-column validated-form" action="/updateCourse/<%=coursesData._id%>/<%=coursesData.instructor._id%>?_method=PUT"
         method="post" novalidate>
         <div class="form-group mb-3">
             <label for="courseTitle" class="mb-2">Course Title</label>

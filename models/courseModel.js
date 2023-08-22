@@ -42,14 +42,14 @@ const courseSchema = new Schema({
 });
 
 courseSchema.pre('save', function (next) {
-    this.courseTitle = _.startCase(this.courseTitle);
+    this.courseTitle = _.map(_.split(this.courseTitle, /\s+/), _.capitalize).join(' ');
     next();
 });
 
 courseSchema.pre('findOneAndUpdate', function (next) {
     const update = this.getUpdate();
     if (update.courseTitle)
-        update.courseTitle = _.startCase(update.courseTitle);
+        update.courseTitle = _.map(_.split(update.courseTitle, /\s+/), _.capitalize).join(' ');
     next();
 });
 

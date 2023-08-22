@@ -60,7 +60,7 @@ userSchema.pre('findOneAndUpdate', function (next) {
     if (update.lastName)
         update.lastName = _.startCase(update.lastName);
     if (update.college)
-        update.college = _.startCase(update.college);
+        update.college = _.map(_.split(update.college, /\s+/), _.capitalize).join(' ');
     if (update.country)
         update.country = _.startCase(update.country);
     next();

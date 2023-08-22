@@ -69,6 +69,16 @@ html {
     color: #4d4c4c;
 }
 
+#InstructorSection .instructorBody .instructorBox .instructorCourses h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.nilText{
+    color: rgb(223, 6, 6);
+    text-align: center;
+}
+
 .submitBtn {
     display: flex;
     flex-direction: row;

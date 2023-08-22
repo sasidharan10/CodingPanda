@@ -21,3 +21,24 @@ html {
     text-align: center;
     margin: 30px 0;
 }
+
+#adminHomeContent .table{
+    font-size: 1.5rem;
+}
+
+#adminHomeContent .table thead tr th{
+    padding: 20px;
+}
+
+#adminHomeContent .table tbody tr th, td {
+    padding: 20px;
+    text-align: center;
+}
+
+#adminHomeContent .table thead tr th:first-child{
+    border-top-left-radius: 10px;
+}
+
+#adminHomeContent .table thead tr th:last-child{
+    border-top-right-radius: 10px;
+}

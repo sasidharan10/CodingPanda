@@ -18,7 +18,10 @@ const passportAdminAuthenticate = passport.authenticate('admin', { failureFlash:
 
 
 router.get('/adminHome', asyncError(async (req, res) => {
-    res.render('admin/adminHome');
+    const userCount = await userModel.countDocuments();
+    const courseCount = await courseModel.countDocuments();
+    const instructorCount = await instructorModel.countDocuments();
+    res.render('admin/adminHome', { userCount, instructorCount, courseCount });
 }));
 
 router.get('/admin', asyncError(async (req, res) => {
@@ -157,12 +160,17 @@ router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
         techStack: techArray,
         thumbnail: dt.thumbnail
     });
-    const coursesData = await newCourse.save();
-    const instructorData = await instructorModel.findById(instructor);
-    instructorData.courses.push(coursesData._id);
-    await instructorData.save();
-    req.flash('success', 'Successfully Added New Course');
-    res.redirect("/viewCourses");
+    try {
+        const coursesData = await newCourse.save();
+        const instructorData = await instructorModel.findById(instructor);
+        instructorData.courses.push(coursesData._id);
+        await instructorData.save();
+        req.flash('success', 'Successfully Added New Course');
+        res.redirect("/viewCourses");
+    } catch (error) {
+        req.flash('error', error.message);
+        res.redirect("/viewCourses");
+    }
 }));
 
 router.get('/editCourse/:courseId/', asyncError(async (req, res) => {

@@ -1,25 +1,25 @@
 [
     {
-        "instructorName": "John Stones",
-        "email": "JohnStones@gmail.com",
+        "instructorName": "John",
+        "email": "John@gmail.com",
         "instructorTitle": "Co-Founder & Instructor",
         "description": "He holds a Bachelor’s degree in Computer Science from India’s most premier institute - IIT Delhi and a Master’s degree in Computer Science from Stanford University. He is a coding enthusiast and has worked with bigwigs like Amazon and Facebook in the past."
     },
     {
-        "instructorName": "Elizabeth Olsen",
-        "email": "elizabetholsen@gmail.com",
+        "instructorName": "Elizabeth",
+        "email": "elizabeth@gmail.com",
         "instructorTitle": "Instructor & Founding Member",
         "description": "She holds a Master’s degree in Technology from IIIT Delhi and has a great command on programming concepts. She has taught the Fundamentals and Data Structures in Java & C++ for four years now."
     },
     {
-        "instructorName": "Kyle Walker",
-        "email": "kylewalker@gmail.com",
+        "instructorName": "Kyle",
+        "email": "kyle@gmail.com",
         "instructorTitle": "Software Engineer & Instructor",
         "description": "He is an expert in JavaScript & React (Front-end) and has worked on open-source projects like Firebug and Zulip. He has also served as a GCI (Google Code-In) Mentor with Zulip. In his previous role as a Software Engineer he has worked for Goibibo-MMT."
     },
     {
-        "instructorName": "Scarlett Johansson",
-        "email": "scarlettjohansson@gmail.com",
+        "instructorName": "Chris",
+        "email": "chris@gmail.com",
         "instructorTitle": "Instructor & Founding Member",
         "description": "She holds a Master’s from IIIT Delhi and has more than four years of teaching experience in advanced level C++, Java and Android courses. Her data analytics research work has been published in prestigious conferences."
     }

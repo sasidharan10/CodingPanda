@@ -40,9 +40,18 @@
                 <p><%= it.description %></p>
             </div>
             <div class="instructorCourses">
-                <% for (const ct of it.courses) {%>
-                <p><%= ct.courseTitle %></p>
-                <% } %>
+                <h3>Courses</h3>
+                <% if (!it.courses.length) { %>
+                    <p class="nilText">NIL</p>
+                <%} else{%>
+                <ul>
+                    <% for (const ct of it.courses) {%>
+                    <li>
+                        <p><%= ct.courseTitle %></p>
+                    </li>
+                    <% } }%>
+                </ul>
+
             </div>
             <div class="submitBtn">
                 <form action="/editInstructor/<%= it._id%>" method="get">

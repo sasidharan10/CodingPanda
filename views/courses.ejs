@@ -37,12 +37,15 @@
         </div>
         <% }else{for (const it of coursesData) { %>
         <div class="courseBox">
-            <div class="courseImage">
-                <img src="<%= it.thumbnail%>" alt="DSA Logo">
+            <div class="courseHeader flex-column align-items">
+                <div class="courseImage">
+                    <img src="<%= it.thumbnail%>" alt="DSA Logo">
+                </div>
+                <div class="courseTitle">
+                    <h2><%= it.courseTitle%></h2>
+                </div>
             </div>
-            <div class="courseTitle">
-                <h2><%= it.courseTitle%></h2>
-            </div>
+            
             <div class="courseBoxContent">
                 <div class="courseDescription">
                     <p><%= it.summary%></p>

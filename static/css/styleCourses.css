@@ -48,7 +48,7 @@ html {
 
 #coursesContentSection {
     height: auto;
-    background-color: rgb(193, 248, 230);
+    background-color: #e9fbff;
     display: flex;
     flex-direction: column;
     overflow: hidden;
@@ -74,13 +74,22 @@ html {
     height: auto;
     width: 30%;
     color: #000000;
-    background-color: #e6fcd9;
+    background-color: #ffffff;
     margin: auto;
     margin-bottom: 30px;
-    border: 2px solid rgb(207 207 207);
     box-shadow: -1px 10px 20px #16161633;
     border-radius: 10px;
     overflow: hidden;
+}
+
+#coursesContentSection .coursesContentBody .courseBox .courseHeader{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #13174e;
+    color: white;
+    background: linear-gradient(45deg, #08568d, #13174e);
+    width: 100%;
 }
 
 #coursesContentSection .coursesContentBody .courseBox .courseImage img {

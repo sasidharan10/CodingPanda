@@ -1,0 +1,28 @@
+.customBtn {
+    font-family: 'Josefin Sans', sans-serif;
+    text-decoration: none;
+    text-align: center;
+    color: #000000;
+    background-color: #fff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px 8px;
+    margin: 0px 5px;
+    line-height: -1px;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.customBtn:hover {
+    border-radius: 5px;
+    color: black;
+    background-color: #ffffffd3;
+}
+
+.gradient-background {
+    background: linear-gradient(45deg, #4fe3f6, #056ec4);
+    background-size: 180% 180%;
+    animation: gradient-animation 18s ease infinite;
+}

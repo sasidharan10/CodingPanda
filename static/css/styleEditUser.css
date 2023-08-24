@@ -11,7 +11,7 @@ html {
 
 #editUserIntroSection{
     width: 100vw;
-    height: 100vh;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +21,8 @@ html {
     text-align: center;
     margin: 30px 0;
 }
-#editUserIntroSection .registerForm .submitBtn{
+
+/* #editUserIntroSection .registerForm .submitBtn{
     display: flex;
     flex-direction: row;
-}
+} */

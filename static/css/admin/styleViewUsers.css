@@ -9,7 +9,7 @@
 #userSection {
     width: 100%;
     height: auto;
-    background-color: antiquewhite;
+    background: linear-gradient(45deg, #a4f1fc, #349ff7);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,12 +20,12 @@
     font-weight: 600;
     margin: 30px;
 }
-#userSection .userBox{
+
+#userSection .userBox {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
-    margin: 10px;
     flex-wrap: wrap;
 }
 
@@ -34,15 +34,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    min-width: 400px;
+    max-width: 450px;
     margin: 20px;
-    border: 2px solid black;
-    padding: 10px;
+    padding: 20px;
+    box-shadow: -1px 10px 20px #16161633;
     border-radius: 10px;
-    background-color: rgb(133, 232, 250);
-    width: 27%;
+    background-color: #e9fbff;
+    width: 30%;
 }
 
-#userSection .userContent .userHeader{
+#userSection .userContent .userHeader {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -50,17 +52,16 @@
     width: 100%;
 }
 
-#userSection .userContent .userHeader h3{
-    color: black;
-    
+#userSection .userContent .userHeader h3 {
+    font-size: 1.5rem;
 }
 
-#userSection .userContent .userHeader h5{
+#userSection .userContent .userHeader h5 {
     color: rgb(73, 73, 73);
     font-size: 1.2rem;
 }
 
-#userSection .userContent .userHeader .headerContent{
+#userSection .userContent .userHeader .headerContent {
     margin-left: 10px;
 }
 
@@ -71,18 +72,18 @@
     border-radius: 50%;
 }
 
-#userSection .userContent .userFooter{
+#userSection .userContent .userFooter {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-#userSection .userContent .userFooter .descIcon{
+#userSection .userContent .userFooter .descIcon {
     width: 25px;
     height: 25px;
 }
 
-#userSection .userContent .userFooter .userDetails{
+#userSection .userContent .userFooter .userDetails {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -90,23 +91,194 @@
     margin: 10px 0px;
 }
 
-#userSection .userContent .userFooter .userDetails p{
+#userSection .userContent .userFooter .userDetails p {
     font-size: 1.3rem;
     font-weight: 400;
     margin: 0 15px;
 }
 
-#userSection .userContent .userFooter .userDetails .btn{
-    color: #fff;
+@media only screen and (max-width: 400px) {
+    #userSection .userHeading h1 {
+        font-size: 1.5rem;
+        margin: 15px;
+    }
+
+    #userSection .userBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    #userSection .userContent {
+        min-width: auto;
+        max-width: 350px;
+        margin: 10px;
+        padding: 10px;
+        width: 90%;
+    }
+
+    #userSection .userContent .userHeader {
+        width: 100%;
+    }
+
+    #userSection .userContent .userHeader h3 {
+        font-size: 1rem;
+    }
+
+    #userSection .userContent .userHeader h5 {
+        font-size: 0.8rem;
+    }
+
+    #userSection .userContent .userHeader .headerContent {
+        margin-left: 5px;
+    }
+
+    #userSection .userHeader .userImage img {
+        width: 80px;
+        height: 80px;
+        margin: 15px;
+    }
+
+    #userSection .userContent .userFooter .descIcon {
+        width: 15px;
+        height: 15px;
+    }
+
+    #userSection .userContent .userFooter .userDetails {
+        margin: 5px 0px;
+    }
+
+    #userSection .userContent .userFooter .userDetails p {
+        font-size: 0.9rem;
+        margin: 0 5px;
+    }
 }
 
-.submitBtn{
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    width: 100%;
+@media only screen and (min-width:400px) and (max-width: 700px) {
+    #userSection .userHeading h1 {
+        font-size: 2rem;
+        margin: 30px;
+    }
+
+    #userSection .userBox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    #userSection .userContent {
+        min-width: 330px;
+        max-width: 450px;
+        margin: 10px;
+        padding: 20px;
+        width: 30%;
+    }
+
+    #userSection .userContent .userHeader {
+        width: 100%;
+    }
+
+    #userSection .userContent .userHeader h3 {
+        font-size: 1.3rem;
+    }
+
+    #userSection .userContent .userHeader h5 {
+        font-size: 1.1rem;
+    }
+
+    #userSection .userContent .userHeader .headerContent {
+        margin-left: 10px;
+    }
+
+    #userSection .userHeader .userImage img {
+        width: 100px;
+        height: 100px;
+        margin: 15px;
+    }
+
+    #userSection .userContent .userFooter .descIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    #userSection .userContent .userFooter .userDetails {
+        margin: 10px 0px;
+    }
+
+    #userSection .userContent .userFooter .userDetails p {
+        font-size: 1.1rem;
+        margin: 0 10px;
+    }
 }
 
-.submitBtn .btn{
-    margin: 10px;
+@media only screen and (min-width:700px) and (max-width: 900px) {
+    #userSection .userHeading h1 {
+        font-size: 2.2rem;
+        margin: 30px;
+    }
+
+    #userSection .userBox {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    #userSection .userContent {
+        min-width: 330px;
+        max-width: 450px;
+        margin: 10px;
+        padding: 20px;
+        width: 30%;
+    }
+
+    #userSection .userContent .userHeader {
+        width: 100%;
+    }
+
+    #userSection .userContent .userHeader h3 {
+        font-size: 1.3rem;
+    }
+
+    #userSection .userContent .userHeader h5 {
+        font-size: 1.1rem;
+    }
+
+    #userSection .userContent .userHeader .headerContent {
+        margin-left: 10px;
+    }
+
+    #userSection .userHeader .userImage img {
+        width: 100px;
+        height: 100px;
+        margin: 15px;
+    }
+
+    #userSection .userContent .userFooter .descIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    #userSection .userContent .userFooter .userDetails {
+        margin: 10px 0px;
+    }
+
+    #userSection .userContent .userFooter .userDetails p {
+        font-size: 1.1rem;
+        margin: 0 10px;
+    }
 }
+
+
+
+
+
+
+
+
+

@@ -102,7 +102,7 @@ html {
     align-items: center;
     justify-content: space-around;
     flex-direction: row;
-    background: linear-gradient(45deg, #d8fffd, #a2fbfd);
+    background-color: #fff;
     height: 80vh;
 }
 
@@ -188,6 +188,7 @@ html {
 #placedSection {
     height: auto;
     background-color: #62d4e9;
+    background: linear-gradient(45deg, #a4f1fc, #349ff7);
     text-align: center;
     overflow: hidden;
 }
@@ -213,7 +214,7 @@ html {
 }
 
 #reviewSection {
-    background: linear-gradient(45deg, #d8fffd, #a2fbfd);
+    background-color: #e9fbff;
     height: auto;
     overflow: hidden;
 }
@@ -269,7 +270,7 @@ html {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    background-color: #62d4e9;
+    background: linear-gradient(45deg, #a4f1fc, #349ff7);
     height: auto;
 }
 

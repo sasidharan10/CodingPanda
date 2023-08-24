@@ -42,7 +42,7 @@
             <div class="instructorCourses">
                 <h3>Courses</h3>
                 <% if (!it.courses.length) { %>
-                    <p class="nilText">NIL</p>
+                <p class="nilText">NIL</p>
                 <%} else{%>
                 <ul>
                     <% for (const ct of it.courses) {%>
@@ -53,11 +53,9 @@
                 </ul>
 
             </div>
-            <div class="submitBtn">
-                <form action="/editInstructor/<%= it._id%>" method="get">
-                    <button type="submit" class="btn btn-secondary mx-2 my-3">Edit</button>
-                </form>
-                <button type="button" class="btn btn-danger mx-2 my-3" data-bs-toggle="modal"
+            <div class="d-flex flex-row justify-content-center w-100">
+                <a href="/editInstructor/<%= it._id%>" class="btn btn-secondary mx-2 my-3 w-25" role="button">Edit</a>
+                <button type="button" class="btn btn-danger mx-2 my-3 w-25" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop<%= it._id%>">Delete</button>
             </div>
             <div class="modal fade" id="staticBackdrop<%= it._id%>" data-bs-backdrop="static" data-bs-keyboard="false"

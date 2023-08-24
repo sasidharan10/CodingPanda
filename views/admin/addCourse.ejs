@@ -19,10 +19,10 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <% }%>
-    <form class="addCourseForm col-xl-3 d-flex flex-column validated-form" action="/addCourse" method="post" novalidate>
+    <form class="addCourseForm col-xl-3 col-lg-4 col-md-6 col-sm-8 col-10 validated-form" action="/addCourse" method="post" novalidate>
         <div class="form-group mb-3">
             <label for="courseTitle" class="mb-2">Course Title</label>
-            <input type="text" class="form-control mb-3" placeholder="Course Title" id="courseTitle" name="courseTitle"
+            <input type="text" class="form-control" placeholder="Course Title" id="courseTitle" name="courseTitle"
                 required>
             <div class="valid-feedback">
                 Looks good!
@@ -39,8 +39,8 @@
                 <% } %>
             </select>
         </div>
-        <div class="newInstructorBtn">
-            <a href="/addInstructor" class="btn btn-secondary mx-4 my-2 col-lg-6" role="button">Add New
+        <div class="d-flex flex-row justify-content-center w-100">
+            <a href="/addInstructor" class="btn btn-secondary my-2 w-50" role="button">Add New
                 Instructor</a>
         </div>
         <div class="form-group mb-3">
@@ -57,7 +57,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="description" class="mb-2">Course Description</label>
-            <input type="text" class="form-control mb-3" placeholder="Enter the Course Description" id="description"
+            <input type="text" class="form-control" placeholder="Enter the Course Description" id="description"
                 name="description" required>
             <div class="valid-feedback">
                 Looks good!
@@ -68,7 +68,7 @@
         </div>
         <div class="form-group mb-3">
             <label for="summary" class="mb-2">Summary</label>
-            <textarea type="text" class="form-control mb-3" placeholder="Enter Summary (less than 20 words)"
+            <textarea type="text" class="form-control" placeholder="Enter Summary (less than 20 words)"
                 id="summary" name="summary" required></textarea>
             <div class="valid-feedback">
                 Looks good!
@@ -84,8 +84,9 @@
             <small class="form-text text-muted">Separate keywords with a comma or enter
                 key</small>
         </div>
-        <button type="submit" class="btn btn-success mx-5">Submit</button>
-
+        <div class="d-flex flex-row justify-content-center w-100 mb-3">
+            <button type="submit" class="btn btn-success mx-2 my-2 w-50">Submit</button>
+        </div>
     </form>
 
 </section>

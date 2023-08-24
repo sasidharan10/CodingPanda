@@ -1,20 +1,24 @@
 <% layout('./layouts/boilerplate') -%>
 
 <link rel="stylesheet" href="../static/css/styleProfile.css">
-<title>user Profile</title>
+<title>Profile</title>
 
 <section id="userSection">
     <div class="userHeading">
-        <h1>User profile</h1>
+        <h1>Profile</h1>
     </div>
     <div class="userContent">
         <div class="userHeader">
             <div class="userImage">
-                <img src="../static/img/avatar/profileImg.png" alt="Profile">
+                <img src="../static/img/avatar/1.png" alt="Profile">
             </div>
             <div class="headerContent">
                 <h3><%= userData.firstName %> <%= userData.lastName %></h3>
-                <h5><%= userData.country %></h5>
+                <% if(userData.country){%>
+                <h5><%=userData.country%></h5>
+                <%}else{%>
+                <h5>-----</h5>
+                <% } %>
             </div>
         </div>
         <div class="userFooter">
@@ -24,22 +28,34 @@
             </div>
             <div class="userDetails">
                 <img class="descIcon" src="../static/img/logo/clg.png" alt="mail">
-                <p><%= userData.college %></p>
+                <% if(userData.college){%>
+                <p><%=userData.college%></p>
+                <%}else{%>
+                <p>-----</p>
+                <% } %>
             </div>
             <div class="userDetails">
                 <img class="descIcon" src="../static/img/logo/git.png" alt="mail">
+                <% if(userData.github){%>
                 <p><a href="https://github.com/<%= userData.github %>" target="_blank" class="btn btn-dark"
-                    role="button">@<%= userData.github %></a></p>
+                        role="button">@<%= userData.github %></a></p>
+                <%}else{%>
+                <p>-----</p>
+                <% } %>
             </div>
             <div class="userDetails">
                 <img class="descIcon" src="../static/img/logo/lc.png" alt="mail">
+                <% if(userData.github){%>
                 <p><a href="https://leetcode.com/<%=userData.leetcode%>/" target="_blank" class="btn btn-dark"
-                    role="button">@<%= userData.leetcode %></a></p>
+                        role="button">@<%= userData.leetcode %></a></p>
+                <%}else{%>
+                <p>-----</p>
+                <% } %>
             </div>
         </div>
     </div>
-    <div class="submitBtn">
-        <a href="/enrolledCourses" class="btn btn-info" role="button">Enrolled Courses</a>
-        <a href="/profileEdit/<%= currentUser._id%>" class="btn btn-warning" role="button">Edit Profile</a>
+    <div class="d-flex flex-row justify-content-center">
+        <a href="/enrolledCourses" class="btn btn-success btn-custom mx-2 my-3" role="button">Enrolled Courses</a>
+        <a href="/profileEdit/<%= currentUser._id%>" class="btn btn-warning btn-custom mx-2 my-3" role="button">Edit Profile</a>
     </div>
 </section>

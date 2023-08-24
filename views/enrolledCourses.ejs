@@ -26,11 +26,13 @@
         </div>
         <% }else{for (const it of coursesData) { %>
         <div class="courseBox">
-            <div class="courseImage">
-                <img src="<%= it.course.thumbnail%>" alt="DSA Logo">
-            </div>
-            <div class="courseTitle">
-                <h2><%= it.course.courseTitle%></h2>
+            <div class="courseHeader">
+                <div class="courseImage">
+                    <img src="<%= it.course.thumbnail%>" alt="DSA Logo">
+                </div>
+                <div class="courseTitle">
+                    <h2><%= it.course.courseTitle%></h2>
+                </div>
             </div>
             <div class="courseBoxContent">
                 <div class="courseDescription">
@@ -58,13 +60,13 @@
                     <p>(2K+ students)</p>
                 </div>
             </div>
-            <div class="submitBtn">
+            <div class="d-flex flex-row justify-content-center w-100">
                 <a href="/coursePage/<%= it.course._id%>" class="btn btn-success mx-2 my-3" role="button">Watch Now</a>
                 <button type="submit" class="btn btn-danger mx-2 my-3" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop<%= it._id%>">Unenroll</button>
             </div>
-            <div class="modal fade" id="staticBackdrop<%= it._id%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="staticBackdrop<%= it._id%>" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

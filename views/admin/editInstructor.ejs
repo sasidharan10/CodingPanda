@@ -19,7 +19,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     <% }%>
-    <form class="editInstructorForm col-xl-3 d-flex flex-column validated-form" action="/UpdateInstructor/<%=instructorData._id%>?_method=PUT" method="post"
+    <form class="editInstructorForm col-xl-3 col-lg-4 col-md-6 col-sm-8 col-10 validated-form" action="/UpdateInstructor/<%=instructorData._id%>?_method=PUT" method="post"
         novalidate>
         <div class="form-group mb-3">
             <label for="firstName" class="mb-2">Instructor Name</label>
@@ -65,9 +65,9 @@
                 Please enter valid Description.
             </div>
         </div>
-        <div class="submitBtn">
-            <button type="submit" class="btn btn-success mx-2">Submit</button>
-            <a href="/viewInstructors" class="btn btn-secondary mx-2" role="button">Cancel</a>
+        <div class="d-flex flex-row justify-content-center w-100 mb-3">
+            <button type="submit" class="btn btn-success mx-2 my-2 w-50">Submit</button>
+            <a href="/viewInstructors" class="btn btn-secondary mx-2 my-2 w-50" role="button">Cancel</a>
         </div>
     </form>
 

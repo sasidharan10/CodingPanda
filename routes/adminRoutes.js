@@ -189,6 +189,9 @@ router.put('/UpdateCourse/:courseId/:instructorId', asyncError(async (req, res) 
     const courseId = req.params.courseId;
     const oldInstructor = req.params.instructorId;
     const newInstructor = req.body.instructor;
+    const temp = req.body.techStack;
+    const techArray = temp.split(',');
+    req.body.techStack = techArray;
     try {
         await instructorModel.findByIdAndUpdate(oldInstructor, { $pull: { courses: courseId } });
         await courseModel.findByIdAndUpdate(courseId, { ...req.body });

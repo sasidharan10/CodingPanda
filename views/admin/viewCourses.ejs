@@ -31,11 +31,13 @@
         </div>
         <% }else{for (const it of coursesData) { %>
         <div class="courseBox">
-            <div class="courseImage">
-                <img src="<%= it.thumbnail%>" alt="DSA Logo">
-            </div>
-            <div class="courseTitle">
-                <h2><%= it.courseTitle%></h2>
+            <div class="courseHeader">
+                <div class="courseImage">
+                    <img src="<%= it.thumbnail%>" alt="DSA Logo">
+                </div>
+                <div class="courseTitle">
+                    <h2><%= it.courseTitle%></h2>
+                </div>
             </div>
             <div class="courseBoxContent">
                 <div class="courseDescription">
@@ -50,11 +52,9 @@
                     <h3><%= it.duration.hours%>hrs+</h3>
                 </div>
             </div>
-            <div class="submitBtn">
-                <form action="/editCourse/<%= it._id%>" method="get">
-                    <button type="submit" class="btn btn-secondary mx-2 my-3">Edit</button>
-                </form>
-                <button type="submit" class="btn btn-danger mx-2 my-3" data-bs-toggle="modal"
+            <div class="d-flex flex-row justify-content-center w-100">
+                    <a href="/editCourse/<%= it._id%>" class="btn btn-secondary mx-2 my-3 w-25" role="button">Edit</a>
+                <button type="submit" class="btn btn-danger mx-2 my-3 w-25" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop<%= it._id%>">Delete</button>
             </div>
             <div class="modal fade" id="staticBackdrop<%= it._id%>" data-bs-backdrop="static" data-bs-keyboard="false"

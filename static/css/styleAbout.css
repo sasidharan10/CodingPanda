@@ -13,7 +13,7 @@ html {
 
 #aboutIntroSection {
     height: 90vh;
-    background-color: rgb(255 245 232);
+    background: linear-gradient(45deg, #a4f1fc, #349ff7);
 }
 
 #aboutIntroSection .introBody {
@@ -59,7 +59,7 @@ html {
 }
 
 #aboutStorySection {
-    background-color: #d1e7e9;
+    background-color: #c7f5ff;
 }
 
 #aboutStorySection .storyBody {
@@ -106,7 +106,7 @@ html {
 }
 
 #aboutInstructorSection {
-    background-color: rgb(244 255 236);
+    background: linear-gradient(45deg, #a4f1fc, #349ff7);
     height: auto;
     overflow: hidden;
 }
@@ -133,8 +133,7 @@ html {
     padding: 20px;
     border-radius: 5px;
     box-shadow: -1px 10px 20px #16161633;
-    /* background: linear-gradient(45deg, #ffffe9, #f3f5d4); */
-    background-color: #ffffff;
+    background-color: #d6faff;
 }
 
 #aboutInstructorSection .instructorBody .instructorBox .instructorHeading {

@@ -1,6 +1,5 @@
 <% layout('./layouts/boilerplate') -%>
     <link rel="stylesheet" href="../static/css/styleAbout.css">
-    <link rel="stylesheet" href="../static/css/temp.css">
     <title>About US</title>
 
     <section id="aboutIntroSection">
@@ -38,7 +37,7 @@
         <div class="instructorBody">
             <% let i = 1; %>
             <% for(const iterator of instructorData) { if(i==5){i=1;}%>
-            <div class="instructorBox b<%=i %>">
+            <div class="instructorBox">
                 <div class="instructorHeading">
                     <div class="headingImg">
                         <img src="../static/img/avatar/<%=i++ %>.png" alt="image 1">

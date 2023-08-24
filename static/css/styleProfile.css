@@ -9,7 +9,7 @@
 #userSection {
     width: 100%;
     height: auto;
-    background-color: antiquewhite;
+    background: linear-gradient(45deg, #4fe3f6, #056ec4);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -26,12 +26,12 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    margin-left: 30px;
-    border: 2px solid black;
-    padding: 10px;
+    padding: 20px;
+    margin: 20px;
     border-radius: 10px;
-    background-color: rgb(133, 232, 250);
-    width: 30%;
+    background-color: #e9fbff;
+    box-shadow: -1px 10px 20px #16161633;
+    width: 500px;
 }
 
 #userSection .userContent .userHeader{
@@ -44,7 +44,7 @@
 
 #userSection .userContent .userHeader h3{
     color: black;
-    
+    font-size: 1.5rem;
 }
 
 #userSection .userContent .userHeader h5{
@@ -88,17 +88,106 @@
     margin: 0 15px;
 }
 
-#userSection .userContent .userFooter .userDetails .btn{
-    color: #fff;
+
+/* -------------- */
+
+/* Responsive */
+
+/* -------------- */
+
+@media only screen and (max-width: 400px) {
+    #userSection .userHeading h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin: 20px;
+    }
+
+    #userSection .userContent {
+        padding: 15px;
+        margin: 0px 20px;
+        width: 80vw;
+    }
+
+    #userSection .userContent .userHeader h3 {
+        font-size: 1rem;
+    }
+
+    #userSection .userContent .userHeader h5 {
+        font-size: 0.8rem;
+    }
+
+    #userSection .userContent .userHeader .headerContent {
+        margin-left: 5px;
+    }
+
+    #userSection .userHeader .userImage img {
+        width: 70px;
+        height: 70px;
+        margin: 5px;
+    }
+
+    #userSection .userContent .userFooter .descIcon {
+        width: 15px;
+        height: 15px;
+    }
+
+    #userSection .userContent .userFooter .userDetails {
+        margin: 5px 0px;
+    }
+
+    #userSection .userContent .userFooter .userDetails p {
+        font-size: 0.9rem;
+        margin: 0 10px;
+    }
 }
 
-.submitBtn{
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-    width: 100%;
-}
+@media only screen and (min-width:400px) and (max-width: 700px) {
 
-.submitBtn .btn{
-    margin: 10px;
+    #userSection .userHeading h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        margin: 20px;
+    }
+
+    #userSection .userContent {
+        padding: 20px;
+        margin: 20px;
+        width: 80vw;
+    }
+
+    #userSection .userContent .userHeader {
+        width: 100%;
+    }
+
+    #userSection .userContent .userHeader h3 {
+        font-size: 1.2rem;
+    }
+
+    #userSection .userContent .userHeader h5 {
+        font-size: 1rem;
+    }
+
+    #userSection .userContent .userHeader .headerContent {
+        margin-left: 10px;
+    }
+
+    #userSection .userHeader .userImage img {
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+    }
+
+    #userSection .userContent .userFooter .descIcon {
+        width: 20px;
+        height: 20px;
+    }
+
+    #userSection .userContent .userFooter .userDetails {
+        margin: 10px 0px;
+    }
+
+    #userSection .userContent .userFooter .userDetails p {
+        font-size: 1.1rem;
+        margin: 0 15px;
+    }
 }

@@ -21,8 +21,7 @@
             <p>Most loved online coding courses for college students and working professionals</p>
         </div>
         <div class="coursesButtons">
-            <a class="customBtn">Browse Popular Courses</a>
-            <a class="custonBtn2">Login</a>
+            <a class="btn btn-light" href="#coursesContentSection">Browse Popular Courses</a>
         </div>
     </div>
 </section>
@@ -37,7 +36,7 @@
         </div>
         <% }else{for (const it of coursesData) { %>
         <div class="courseBox">
-            <div class="courseHeader flex-column align-items">
+            <div class="courseHeader">
                 <div class="courseImage">
                     <img src="<%= it.thumbnail%>" alt="DSA Logo">
                 </div>
@@ -51,11 +50,11 @@
                     <p><%= it.summary%></p>
                 </div>
                 <div class="courseInstructor">
-                    <img src="../static/img/logo/tutor.png" alt="Tutor Image">
+                    <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
                     <h3><%= it.instructor.instructorName%></h3>
                 </div>
                 <div class="courseTime">
-                    <img src="../static/img/logo/timeline.svg" alt="time image">
+                    <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
                     <h3><%= it.duration.hours%>hrs+</h3>
                 </div>
                 <div class="courseReview">
@@ -64,12 +63,12 @@
                     <p>(2K+ students)</p>
                 </div>
             </div>
-            <div class="submitBtn">
+            <div class="d-flex flex-row justify-content-center w-100">
                 <% if( currentUser && alreadyEnrolled.find((temp) => temp.course.equals(it._id))){ %>
-                <a href="/coursePage/<%= it._id%>" class="btn btn-success mx-2 my-3" role="button">Watch Now</a>
-                <a href="courses/<%= it._id%>" class="btn btn-info mx-2 my-3" role="button">View Course</a>
+                <a href="/coursePage/<%= it._id%>" class="btn btn-success btn-custom mx-2 my-3" role="button">Watch Now</a>
+                <a href="courses/<%= it._id%>" class="btn btn-info btn-custom mx-2 my-3" role="button">View Course</a>
                 <%}else{%>
-                <a href="courses/<%= it._id%>" class="btn btn-info mx-2 my-3" role="button">Enroll Now</a>
+                <a href="courses/<%= it._id%>" class="btn btn-info btn-custom mx-2 my-3" role="button">Enroll Now</a>
                 <% } %>
             </div>
         </div>

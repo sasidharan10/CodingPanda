@@ -1,0 +1,33 @@
+#courseCodeSection{
+    height: 70vh;
+    background-color: aliceblue;
+}
+
+#courseCodeSection .codeEditor{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+
+#courseCodeSection .codeEditor .editorForm{
+    display: flex;
+    flex-direction: column;
+    width: 40vh;
+}
+
+#courseCodeSection .codeEditor .editorHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    background-color: aqua;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+#courseCodeSection .codeEditor .editorForm textarea{
+    font-family: Consolas, "Courier New", monospace;
+    background-color: rgb(46, 46, 46);
+    /* color:#fff; */
+    cursor: text;
+    /* caret-shape: 2px; */
+}

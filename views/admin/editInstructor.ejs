@@ -4,23 +4,25 @@
 <title>Edit Instructor</title>
 
 <section id="instructorIntroSection">
+    <div class="d-flex flex-row justify-content-center w-100 mt-3">
+        <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%=success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+        <% if(error && error.length){%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%=error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+    </div>
     <div class="instructorTitle">
         <h1>Edit Instructor</h1>
     </div>
-    <% if(success && success.length){%>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%=success %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% }%>
-    <% if(error && error.length){%>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%=error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% }%>
-    <form class="editInstructorForm col-xl-3 col-lg-4 col-md-6 col-sm-8 col-10 validated-form" action="/UpdateInstructor/<%=instructorData._id%>?_method=PUT" method="post"
-        novalidate>
+    <form class="editInstructorForm col-xl-3 col-lg-4 col-md-6 col-sm-8 col-10 validated-form"
+        action="/UpdateInstructor/<%=instructorData._id%>?_method=PUT" method="post" novalidate>
         <div class="form-group mb-3">
             <label for="firstName" class="mb-2">Instructor Name</label>
             <input type="text" class="form-control mb-3" placeholder="First name" id="instructorName"

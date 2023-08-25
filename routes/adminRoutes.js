@@ -196,11 +196,21 @@ router.get('/editCourse/:courseId/', asyncError(async (req, res) => {
     }
 }));
 
-router.put('/UpdateCourse/:courseId/:instructorId', asyncError(async (req, res) => {
+router.put('/UpdateCourse/:courseId/:instructorId', validateCourseSchema, asyncError(async (req, res) => {
     const courseId = req.params.courseId;
     const oldInstructor = req.params.instructorId;
     const newInstructor = req.body.instructor;
     req.body.techStack = req.body.techStack.split(',');
+    let dt = { duration: "", thumbnail: "" };
+    try {
+        dt = await getVideoData(req.body.videoId);
+    } catch (error) {
+        req.flash('error', "Youtube video ID doesn't exists, Please provide Valid Video ID");
+        res.redirect("/addCourse");
+        return;
+    }
+    req.body.duration = dt.duration;
+    req.body.thumbnail = dt.thumbnail;
     try {
         await instructorModel.findByIdAndUpdate(oldInstructor, { $pull: { courses: courseId } });
         await courseModel.findByIdAndUpdate(courseId, { ...req.body });
@@ -242,7 +252,6 @@ router.get('/viewUsers', asyncError(async (req, res) => {
 router.delete('/deleteUser/:userId', asyncError(async (req, res) => {
     const userId = req.params.userId;
     try {
-        // const userData = await userModel.findById(userId).populate('enrolledCourses');
         await courseModel.updateMany({ $pull: { users: { $in: userId } } });
         await enrolledCoursesModel.deleteMany({ user: userId });
         await userModel.findByIdAndDelete(userId);

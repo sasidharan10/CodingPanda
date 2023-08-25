@@ -4,22 +4,25 @@
 <title>Add Courses</title>
 
 <section id="addCourseIntroSection">
+    <div class="d-flex flex-row justify-content-center w-100 mt-3">
+        <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%=success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+        <% if(error && error.length){%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%=error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+    </div>
     <div class="addCourseTitle">
         <h1>Add Course</h1>
     </div>
-    <% if(success && success.length){%>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%=success %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% }%>
-    <% if(error && error.length){%>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%=error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% }%>
-    <form class="addCourseForm col-xl-3 col-lg-4 col-md-6 col-sm-8 col-10 validated-form" action="/addCourse" method="post" novalidate>
+    <form class="addCourseForm col-xl-3 col-lg-4 col-md-6 col-sm-8 col-10 validated-form" action="/addCourse"
+        method="post" novalidate>
         <div class="form-group mb-3">
             <label for="courseTitle" class="mb-2">Course Title</label>
             <input type="text" class="form-control" placeholder="Course Title" id="courseTitle" name="courseTitle"
@@ -68,8 +71,8 @@
         </div>
         <div class="form-group mb-3">
             <label for="summary" class="mb-2">Summary</label>
-            <textarea type="text" class="form-control" placeholder="Enter Summary (less than 20 words)"
-                id="summary" name="summary" required></textarea>
+            <textarea type="text" class="form-control" placeholder="Enter Summary (less than 20 words)" id="summary"
+                name="summary" required></textarea>
             <div class="valid-feedback">
                 Looks good!
             </div>

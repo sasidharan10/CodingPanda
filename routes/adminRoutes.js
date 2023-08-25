@@ -243,8 +243,8 @@ router.delete('/deleteUser/:userId', asyncError(async (req, res) => {
     const userId = req.params.userId;
     try {
         // const userData = await userModel.findById(userId).populate('enrolledCourses');
-        // await enrolledCoursesModel.deleteMany({ user: userId });
-        // await courseModel.updateMany({ $pull: { users: { $in: userId } } });
+        await courseModel.updateMany({ $pull: { users: { $in: userId } } });
+        await enrolledCoursesModel.deleteMany({ user: userId });
         await userModel.findByIdAndDelete(userId);
         req.flash('success', 'Successfully Deleted the User');
         res.redirect('/viewUsers');

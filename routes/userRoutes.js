@@ -141,7 +141,7 @@ router.delete('/unenrollCourse/:enrollId', asyncError(async (req, res) => {
         await userModel.findByIdAndUpdate(userId, { $pull: { enrolledCourses: enrollId } });
         await courseModel.findByIdAndUpdate(courseId, { $pull: { users: userId } });
         await enrollCourseModel.findByIdAndDelete(enrollId);
-        req.flash('success', 'Successfully Deleted the Course');
+        req.flash('success', 'Successfully Unenrolled from the Course');
         res.redirect("/enrolledCourses");
     } catch (error) {
         req.flash('error', error.message);

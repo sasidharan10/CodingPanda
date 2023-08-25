@@ -51,6 +51,10 @@ html {
     filter: invert(1);
 }
 
+#introSection {
+    overflow: hidden;
+}
+
 #introSection .introBody {
     width: 100%;
     height: 100vh;
@@ -245,7 +249,7 @@ html {
     margin: 15px 0;
 }
 
-#reviewSection .reviewBody .review .reviewP{
+#reviewSection .reviewBody .review .reviewP {
     margin: 0;
 }
 
@@ -261,9 +265,10 @@ html {
     margin: 10px;
 }
 
-#reviewSection .reviewBody .star, .reviewP{
+#reviewSection .reviewBody .star,
+.reviewP {
     height: 30px;
- }
+}
 
 #newsSection .newsBody {
     display: flex;
@@ -314,7 +319,7 @@ html {
     height: auto;
 }
 
-#contactSection .contactBody .contactLeft{
+#contactSection .contactBody .contactLeft {
     display: flex;
     flex-direction: column;
     align-items: flex-start;

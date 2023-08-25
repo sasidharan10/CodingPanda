@@ -4,18 +4,20 @@
 <title>View Courses</title>
 
 <section id="InstructorSection">
-    <% if(success && success.length){%>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%=success %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="d-flex flex-row justify-content-center w-100 mt-3">
+        <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%=success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+        <% if(error && error.length){%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%=error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
     </div>
-    <% }%>
-    <% if(error && error.length){%>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%=error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% }%>
     <div class="PageTitle">
         <h1>Instructors</h1>
     </div>
@@ -24,8 +26,12 @@
         <a href="/addInstructor" class="btn btn-success mx-2" role="button">Add Instructor</a>
     </div>
     <div class="instructorBody">
-        <% let i = 1; %>
-        <% for(const it of instructorData) { if(i==5){i=1;}%>
+        <% if(instructorData.length === 0){ %>
+        <div class="alert alert-info" role="alert">
+            No Instructors available. <a href="/addInstructor" class="alert-link">Click Here</a> to add New
+            Instructor.
+        </div>
+        <% }else{ let i = 1; for(const it of instructorData) { if(i==5){i=1;} %>
         <div class="instructorBox">
             <div class="instructorHeading">
                 <div class="headingImg">
@@ -79,6 +85,6 @@
                 </div>
             </div>
         </div>
-        <% }%>
+        <% }}%>
     </div>
 </section>

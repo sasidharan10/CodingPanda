@@ -6,6 +6,7 @@ const adminModel = require("../models/adminModel");
 const instructorModel = require("../models/instructorModel");
 const courseModel = require("../models/courseModel");
 const userModel = require('../models/userModel');
+const enrolledCoursesModel = require('../models/enrolledCourses');
 
 const { getVideoData } = require("../utils/videoData");
 const { asyncError } = require('../utils/errorHandler');
@@ -15,7 +16,17 @@ const passportAdminAuthenticate = passport.authenticate('admin', { failureFlash:
 
 
 
-
+router.get('/fake', asyncError(async (req, res) => {
+    const targetId = "64e885a2d3f275ac557c0314";
+    const enrollData = await enrolledCoursesModel.find({ course: targetId });
+    let enrollArray = []
+    for (const it of enrollData) {
+        enrollArray.push(it._id);
+    }
+    console.log(enrollArray);
+    const userData = await userModel.find({ enrolledCourses: { $in: enrollArray } });
+    res.send(userData);
+}));
 
 router.get('/adminHome', asyncError(async (req, res) => {
     const userCount = await userModel.countDocuments();
@@ -117,7 +128,7 @@ router.delete('/deleteInstructor/:instructorId', asyncError(async (req, res) => 
     try {
         const instructorData = await instructorModel.findById(instructorId);
         if (instructorData.courses.length !== 0) {
-            req.flash('error', "You cannot delete this Instructor, who is already enrolled in a course! Either Delete those courses or update those courses with new Instructors, Before deleting this Instructor.");
+            req.flash('error', "You cannot delete this Instructor, who is enrolled as an Instructor in a course! Either Delete those courses or update those courses with new Instructors, Before deleting this Instructor.");
             res.redirect("/viewInstructors");
             return;
         }
@@ -135,20 +146,20 @@ router.get('/viewCourses', asyncError(async (req, res) => {
     res.render('admin/viewCourses', { coursesData: coursesData });
 }));
 
-router.get('/addCourse', isLoggedInAdmin, storeUrl, asyncError(async (req, res) => {
+router.get('/addCourse', storeUrl, asyncError(async (req, res) => {
     const instructorData = await instructorModel.find({});
     res.render('admin/addCourse', { instructorData: instructorData });
 }));
 
 router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
     const { courseTitle, instructor, videoId, description, summary, techStack } = req.body;
-    const techArray = techStack.split(',');
     let dt = { duration: "", thumbnail: "" };
     try {
         dt = await getVideoData(videoId);
     } catch (error) {
         req.flash('error', "Youtube video ID doesn't exists, Please provide Valid Video ID");
         res.redirect("/addCourse");
+        return;
     }
     const newCourse = new courseModel({
         courseTitle: courseTitle,
@@ -157,7 +168,7 @@ router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
         duration: dt.duration,
         description: description,
         summary: summary,
-        techStack: techArray,
+        techStack: techStack.split(','),
         thumbnail: dt.thumbnail
     });
     try {
@@ -189,9 +200,7 @@ router.put('/UpdateCourse/:courseId/:instructorId', asyncError(async (req, res) 
     const courseId = req.params.courseId;
     const oldInstructor = req.params.instructorId;
     const newInstructor = req.body.instructor;
-    const temp = req.body.techStack;
-    const techArray = temp.split(',');
-    req.body.techStack = techArray;
+    req.body.techStack = req.body.techStack.split(',');
     try {
         await instructorModel.findByIdAndUpdate(oldInstructor, { $pull: { courses: courseId } });
         await courseModel.findByIdAndUpdate(courseId, { ...req.body });
@@ -204,12 +213,18 @@ router.put('/UpdateCourse/:courseId/:instructorId', asyncError(async (req, res) 
     }
 }));
 
-
 router.delete('/deleteCourse/:courseId/:instructorId', asyncError(async (req, res) => {
     const courseId = req.params.courseId;
     const instructorId = req.params.instructorId;
     try {
+        const enrollData = await enrolledCoursesModel.find({ course: courseId });
+        let enrollArray = [];
+        for (const it of enrollData) {
+            enrollArray.push(it._id);
+        }
+        await userModel.updateMany({ $pull: { enrolledCourses: { $in: enrollArray } } });
         await instructorModel.findByIdAndUpdate(instructorId, { $pull: { courses: courseId } });
+        await enrolledCoursesModel.deleteMany({ course: courseId });
         await courseModel.findByIdAndDelete(courseId);
         req.flash('success', 'Successfully Deleted the Course');
         res.redirect('/viewCourses');
@@ -227,6 +242,9 @@ router.get('/viewUsers', asyncError(async (req, res) => {
 router.delete('/deleteUser/:userId', asyncError(async (req, res) => {
     const userId = req.params.userId;
     try {
+        // const userData = await userModel.findById(userId).populate('enrolledCourses');
+        // await enrolledCoursesModel.deleteMany({ user: userId });
+        // await courseModel.updateMany({ $pull: { users: { $in: userId } } });
         await userModel.findByIdAndDelete(userId);
         req.flash('success', 'Successfully Deleted the User');
         res.redirect('/viewUsers');

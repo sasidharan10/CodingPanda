@@ -75,12 +75,12 @@ router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSch
     const userId = req.params.userId;
     try {
         await userModel.findByIdAndUpdate(userId, { ...req.body });
-        req.flash('success', 'Successfully Added Instructor');
+        req.flash('success', 'Successfully Updated Your Profile');
         res.redirect(`/profile/${userId}`);
     }
     catch (error) {
         req.flash('error', error.message);
-        res.redirect(`/profile/${userId}`);
+        return res.redirect(`/profile/${userId}`);
     }
 }));
 
@@ -107,6 +107,7 @@ router.post('/enrollCourse/:courseId', asyncError(async (req, res) => {
     const totalTime = getCourse.duration.hours * 3600 + getCourse.duration.minutes * 60 + getCourse.duration.seconds;
     const newEnroll = new enrollCourseModel({
         course: courseId,
+        user: userId,
         duration: totalTime
     });
     const userData = await userModel.findById(userId).populate("enrolledCourses");
@@ -144,7 +145,7 @@ router.delete('/unenrollCourse/:enrollId', asyncError(async (req, res) => {
         res.redirect("/enrolledCourses");
     } catch (error) {
         req.flash('error', error.message);
-        res.redirect(`/courses`);
+        res.redirect(`/enrolledCourses`);
     }
 }));
 

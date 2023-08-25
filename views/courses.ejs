@@ -3,18 +3,20 @@
 <title>About US</title>
 
 <section id="coursesIntroSection">
-    <% if(success && success.length){%>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%=success %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="d-flex flex-row justify-content-center w-100 mt-3">
+        <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%=success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+        <% if(error && error.length){%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%=error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
     </div>
-    <% }%>
-    <% if(error && error.length){%>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%=error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% }%>
     <div class="coursesIntroBody">
         <div class="coursesIntroContent">
             <h1>Online Coding Courses</h1>
@@ -44,7 +46,7 @@
                     <h2><%= it.courseTitle%></h2>
                 </div>
             </div>
-            
+
             <div class="courseBoxContent">
                 <div class="courseDescription">
                     <p><%= it.summary%></p>
@@ -55,7 +57,15 @@
                 </div>
                 <div class="courseTime">
                     <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
-                    <h3><%= it.duration.hours%>hrs+</h3>
+                    <h3><%= it.duration.hours%> hrs+</h3>
+                </div>
+                <div class="courseInstructor">
+                    <img class="descIcon" src="../static/img/logo/user.png" alt="Tutor Image">
+                    <% if (it.users.length === 1) { %>
+                    <h3><%= it.users.length%> Student</h3>
+                    <% }else{ %>
+                    <h3><%= it.users.length%> Students</h3>
+                    <% } %>
                 </div>
                 <!-- <div class="courseReview">
                     <h3>4.8</h3>
@@ -65,7 +75,8 @@
             </div>
             <div class="d-flex flex-row justify-content-center w-100">
                 <% if( currentUser && alreadyEnrolled.find((temp) => temp.course.equals(it._id))){ %>
-                <a href="/coursePage/<%= it._id%>" class="btn btn-success btn-custom mx-2 my-3" role="button">Watch Now</a>
+                <a href="/coursePage/<%= it._id%>" class="btn btn-success btn-custom mx-2 my-3" role="button">Watch
+                    Now</a>
                 <a href="courses/<%= it._id%>" class="btn btn-info btn-custom mx-2 my-3" role="button">View Course</a>
                 <%}else{%>
                 <a href="courses/<%= it._id%>" class="btn btn-info btn-custom mx-2 my-3" role="button">Enroll Now</a>

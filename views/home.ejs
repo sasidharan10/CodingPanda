@@ -3,18 +3,20 @@
 <title>Coding Panda</title>
 
 <section id="introSection" class="gradient-background">
-    <% if(success && success.length){%>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%=success %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="d-flex flex-row justify-content-center w-100 mt-3">
+        <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%=success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+        <% if(error && error.length){%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%=error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
     </div>
-    <% }%>
-    <% if(error && error.length){%>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%=error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% }%>
     <div class="introBody">
         <div class="introContent">
             <h1>Online Coding Courses</h1>
@@ -88,19 +90,19 @@
             <h1>4.9</h1>
             <img class="star" src="../static/img/logo/star.svg" alt="">
             <p>100+ reviews</p>
-            <img src="../static/img/logo/fblogo.svg" alt="" class="cmp">
+            <img src="../static/img/company/fblogo.svg" alt="" class="cmp">
         </div>
         <div class="review r2">
             <h1>4.8</h1>
             <img class="star" src="../static/img/logo/star.svg" alt="">
             <p>1000+ reviews</p>
-            <img src="../static/img/logo/glogo.svg" alt="" class="cmp">
+            <img src="../static/img/company/glogo.svg" alt="" class="cmp">
         </div>
         <div class="review r3">
             <h1>50+</h1>
             <p class="reviewP">Questions asked</p>
             <p>5000 answered</p>
-            <img src="../static/img/logo/qlogo.svg" alt="" class="cmp">
+            <img src="../static/img/company/qlogo.svg" alt="" class="cmp">
         </div>
     </div>
 </section>

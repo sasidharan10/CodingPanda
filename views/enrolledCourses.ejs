@@ -3,18 +3,20 @@
 <title>Enrolled Courses</title>
 
 <section id="enrolledCoursesSection">
-    <% if(success && success.length){%>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <%=success %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="d-flex flex-row justify-content-center w-100 mt-3">
+        <% if(success && success.length){%>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <%=success %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
+        <% if(error && error.length){%>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%=error %>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <% }%>
     </div>
-    <% }%>
-    <% if(error && error.length){%>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        <%=error %>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    <% }%>
     <div class="enrolledTitle">
         <h1>My Courses</h1>
     </div>
@@ -44,16 +46,20 @@
                 </div>
                 <div class="courseTime">
                     <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
-                    <h3><%= it.course.duration.hours%>hrs+</h3>
+                    <h3><%= it.course.duration.hours%> hrs+</h3>
                 </div>
                 <div class="courseInstructor">
-                    <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
-                    <h3><%= it.course.instructor.instructorName%></h3>
+                    <img class="descIcon" src="../static/img/logo/user.png" alt="Tutor Image">
+                    <% if (it.course.users.length === 1) { %>
+                    <h3><%= it.course.users.length%> Student</h3>
+                    <% }else{ %>
+                    <h3><%= it.course.users.length%> Students</h3>
+                    <% } %>
                 </div>
                 <div class="courseProgress">
                     <img class="descIcon" src="../static/img/logo/progress.png" alt="progress image">
                     <div class="progress">
-                        <div class="progress-bar" role="progressbar"style="width:<%= it.progress%>%;"
+                        <div class="progress-bar" role="progressbar" style="width:<%= it.progress%>%;"
                             aria-valuenow="<%= it.progress%>" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <h3><%= it.progress%>%</h3>

@@ -6,6 +6,10 @@ const enrolledCoursesSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'course'
     },
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: 'user'
+    },
     duration: {
         type: Number,
         required: [true, "Number is required"],

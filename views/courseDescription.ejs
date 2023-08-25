@@ -20,12 +20,20 @@
                     <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
                     <h3><%= courseData.duration.hours%>hrs <%= courseData.duration.minutes%>mins</h3>
                 </div>
+                <div class="courseInstructor">
+                    <img class="descIcon" src="../static/img/logo/user.png" alt="Tutor Image">
+                    <% if (courseData.users.length === 1) { %>
+                    <h3><%= courseData.users.length%> Student</h3>
+                    <% }else{ %>
+                    <h3><%= courseData.users.length%> Students</h3>
+                    <% } %>
+                </div>
             </div>
             <div class="submitBtn">
                 <% if(currentUser && isEnrolled){%>
                 <a href="/coursePage/<%= courseData._id%>" class="btn btn-success mx-2 my-3" role="button">Watch Now</a>
                 <% }else{ %>
-                    <button type="submit" class="btn btn-warning mx-2" data-bs-toggle="modal"
+                <button type="submit" class="btn btn-warning mx-2" data-bs-toggle="modal"
                     data-bs-target="#staticBackdrop">Enroll Now</button>
                 <% } %>
             </div>
@@ -82,7 +90,7 @@
         <div class="instructorBody">
             <div class="instructorHeader">
                 <div class="instructorImage">
-                    <img src="../static/img/avatar/1.png" alt="">
+                    <img src="../static/img/avatar/t1.png" alt="">
                 </div>
                 <div class="headerContent">
                     <div class="instructorName">

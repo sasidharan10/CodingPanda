@@ -46,6 +46,10 @@
                     <img class="descIcon" src="../static/img/logo/timeline.svg" alt="time image">
                     <h3><%= it.course.duration.hours%>hrs+</h3>
                 </div>
+                <div class="courseInstructor">
+                    <img class="descIcon" src="../static/img/logo/tutor.png" alt="Tutor Image">
+                    <h3><%= it.course.instructor.instructorName%></h3>
+                </div>
                 <div class="courseProgress">
                     <img class="descIcon" src="../static/img/logo/progress.png" alt="progress image">
                     <div class="progress">
@@ -54,11 +58,11 @@
                     </div>
                     <h3><%= it.progress%>%</h3>
                 </div>
-                <div class="courseReview">
+                <!-- <div class="courseReview">
                     <h3>4.8</h3>
                     <img src="../static/img/logo/4-8-star.png" alt="review image">
                     <p>(2K+ students)</p>
-                </div>
+                </div> -->
             </div>
             <div class="d-flex flex-row justify-content-center w-100">
                 <a href="/coursePage/<%= it.course._id%>" class="btn btn-success mx-2 my-3" role="button">Watch Now</a>

@@ -20,11 +20,11 @@
         <h1>Users</h1>
     </div>
     <div class="userBox">
-        <% for (const it of userData) {%>
+        <%let i = 1; for (const it of userData) { if(i==6){i=1;}%>
         <div class="userContent">
             <div class="userHeader">
                 <div class="userImage">
-                    <img src="../static/img/avatar/1.png" alt="Profile">
+                    <img src="../static/img/avatar/u<%=i++%>.png" alt="Profile">
                 </div>
                 <div class="headerContent">
                     <h3><%= it.firstName %> <%= it.lastName %></h3>
@@ -73,8 +73,8 @@
                     Delete User
                 </button>
             </div>
-            <div class="modal fade" id="staticBackdrop<%=it._id%>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-                aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="staticBackdrop<%=it._id%>" data-bs-backdrop="static" data-bs-keyboard="false"
+                tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

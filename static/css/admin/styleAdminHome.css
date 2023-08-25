@@ -43,3 +43,38 @@ html {
 #adminHomeContent .table thead tr th:last-child{
     border-top-right-radius: 10px;
 }
+
+@media only screen and (max-width: 400px){
+    #adminHomeContent .adminHomeTitle{
+        margin: 20px 0;
+    }
+    
+    #adminHomeContent .table{
+        font-size: 1.1rem;
+    }
+    
+    #adminHomeContent .table thead tr th{
+        padding: 10px;
+    }
+    
+    #adminHomeContent .table tbody tr th, td {
+        padding: 10px;
+    }
+}
+@media only screen and (min-width:400px) and (max-width: 700px){
+    #adminHomeContent .adminHomeTitle{
+        margin: 30px 0;
+    }
+    
+    #adminHomeContent .table{
+        font-size: 1.3rem;
+    }
+    
+    #adminHomeContent .table thead tr th{
+        padding: 15px;
+    }
+    
+    #adminHomeContent .table tbody tr th, td {
+        padding: 15px;
+    }
+}

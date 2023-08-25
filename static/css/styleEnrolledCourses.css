@@ -385,3 +385,16 @@ html {
         margin: 0px 10px;
     }
 }
+
+
+.addNew {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.addNew h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}

@@ -55,7 +55,8 @@ module.exports.validateUserSchema = (req, res, next) => {
     const { error } = userSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ');
-        throw new Errorhandler(msg, 400);
+        req.flash('error', msg);
+        res.redirect("/register");
     }
     else {
         next();
@@ -66,7 +67,8 @@ module.exports.validateEditUserSchema = (req, res, next) => {
     const { error } = editUserSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ');
-        throw new Errorhandler(msg, 400);
+        req.flash('error', msg);
+        return res.redirect(`/profile/${req.params.userId}`);
     }
     else {
         next();
@@ -77,7 +79,9 @@ module.exports.validateInstructorSchema = (req, res, next) => {
     const { error } = instructorSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ');
-        throw new Errorhandler(msg, 400);
+        // throw new Errorhandler(msg, 400);
+        req.flash('error', msg);
+        return res.redirect("/addInstructor");
     }
     else {
         next();
@@ -88,7 +92,8 @@ module.exports.validateAdminSchema = (req, res, next) => {
     const { error } = adminSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ');
-        throw new Errorhandler(msg, 400);
+        req.flash('error', msg);
+        res.redirect("/adminRegister");
     }
     else {
         next();
@@ -99,7 +104,8 @@ module.exports.validateCourseSchema = (req, res, next) => {
     const { error } = courseSchema.validate(req.body);
     if (error) {
         const msg = error.details.map(el => el.message).join(', ');
-        throw new Errorhandler(msg, 400);
+        req.flash('error', msg);
+        res.redirect("/addCourse");
     }
     else {
         next();
@@ -107,28 +113,7 @@ module.exports.validateCourseSchema = (req, res, next) => {
 }
 
 module.exports.storeUrl = (req, res, next) => {
-    // if (!req.session.newPath) {
-    //     let pathArray = [];
-    //     pathArray.push(req.path);
-    //     req.session.newPath = pathArray;
-    // }
-    // else if(req.session.newPath.length === 1)
-    // {
-    //     req.session.newPath[1]=req.path;
-    //     req.session.prevRoute = req.session.newPath[0];
-    // }
-    // else if (req.session.newPath.length === 2) {
-    //     req.session.newPath[0] = req.session.newPath[1];
-    //     req.session.newPath[1] = req.path;
-    //     req.session.prevRoute = req.session.newPath[0];
-    // }
-
-    // if (!req.session.prevRoute)
-    //     req.session.prevRoute = req.path;
-
-    // req.session.newPath.push(req.path);
-    // console.log(req.session.newPath);
-    // if (req.session.returnUrl)
-    //     res.locals.returnUrl = req.session.returnUrl;
+    if (req.session.returnUrl)
+        res.locals.returnUrl = req.session.returnUrl;
     next();
 }

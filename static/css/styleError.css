@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Reggae+One&display=swap');
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#errorSection{
+    min-height: 80vh;
+    height: auto;
+    background: linear-gradient(45deg, #e84ff6, #ad0467);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    width: 100%;
+}
+
+#errorSection .errorText h1{
+    font-size: 2.5rem;
+    margin: 30px;
+    color: #fff;
+    text-align: center;
+}
+
+#errorSection .errorImage img{
+    width: 300px;
+    height:300px;
+    margin: 40px;
+}
+
+#errorSection .alertText p{
+    font-size: 1rem;
+}
+
+@media only screen and (max-width: 400px){
+    #errorSection .errorText h1{
+        font-size: 1.5rem;
+        margin: 20px;
+    }
+    
+    #errorSection .errorImage img{
+        width: 150px;
+        height:150px;
+        margin: 30px;
+    }
+
+    #errorSection .alertText p{
+        font-size: 0.7rem;
+    }
+}
+@media only screen and (min-width:400px) and (max-width: 700px){
+    #errorSection .errorText h1{
+        font-size: 2rem;
+        margin: 30px;
+    }
+    
+    #errorSection .errorImage img{
+        width: 200px;
+        height:200px;
+        margin: 40px;
+    }
+
+    #errorSection .alertText p{
+        font-size: 0.9rem;
+    }
+}

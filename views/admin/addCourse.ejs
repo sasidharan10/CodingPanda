@@ -31,7 +31,7 @@
                 Looks good!
             </div>
             <div class="invalid-feedback">
-                Please enter valid E-mail.
+                Please enter valid Course Title.
             </div>
         </div>
         <div class="form-group">
@@ -50,12 +50,12 @@
             <label for="videoId" class="mb-2">Course Link</label>
             <input type="text" class="form-control" id="videoId" placeholder="Enter YouTube Video ID" name="videoId"
                 required>
-            <small class="form-text text-muted">Enter only the Video ID</small>
+            <small class="form-text text-muted">Enter only the Youtube Video ID</small>
             <div class="valid-feedback">
                 Looks good!
             </div>
             <div class="invalid-feedback">
-                Please enter valid E-mail.
+                Please enter valid Video ID.
             </div>
         </div>
         <div class="form-group mb-3">
@@ -66,7 +66,7 @@
                 Looks good!
             </div>
             <div class="invalid-feedback">
-                Please enter valid E-mail.
+                Please enter Course Description.
             </div>
         </div>
         <div class="form-group mb-3">
@@ -77,15 +77,21 @@
                 Looks good!
             </div>
             <div class="invalid-feedback">
-                Please enter valid E-mail.
+                Please enter Course Summary.
             </div>
         </div>
         <div class=" form-group mb-3">
-            <label for="tags-input" class="mb-2">Tech Stacks</label>
-            <input type="text" id="tags-input" class="tags-input" name="techStack" data-role="tagsinput"
-                placeholder="Add Tech Stack here" value="HTML">
+            <label for="tags-input" class="mb-2">Tech Stacks Used</label>
+            <input type="text" id="tags-input" class="tags-input form-control" name="techStack" data-role="tagsinput"
+                placeholder="Add Tech Stack here" value="HTML" required>
             <small class="form-text text-muted">Separate keywords with a comma or enter
                 key</small>
+            <div class="valid-feedback">
+                Looks good!
+            </div>
+            <div class="invalid-feedback">
+                Please enter Tech stacks used.
+            </div>
         </div>
         <div class="d-flex flex-row justify-content-center w-100 mb-3">
             <button type="submit" class="btn btn-success mx-2 my-2 w-50">Submit</button>

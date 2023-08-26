@@ -74,16 +74,10 @@ passport.use("user", new LocalStrategyUser({
     passwordField: 'password'
 }, userModel.authenticate()));
 
-// passport.serializeUser(userModel.serializeUser());
-// passport.deserializeUser(userModel.deserializeUser());
-
 passport.use("admin", new LocalStrategyAdmin({
     usernameField: 'username',
     passwordField: 'password'
 }, adminModel.authenticate()));
-
-// passport.serializeUser(adminModel.serializeUser());
-// passport.deserializeUser(adminModel.deserializeUser());
 
 passport.serializeUser(function (user, done) {
     done(null, user);

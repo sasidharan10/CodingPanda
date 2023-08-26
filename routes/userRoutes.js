@@ -13,11 +13,6 @@ const { validateUserSchema, validateEditUserSchema, alreadyLoggedIn, storeUrl, i
 
 const passportAuthenticate = passport.authenticate('user', { failureFlash: true, failureRedirect: '/login' });
 
-// router.get('/fakeUser', asyncError(async (req, res) => {
-//     const dt = await enrollCourseModel.find({ course: "64de2294585d860f9a172f79" });
-//     res.send(dt);
-// }));
-
 router.get('/register', alreadyLoggedIn, asyncError(async (req, res) => {
     res.render('register');
 }));
@@ -45,7 +40,11 @@ router.get('/login', alreadyLoggedIn, asyncError(async (req, res) => {
 
 router.post('/login', storeUrl, passportAuthenticate, asyncError(async (req, res) => {
     req.flash('success', 'Successfully Logged In');
-    const redirectUrl = res.locals.returnUrl || "/";
+    let redirectUrl = "/";
+        if (req.session.prevUrl) {
+            redirectUrl = req.session.prevUrl;
+        }
+    // const redirectUrl = res.locals.returnUrl || "/";
     res.redirect(redirectUrl);
 }));
 

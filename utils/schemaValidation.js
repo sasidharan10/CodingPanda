@@ -17,7 +17,10 @@ module.exports.userSchema = Joi.object({
     firstName: Joi.string().required().regex(/^[A-Za-z]+$/).message('First Name should only include alphabetic characters'),
     lastName: Joi.string().allow('').regex(/^[A-Za-z]+$/).message('Last Name should only include alphabetic characters'),
     email: Joi.string().required().email(),
-    password: Joi.string().required()
+    password: Joi.string().required().min(4),
+    repeatPassword: Joi.string().required().valid(Joi.ref('password')).messages({
+        'any.only': 'Password Mismatch',
+    })
 });
 
 module.exports.editUserSchema = Joi.object({

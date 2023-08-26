@@ -14,19 +14,9 @@ const { validateAdminSchema, validateInstructorSchema, validateCourseSchema, isL
 
 const passportAdminAuthenticate = passport.authenticate('admin', { failureFlash: true, failureRedirect: '/admin' });
 
-
-
-router.get('/fake', asyncError(async (req, res) => {
-    const targetId = "64e885a2d3f275ac557c0314";
-    const enrollData = await enrolledCoursesModel.find({ course: targetId });
-    let enrollArray = []
-    for (const it of enrollData) {
-        enrollArray.push(it._id);
-    }
-    console.log(enrollArray);
-    const userData = await userModel.find({ enrolledCourses: { $in: enrollArray } });
-    res.send(userData);
-}));
+// router.get('/fake', asyncError(async (req, res) => {
+//     res.send(userData);
+// }));
 
 router.get('/adminHome', asyncError(async (req, res) => {
     const userCount = await userModel.countDocuments();
@@ -180,7 +170,7 @@ router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
         res.redirect("/viewCourses");
     } catch (error) {
         req.flash('error', error.message);
-        res.redirect("/viewCourses");
+        res.redirect("/addCourse");
     }
 }));
 

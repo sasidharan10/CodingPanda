@@ -9,6 +9,7 @@
 #userSection {
     width: 100%;
     height: auto;
+    min-height: 80vh;
     background: linear-gradient(45deg, #4fe3f6, #056ec4);
     display: flex;
     flex-direction: column;
@@ -34,7 +35,7 @@
     width: 500px;
 }
 
-#userSection .userContent .userHeader{
+#userSection .userContent .userHeader {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -42,17 +43,17 @@
     width: 100%;
 }
 
-#userSection .userContent .userHeader h3{
+#userSection .userContent .userHeader h3 {
     color: black;
     font-size: 1.5rem;
 }
 
-#userSection .userContent .userHeader h5{
+#userSection .userContent .userHeader h5 {
     color: rgb(73, 73, 73);
     font-size: 1.2rem;
 }
 
-#userSection .userContent .userHeader .headerContent{
+#userSection .userContent .userHeader .headerContent {
     margin-left: 10px;
 }
 
@@ -63,18 +64,18 @@
     border-radius: 50%;
 }
 
-#userSection .userContent .userFooter{
+#userSection .userContent .userFooter {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
 
-#userSection .userContent .userFooter .descIcon{
+#userSection .userContent .userFooter .descIcon {
     width: 25px;
     height: 25px;
 }
 
-#userSection .userContent .userFooter .userDetails{
+#userSection .userContent .userFooter .userDetails {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -82,7 +83,7 @@
     margin: 10px 0px;
 }
 
-#userSection .userContent .userFooter .userDetails p{
+#userSection .userContent .userFooter .userDetails p {
     font-size: 1.3rem;
     font-weight: 400;
     margin: 0 15px;

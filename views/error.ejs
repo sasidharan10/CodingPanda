@@ -1,7 +1,15 @@
 <% layout('./layouts/boilerplate') -%>
-    <title>Page Not Found</title>
+<link rel="stylesheet" href="../static/css/styleError.css">
+<title>Page Not Found</title>
 
-    <div class="alert alert-danger" role="alert">
-        <h4 class="alert-heading"><%=err.statusCode%> <%=err.message%> :(</h4>
+<section id="errorSection">
+    <div class="errorText">
+        <h1><%=err.statusCode%> <%=err.message%> :(</h1>
+    </div>
+    <div class="alert alert-danger mt-3 mx-3 alertText">
         <p><%=err.stack%></p>
     </div>
+    <div class="errorImage d-flex flex-row justify-content-center">
+        <img src="../static/img/logo/error.png" alt="Error Image">
+    </div>
+</section>

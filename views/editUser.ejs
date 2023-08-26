@@ -24,9 +24,9 @@
     <form class="registerForm col-xl-3 col-lg-4 col-md-6 col-sm-8 col-10 validated-form"
         action="/profileUpdate/<%=currentUser._id%>?_method=PUT" method="post" novalidate>
         <div class="row">
-            <div class="col">
+            <div class="col mb-3">
                 <label for="firstName" class="mb-2">First Name</label>
-                <input type="text" class="form-control mb-3" placeholder="First name" id="firstName" name="firstName"
+                <input type="text" class="form-control" placeholder="First name" id="firstName" name="firstName"
                     value="<%= userData.firstName %>" required>
                 <div class="valid-feedback">
                     Looks good!
@@ -35,9 +35,9 @@
                     Please enter your First name.
                 </div>
             </div>
-            <div class="col">
+            <div class="col mb-3">
                 <label for="lastName" class="mb-2">Last Name</label>
-                <input type="text" class="form-control mb-3" placeholder="Last name" id="lastName" name="lastName"
+                <input type="text" class="form-control" placeholder="Last name" id="lastName" name="lastName"
                     value="<%= userData.lastName %>">
                 <div class="valid-feedback">
                     Looks good!

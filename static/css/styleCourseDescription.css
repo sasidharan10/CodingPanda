@@ -17,7 +17,6 @@ html {
     justify-content: center;
     height: auto;
     width: 100%;
-    /* background-color: rgb(255, 255, 255); */
     background: linear-gradient(45deg, #4fe3f6, #056ec4);
     color: black;
     overflow: hidden;

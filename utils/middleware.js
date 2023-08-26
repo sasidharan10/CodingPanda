@@ -5,9 +5,6 @@ const userModel = require("../models/userModel");
 module.exports.isLoggedInUser = (req, res, next) => {
     req.session.returnUrl = req.originalUrl;
     if (req.isAuthenticated() && req.user.role === 'user') {
-        // console.log("user: ", req.user);
-        // console.log("user.role: ", req.user.role);
-        // console.log("Authenticated");
         next();
     }
     else {
@@ -18,15 +15,8 @@ module.exports.isLoggedInUser = (req, res, next) => {
 
 module.exports.isLoggedInAdmin = (req, res, next) => {
     if (req.isAuthenticated() && req.user.role === 'admin') {
-        // console.log("user: ", req.admin);
-        // console.log("user: ", req.user);
-        // console.log("user.role: ", req.user.role);
         next();
     }
-    // else if (req.isAuthenticated() && req.user.role === 'user') {
-    //     req.flash('error', 'You are NOT AUTHORIZED to view this page!!!');
-    //     return res.redirect('/home');
-    // }
     else {
         req.flash('error', 'You must be signed in first!');
         return res.redirect('/admin');

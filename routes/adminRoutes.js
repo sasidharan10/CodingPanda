@@ -18,13 +18,6 @@ const passportAdminAuthenticate = passport.authenticate('admin', { failureFlash:
 //     res.send(userData);
 // }));
 
-router.get('/adminHome', asyncError(async (req, res) => {
-    const userCount = await userModel.countDocuments();
-    const courseCount = await courseModel.countDocuments();
-    const instructorCount = await instructorModel.countDocuments();
-    res.render('admin/adminHome', { userCount, instructorCount, courseCount });
-}));
-
 router.get('/admin', asyncError(async (req, res) => {
     res.render('admin/adminLogin');
 }));
@@ -44,11 +37,18 @@ router.get('/adminLogout', (req, res) => {
     });
 });
 
-router.get('/adminRegister', asyncError(async (req, res) => {
+router.get('/adminHome', isLoggedInAdmin, asyncError(async (req, res) => {
+    const userCount = await userModel.countDocuments();
+    const courseCount = await courseModel.countDocuments();
+    const instructorCount = await instructorModel.countDocuments();
+    res.render('admin/adminHome', { userCount, instructorCount, courseCount });
+}));
+
+router.get('/adminRegister', isLoggedInAdmin, asyncError(async (req, res) => {
     res.render('admin/adminRegister');
 }));
 
-router.post('/adminRegister', validateAdminSchema, asyncError(async (req, res) => {
+router.post('/adminRegister', isLoggedInAdmin, validateAdminSchema, asyncError(async (req, res) => {
     try {
         const { username, password } = req.body;
         const adminData = new adminModel({ username });
@@ -62,12 +62,12 @@ router.post('/adminRegister', validateAdminSchema, asyncError(async (req, res) =
     }
 }));
 
-router.get('/addInstructor', asyncError(async (req, res) => {
+router.get('/addInstructor', isLoggedInAdmin, asyncError(async (req, res) => {
     req.session.prevUrl = req.session.prevRoute;
     res.render('admin/addInstructor');
 }));
 
-router.post('/addInstructor', storeUrl, validateInstructorSchema, asyncError(async (req, res) => {
+router.post('/addInstructor', isLoggedInAdmin, validateInstructorSchema, asyncError(async (req, res) => {
     try {
         let redirectUrl = "/viewInstructors";
         if (req.session.prevUrl && req.session.prevUrl === '/addCourse') {
@@ -85,12 +85,12 @@ router.post('/addInstructor', storeUrl, validateInstructorSchema, asyncError(asy
     }
 }));
 
-router.get('/viewInstructors', asyncError(async (req, res) => {
+router.get('/viewInstructors', isLoggedInAdmin, asyncError(async (req, res) => {
     const instructorData = await instructorModel.find({}).populate('courses');
     res.render('admin/viewInstructors', { instructorData: instructorData });
 }));
 
-router.get('/editInstructor/:instructorId', asyncError(async (req, res) => {
+router.get('/editInstructor/:instructorId', isLoggedInAdmin, asyncError(async (req, res) => {
     const instructorId = req.params.instructorId;
     try {
         const instructorData = await instructorModel.findById(instructorId);
@@ -101,7 +101,7 @@ router.get('/editInstructor/:instructorId', asyncError(async (req, res) => {
     }
 }));
 
-router.put('/UpdateInstructor/:instructorId', asyncError(async (req, res) => {
+router.put('/UpdateInstructor/:instructorId', isLoggedInAdmin, validateInstructorSchema,  asyncError(async (req, res) => {
     const instructorId = req.params.instructorId;
     try {
         await instructorModel.findByIdAndUpdate(instructorId, { ...req.body });
@@ -113,7 +113,7 @@ router.put('/UpdateInstructor/:instructorId', asyncError(async (req, res) => {
     }
 }));
 
-router.delete('/deleteInstructor/:instructorId', asyncError(async (req, res) => {
+router.delete('/deleteInstructor/:instructorId', isLoggedInAdmin, asyncError(async (req, res) => {
     const instructorId = req.params.instructorId;
     try {
         const instructorData = await instructorModel.findById(instructorId);
@@ -131,17 +131,17 @@ router.delete('/deleteInstructor/:instructorId', asyncError(async (req, res) => 
     }
 }));
 
-router.get('/viewCourses', asyncError(async (req, res) => {
+router.get('/viewCourses', isLoggedInAdmin, asyncError(async (req, res) => {
     const coursesData = await courseModel.find({}).populate("instructor");
     res.render('admin/viewCourses', { coursesData: coursesData });
 }));
 
-router.get('/addCourse', storeUrl, asyncError(async (req, res) => {
+router.get('/addCourse', isLoggedInAdmin, asyncError(async (req, res) => {
     const instructorData = await instructorModel.find({});
     res.render('admin/addCourse', { instructorData: instructorData });
 }));
 
-router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
+router.post('/addCourse', isLoggedInAdmin, validateCourseSchema, asyncError(async (req, res) => {
     const { courseTitle, instructor, videoId, description, summary, techStack } = req.body;
     let dt = { duration: "", thumbnail: "" };
     try {
@@ -174,7 +174,7 @@ router.post('/addCourse', validateCourseSchema, asyncError(async (req, res) => {
     }
 }));
 
-router.get('/editCourse/:courseId/', asyncError(async (req, res) => {
+router.get('/editCourse/:courseId/', isLoggedInAdmin, asyncError(async (req, res) => {
     const courseId = req.params.courseId;
     try {
         const coursesData = await courseModel.findById(courseId).populate('instructor');
@@ -186,7 +186,7 @@ router.get('/editCourse/:courseId/', asyncError(async (req, res) => {
     }
 }));
 
-router.put('/UpdateCourse/:courseId/:instructorId', validateCourseSchema, asyncError(async (req, res) => {
+router.put('/UpdateCourse/:courseId/:instructorId', isLoggedInAdmin, validateCourseSchema, asyncError(async (req, res) => {
     const courseId = req.params.courseId;
     const oldInstructor = req.params.instructorId;
     const newInstructor = req.body.instructor;
@@ -213,7 +213,7 @@ router.put('/UpdateCourse/:courseId/:instructorId', validateCourseSchema, asyncE
     }
 }));
 
-router.delete('/deleteCourse/:courseId/:instructorId', asyncError(async (req, res) => {
+router.delete('/deleteCourse/:courseId/:instructorId', isLoggedInAdmin, asyncError(async (req, res) => {
     const courseId = req.params.courseId;
     const instructorId = req.params.instructorId;
     try {
@@ -234,12 +234,12 @@ router.delete('/deleteCourse/:courseId/:instructorId', asyncError(async (req, re
     }
 }));
 
-router.get('/viewUsers', asyncError(async (req, res) => {
+router.get('/viewUsers', isLoggedInAdmin, asyncError(async (req, res) => {
     const userData = await userModel.find({});
     res.render('admin/viewUsers', { userData: userData });
 }));
 
-router.delete('/deleteUser/:userId', asyncError(async (req, res) => {
+router.delete('/deleteUser/:userId', isLoggedInAdmin, asyncError(async (req, res) => {
     const userId = req.params.userId;
     try {
         await courseModel.updateMany({ $pull: { users: { $in: userId } } });

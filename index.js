@@ -112,7 +112,12 @@ passport.deserializeUser(function (userSession, done) {
 app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
-    res.locals.currentUser = req.user;
+    res.locals.currentUser = null;
+    res.locals.currentAdmin = null;
+    if (req.user && req.user.role === 'user')
+        res.locals.currentUser = req.user;
+    if (req.user && req.user.role === 'admin')
+        res.locals.currentAdmin = req.user;
 
     if (!req.session.pathArray) {
         let tempArray = [];

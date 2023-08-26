@@ -41,9 +41,9 @@ router.get('/login', alreadyLoggedIn, asyncError(async (req, res) => {
 router.post('/login', storeUrl, passportAuthenticate, asyncError(async (req, res) => {
     req.flash('success', 'Successfully Logged In');
     let redirectUrl = "/";
-        if (req.session.prevUrl) {
-            redirectUrl = req.session.prevUrl;
-        }
+    if (req.session.prevUrl) {
+        redirectUrl = req.session.prevUrl;
+    }
     // const redirectUrl = res.locals.returnUrl || "/";
     res.redirect(redirectUrl);
 }));
@@ -83,7 +83,7 @@ router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSch
     }
 }));
 
-router.get('/enrolledCourses', asyncError(async (req, res) => {
+router.get('/enrolledCourses', isLoggedInUser, isUser, asyncError(async (req, res) => {
     const userId = req.user._id;
     const userData = await userModel.findById(userId);
     const coursesArray = userData.enrolledCourses;
@@ -99,7 +99,7 @@ router.get('/enrolledCourses', asyncError(async (req, res) => {
     res.render('enrolledCourses', { coursesData: coursesData });
 }));
 
-router.post('/enrollCourse/:courseId', asyncError(async (req, res) => {
+router.post('/enrollCourse/:courseId', isLoggedInUser, isUser, asyncError(async (req, res) => {
     const courseId = req.params.courseId;
     const userId = req.user._id;
     const getCourse = await courseModel.findById(courseId);
@@ -131,7 +131,7 @@ router.post('/enrollCourse/:courseId', asyncError(async (req, res) => {
     }
 }));
 
-router.delete('/unenrollCourse/:enrollId', asyncError(async (req, res) => {
+router.delete('/unenrollCourse/:enrollId', isLoggedInUser, isUser, asyncError(async (req, res) => {
     const enrollId = req.params.enrollId;
     const enrollData = await enrollCourseModel.findById(enrollId).populate('course');
     const courseId = enrollData.course._id;
@@ -148,7 +148,7 @@ router.delete('/unenrollCourse/:enrollId', asyncError(async (req, res) => {
     }
 }));
 
-router.post("/saveProgress", async (req, res) => {
+router.post("/saveProgress", isLoggedInUser, isUser, async (req, res) => {
     const tm = req.body.timestamp;
     const eid = req.body.enrollId;
     const enrollData = await enrollCourseModel.findById(eid);

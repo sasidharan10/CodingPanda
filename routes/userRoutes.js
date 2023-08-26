@@ -83,7 +83,7 @@ router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSch
     }
 }));
 
-router.get('/enrolledCourses', isLoggedInUser, isUser, asyncError(async (req, res) => {
+router.get('/enrolledCourses', isLoggedInUser, asyncError(async (req, res) => {
     const userId = req.user._id;
     const userData = await userModel.findById(userId);
     const coursesArray = userData.enrolledCourses;
@@ -99,7 +99,7 @@ router.get('/enrolledCourses', isLoggedInUser, isUser, asyncError(async (req, re
     res.render('enrolledCourses', { coursesData: coursesData });
 }));
 
-router.post('/enrollCourse/:courseId', isLoggedInUser, isUser, asyncError(async (req, res) => {
+router.post('/enrollCourse/:courseId', isLoggedInUser, asyncError(async (req, res) => {
     const courseId = req.params.courseId;
     const userId = req.user._id;
     const getCourse = await courseModel.findById(courseId);
@@ -131,7 +131,7 @@ router.post('/enrollCourse/:courseId', isLoggedInUser, isUser, asyncError(async 
     }
 }));
 
-router.delete('/unenrollCourse/:enrollId', isLoggedInUser, isUser, asyncError(async (req, res) => {
+router.delete('/unenrollCourse/:enrollId', isLoggedInUser, asyncError(async (req, res) => {
     const enrollId = req.params.enrollId;
     const enrollData = await enrollCourseModel.findById(enrollId).populate('course');
     const courseId = enrollData.course._id;
@@ -148,7 +148,7 @@ router.delete('/unenrollCourse/:enrollId', isLoggedInUser, isUser, asyncError(as
     }
 }));
 
-router.post("/saveProgress", isLoggedInUser, isUser, async (req, res) => {
+router.post("/saveProgress", isLoggedInUser, async (req, res) => {
     const tm = req.body.timestamp;
     const eid = req.body.enrollId;
     const enrollData = await enrollCourseModel.findById(eid);

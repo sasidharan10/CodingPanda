@@ -4,21 +4,16 @@ const path = require('path');
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
 const passport = require('passport');
-const joi = require('joi');
 const LocalStrategyUser = require('passport-local');
 const LocalStrategyAdmin = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
 
-
 const userModel = require("./models/userModel");
 const adminModel = require("./models/adminModel");
-const courseModel = require("./models/courseModel");
-
 
 const { Errorhandler, asyncError } = require('./utils/errorHandler');
-
 
 const homeRoutes = require('./routes/homeRoutes');
 const userRoutes = require('./routes/userRoutes');
@@ -134,7 +129,7 @@ app.use((req, res, next) => {
         req.session.prevRoute = req.session.pathArray[0];
     }
     // console.log("path: ", req.session.pathArray);
-    // console.log("prev: ", req.session.prevRoute);
+    console.log("prev: ", req.session.prevRoute);
     next();
 });
 

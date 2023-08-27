@@ -40,10 +40,14 @@ router.get('/login', alreadyLoggedIn, asyncError(async (req, res) => {
 
 router.post('/login', storeUrl, passportAuthenticate, asyncError(async (req, res) => {
     req.flash('success', 'Successfully Logged In');
-    let redirectUrl = "/";
-    if (req.session.prevUrl) {
-        redirectUrl = req.session.prevUrl;
-    }
+    // console.log(res.locals.prevRoute);
+    // console.log(res.locals.returnUrl);
+    console.log(req.session.returnTo);
+    let redirectUrl = req.session.returnTo || "/";
+    delete req.session.returnTo;
+    // if (req.session.prevUrl) {
+    //     redirectUrl = req.session.prevUrl;
+    // }
     // const redirectUrl = res.locals.returnUrl || "/";
     res.redirect(redirectUrl);
 }));

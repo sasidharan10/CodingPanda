@@ -109,6 +109,7 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     res.locals.currentUser = null;
     res.locals.currentAdmin = null;
+    // req.session.returnUrl = req.originalUrl
     if (req.user && req.user.role === 'user')
         res.locals.currentUser = req.user;
     if (req.user && req.user.role === 'admin')
@@ -129,7 +130,7 @@ app.use((req, res, next) => {
         req.session.prevRoute = req.session.pathArray[0];
     }
     // console.log("path: ", req.session.pathArray);
-    console.log("prev: ", req.session.prevRoute);
+    // console.log("prev: ", req.session.prevRoute);
     next();
 });
 

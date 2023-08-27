@@ -3,8 +3,9 @@ const { userSchema, instructorSchema, editUserSchema, adminSchema, courseSchema 
 const userModel = require("../models/userModel");
 
 module.exports.isLoggedInUser = (req, res, next) => {
-    req.session.returnUrl = req.originalUrl;
+    // req.session.returnUrl = req.originalUrl;
     if (req.isAuthenticated() && req.user.role === 'user') {
+        req.session.returnTo = req.originalUrl;
         next();
     }
     else {
@@ -105,5 +106,6 @@ module.exports.validateCourseSchema = (req, res, next) => {
 module.exports.storeUrl = (req, res, next) => {
     if (req.session.returnUrl)
         res.locals.returnUrl = req.session.returnUrl;
+    res.locals.prevRoute = req.session.prevRoute;
     next();
 }

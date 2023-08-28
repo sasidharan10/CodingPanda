@@ -53,8 +53,8 @@ router.post('/adminRegister', isLoggedInAdmin, validateAdminSchema, asyncError(a
         const { username, password } = req.body;
         const adminData = new adminModel({ username });
         await adminModel.register(adminData, password);
-        req.flash('success', 'Successfully Registered');
-        res.redirect("/adminRegister");
+        req.flash('success', 'Successfully Registered New Admin');
+        res.redirect("/adminHome");
     }
     catch (error) {
         req.flash('error', error.message);
@@ -101,7 +101,7 @@ router.get('/editInstructor/:instructorId', isLoggedInAdmin, asyncError(async (r
     }
 }));
 
-router.put('/UpdateInstructor/:instructorId', isLoggedInAdmin, validateInstructorSchema,  asyncError(async (req, res) => {
+router.put('/UpdateInstructor/:instructorId', isLoggedInAdmin, validateInstructorSchema, asyncError(async (req, res) => {
     const instructorId = req.params.instructorId;
     try {
         await instructorModel.findByIdAndUpdate(instructorId, { ...req.body });

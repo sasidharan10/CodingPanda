@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const ejsMate = require('ejs-mate');
 const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const LocalStrategyUser = require('passport-local');
 const LocalStrategyAdmin = require('passport-local');
@@ -43,8 +44,21 @@ app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    touchAfter: 24 * 60 * 60,
+    crypto: {
+        secret: secret
+    }
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e)
+})
+
 const sessionConfig = {
     name: 'session',
+    store: store,
     secret: secret,
     resave: false,
     saveUninitialized: true,

@@ -11,7 +11,6 @@ const instructorModel = require("../models/instructorModel");
 
 const { isLoggedInUser } = require('../utils/middleware');
 
-
 router.get('/', asyncError(async (req, res) => {
     res.render('home');
 }));

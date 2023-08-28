@@ -11,7 +11,7 @@ const enrollCourseModel = require("../models/enrolledCourses");
 const { asyncError } = require('../utils/errorHandler');
 const { validateUserSchema, validateEditUserSchema, alreadyLoggedIn, storeUrl, isLoggedInUser, isUser } = require('../utils/middleware');
 
-const passportAuthenticate = passport.authenticate('user', { failureFlash: true, failureRedirect: '/login' });
+const passportAuthenticate = passport.authenticate('user', { failureFlash: true, failureRedirect: '/login'});
 
 router.get('/register', alreadyLoggedIn, asyncError(async (req, res) => {
     res.render('register');
@@ -40,16 +40,7 @@ router.get('/login', alreadyLoggedIn, asyncError(async (req, res) => {
 
 router.post('/login', storeUrl, passportAuthenticate, asyncError(async (req, res) => {
     req.flash('success', 'Successfully Logged In');
-    // console.log(res.locals.prevRoute);
-    // console.log(res.locals.returnUrl);
-    console.log(req.session.returnTo);
-    let redirectUrl = req.session.returnTo || "/";
-    delete req.session.returnTo;
-    // if (req.session.prevUrl) {
-    //     redirectUrl = req.session.prevUrl;
-    // }
-    // const redirectUrl = res.locals.returnUrl || "/";
-    res.redirect(redirectUrl);
+    res.redirect('/');
 }));
 
 router.get('/logout', (req, res) => {

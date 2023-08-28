@@ -9,19 +9,18 @@ const LocalStrategyAdmin = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
+const {dbUrl, port, secret} = require(`./config/${process.env.NODE_ENV || 'development'}`);
 
 const userModel = require("./models/userModel");
 const adminModel = require("./models/adminModel");
 
-const { Errorhandler, asyncError } = require('./utils/errorHandler');
+const { Errorhandler } = require('./utils/errorHandler');
 
 const homeRoutes = require('./routes/homeRoutes');
 const userRoutes = require('./routes/userRoutes');
 const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 const host = "127.0.0.1";
-const port = process.env.PORT || 5000;  // hosting step 1
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cppDB';
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -44,11 +43,9 @@ app.use('/static', express.static(path.join(__dirname, 'static')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-
-const secret = process.env.SECRET || 'mypetbirdnameisunknown!';
-
 const sessionConfig = {
-    secret,
+    name: 'session',
+    secret: secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -109,7 +106,7 @@ app.use((req, res, next) => {
     res.locals.error = req.flash('error');
     res.locals.currentUser = null;
     res.locals.currentAdmin = null;
-    // req.session.returnUrl = req.originalUrl
+    // req.session.returnUrl = req.originalUrl;
     if (req.user && req.user.role === 'user')
         res.locals.currentUser = req.user;
     if (req.user && req.user.role === 'admin')
@@ -151,5 +148,5 @@ app.use((err, req, res, next) => {
 
 
 app.listen(port, () => {
-    console.log(`The application started successfully at : http://${host}:${port}`);
+    // console.log(`The application started successfully at : http://${host}:${port}`);
 });

@@ -6,9 +6,11 @@
     <div class="errorText">
         <h1><%=err.statusCode%> <%=err.message%> :(</h1>
     </div>
+    <% if (process.env.NODE_ENV === "development") { %>
     <div class="alert alert-danger mt-3 mx-3 alertText">
         <p><%=err.stack%></p>
     </div>
+    <% } %>
     <div class="errorImage d-flex flex-row justify-content-center">
         <img src="../static/img/logo/error.png" alt="Error Image">
     </div>

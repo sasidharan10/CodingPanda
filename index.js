@@ -10,7 +10,7 @@ const LocalStrategyAdmin = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
-const {dbUrl, port, secret} = require(`./config/${process.env.NODE_ENV || 'development'}`);
+const {dbUrl, port, secret, secureCookie} = require(`./config/${process.env.NODE_ENV || 'development'}`);
 
 const userModel = require("./models/userModel");
 const adminModel = require("./models/adminModel");
@@ -64,7 +64,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        // secure: true,
+        secure: secureCookie,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }

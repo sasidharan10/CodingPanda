@@ -52,7 +52,7 @@ router.post('/adminRegister', isLoggedInAdmin, validateAdminSchema, asyncError(a
     try {
         const { username, password } = req.body;
         const adminData = new adminModel({ username });
-        const newAdmin = await adminModel.register(adminData, password);
+        await adminModel.register(adminData, password);
         req.flash('success', 'Successfully Registered');
         res.redirect("/adminRegister");
     }

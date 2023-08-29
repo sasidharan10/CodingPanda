@@ -1,7 +1,7 @@
 [
     {
         "courseTitle": "Full Stack Web Development",
-        "instructor": "64e4a0098e9f300e9c495c39",
+        "instructor": "64ed9e0e8b0aa310f7d9e9d0",
         "videoId": "nu_pCVPKzTk",
         "duration": {
             "hours": 7,
@@ -21,7 +21,7 @@
     },
     {
         "courseTitle": "Data Structures and Algorithms",
-        "instructor": "64e4a0098e9f300e9c495c3b",
+        "instructor": "64ed9e0e8b0aa310f7d9e9d2",
         "videoId": "8hly31xKli0",
         "duration": {
             "hours": 5,
@@ -43,7 +43,7 @@
     },
     {
         "courseTitle": "Python Full Course for Beginners",
-        "instructor": "64e4a0098e9f300e9c495c3d",
+        "instructor": "64ed9e0e8b0aa310f7d9e9d4",
         "videoId": "rfscVS0vtbw",
         "duration": {
             "hours": 4,
@@ -51,7 +51,7 @@
             "seconds": 52
         },
         "description": "Dive into the world of Python programming. Acquire fundamental skills in syntax, data manipulation, and object-oriented programming. Build practical projects and gain a strong foundation for software development.",
-        "summary": "Learn Python through hands-on projects for versatile software development.",
+        "summary": "Learn Python through hands-on projects and exercises for versatile software development.",
         "techStack": [
             "variables",
             "data types",

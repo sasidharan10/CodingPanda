@@ -3,9 +3,7 @@ const instructorData = require("./instructorData.json");
 const coursesData = require("./coursesData.json");
 const instructorModel = require("../models/instructorModel");
 const courseModel = require("../models/courseModel");
-
-
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/cppDB';
+const { dbUrl } = require(`../config/${process.env.NODE_ENV || 'development'}`);
 
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,

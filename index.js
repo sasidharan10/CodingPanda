@@ -10,7 +10,7 @@ const LocalStrategyAdmin = require('passport-local');
 const session = require('express-session');
 const flash = require('connect-flash');
 const methodOverride = require('method-override');
-const {dbUrl, port, secret, secureCookie} = require(`./config/${process.env.NODE_ENV || 'development'}`);
+const { dbUrl, port, secret, secureCookie } = require(`./config/${process.env.NODE_ENV || 'development'}`);
 
 const userModel = require("./models/userModel");
 const adminModel = require("./models/adminModel");
@@ -160,7 +160,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render("error", { err });
 });
 
-
 app.listen(port, () => {
-    // console.log(`The application started successfully at : http://${host}:${port}`);
+    if (process.env.NODE_ENV === 'development')
+        console.log(`The application started successfully at : http://${host}:${port}`);
 });

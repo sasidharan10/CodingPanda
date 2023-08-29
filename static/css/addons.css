@@ -27,16 +27,20 @@
     animation: gradient-animation 18s ease infinite;
 }
 
-.btn-custom{
+.btn-custom {
     font-size: 1rem;
 }
 
-.redirectArea a{
+.redirectArea a {
     font-weight: 500;
     text-decoration: none;
     font-size: 1rem;
 }
 
+.emptyAlert {
+    font-size: 1rem;
+    text-align: center;
+}
 
 
 
@@ -47,14 +51,23 @@
 
 
 
-@media only screen and (max-width: 400px){
-    .btn-custom{
+@media only screen and (max-width: 400px) {
+    .btn-custom {
         font-size: 0.8rem;
         padding: 5px;
     }
-}
-@media only screen and (min-width:400px) and (max-width: 700px){
 
+    .emptyAlert {
+        font-size: 0.8rem;
+    }
 }
-@media only screen and (min-width:700px) and (max-width: 900px){}
-@media only screen and (min-width:900px) and (max-width: 1100px){} 
+
+@media only screen and (min-width:400px) and (max-width: 700px) {
+    .emptyAlert {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (min-width:700px) and (max-width: 900px) {}
+
+@media only screen and (min-width:900px) and (max-width: 1100px) {}

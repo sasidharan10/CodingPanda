@@ -8,6 +8,7 @@
 
 #userSection {
     width: 100%;
+    min-height: 80vh;
     height: auto;
     background: linear-gradient(45deg, #a4f1fc, #349ff7);
     display: flex;

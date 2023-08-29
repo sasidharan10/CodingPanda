@@ -35,7 +35,7 @@ module.exports.editUserSchema = Joi.object({
 
 module.exports.instructorSchema = Joi.object({
     instructorName: Joi.string().required().regex(/^[A-Za-z]+$/).message('Name should only include alphabetic characters'),
-    instructorTitle: Joi.string().required().regex(/^[A-Za-z]+$/).message('Title should only include alphabetic characters'),
+    instructorTitle: Joi.string().required(),
     email: Joi.string().required().email(),
     description: Joi.string().required().custom(validateWordCount(30, 50)).message('Description should contain 30 - 50 words')
 });

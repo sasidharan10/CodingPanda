@@ -10,7 +10,7 @@ const enrolledCoursesModel = require('../models/enrolledCourses');
 
 const { getVideoData } = require("../utils/videoData");
 const { asyncError } = require('../utils/errorHandler');
-const { validateAdminSchema, validateInstructorSchema, validateCourseSchema, isLoggedInAdmin, storeUrl } = require('../utils/middleware');
+const { validateAdminSchema, validateInstructorSchema, validateCourseSchema, isLoggedInAdmin, alreadyLoggedIn } = require('../utils/middleware');
 
 const passportAdminAuthenticate = passport.authenticate('admin', { failureFlash: true, failureRedirect: '/admin' });
 
@@ -18,7 +18,7 @@ const passportAdminAuthenticate = passport.authenticate('admin', { failureFlash:
 //     res.send(userData);
 // }));
 
-router.get('/admin', asyncError(async (req, res) => {
+router.get('/admin', alreadyLoggedIn, asyncError(async (req, res) => {
     res.render('admin/adminLogin');
 }));
 

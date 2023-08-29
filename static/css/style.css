@@ -58,7 +58,7 @@ html {
 
 #introSection .introBody {
     width: 100%;
-    height: 100vh;
+    height: 90vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -154,7 +154,7 @@ html {
     border-radius: 10px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     word-wrap: break-word;
     text-align: center;
@@ -163,9 +163,11 @@ html {
 #joinSection .joinRight .circle p {
     font-size: 1rem;
     padding: 0 10px;
+    /* margin-top: 5px; */
 }
 
 #joinSection .joinRight .circle h1 {
+    margin: 20px 0px;
     font-size: 2.2rem;
 }
 
@@ -338,6 +340,10 @@ a {
 }
 
 #contactSection .contactBody .contactRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     margin: 30px;
 }
 
@@ -353,7 +359,7 @@ a {
 #contactSection .contactBody .contactRight .contactLogo {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
@@ -370,6 +376,10 @@ a {
 }
 
 #contactSection .contactBody .contactRight .contactLink {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
     height: auto;
     margin-top: 30px;
 }
@@ -449,6 +459,7 @@ a {
 
 @media only screen and (max-width: 400px) {
     #introSection .introBody {
+        height: 80vh;
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -521,6 +532,7 @@ a {
     }
 
     #joinSection .joinRight .circle h1 {
+        margin: 10px 0px;
         font-size: 1.2rem;
     }
 
@@ -626,11 +638,17 @@ a {
 
     #contactSection .contactBody .contactRight h1 {
         font-size: 1.3rem;
-        margin: 10px 0;
+        margin: 0px 0;
+        text-align: center;
     }
 
     #contactSection .contactBody .contactRight {
         margin: 10px;
+        align-items: center;
+    }
+
+    #contactSection .contactBody .contactRight .contactLogo{
+        margin-top: 10px;
     }
 
     #contactSection .contactBody .contactRight .contactLogo img {
@@ -640,7 +658,15 @@ a {
     }
 
     #contactSection .contactBody .contactRight .contactLink {
-        margin-top: 10px;
+        margin-top: 30px;
+        height: auto;
+        align-items: center;
+    }
+
+    #contactSection .contactBody .contactRight .contactLink img {
+        width: 15px;
+        height: 15px;
+        margin: 0px 5px 0 0;
     }
 }
 
@@ -719,6 +745,7 @@ a {
     }
 
     #joinSection .joinRight .circle h1 {
+        margin: 10px 0px;
         font-size: 1.5rem;
     }
 
@@ -829,11 +856,17 @@ a {
 
     #contactSection .contactBody .contactRight {
         margin: 20px;
+        align-items: center;
     }
 
     #contactSection .contactBody .contactRight h1 {
         font-size: 1.3rem;
-        margin: 10px 0;
+        margin: 0px 0;
+        text-align: center;
+    }
+
+    #contactSection .contactBody .contactRight .contactLogo{
+        margin-top: 10px;
     }
 
     #contactSection .contactBody .contactRight .contactLogo img {
@@ -844,7 +877,8 @@ a {
 
     #contactSection .contactBody .contactRight .contactLink {
         height: auto;
-        margin-top: 15px;
+        margin-top: 30px;
+        align-items: center;
     }
 
     #contactSection .contactBody .contactRight .contactLink a::after {
@@ -857,7 +891,7 @@ a {
     #contactSection .contactBody .contactRight .contactLink img {
         width: 15px;
         height: 15px;
-        margin: 0px 10px 0 0;
+        margin: 0px 5px 0 0;
     }
 
     #contactSection .contactBody .contactRight .contactLink .phone {
@@ -947,6 +981,7 @@ a {
     }
 
     #joinSection .joinRight .circle h1 {
+        margin: 15px 0px;
         font-size: 1.8rem;
     }
 

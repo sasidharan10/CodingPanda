@@ -13,6 +13,16 @@ module.exports.isLoggedInUser = (req, res, next) => {
     }
 }
 
+module.exports.ifAdmin = (req, res, next) => {
+    if (req.isAuthenticated() && req.user.role === 'admin') {
+        req.flash('error', 'You are logged in as ADMIN, You cannot access Client page without logging out');
+        return res.redirect('/adminHome');
+    }
+    else {
+        next();
+    }
+}
+
 module.exports.isLoggedInAdmin = (req, res, next) => {
     if (req.isAuthenticated() && req.user.role === 'admin') {
         next();
@@ -24,9 +34,13 @@ module.exports.isLoggedInAdmin = (req, res, next) => {
 }
 
 module.exports.alreadyLoggedIn = (req, res, next) => {
-    if (req.isAuthenticated()) {
+    if (req.isAuthenticated() && req.user.role === 'user') {
         req.flash('success', 'Already Logged In');
         return res.redirect("/");
+    }
+    else if (req.isAuthenticated() && req.user.role === 'admin') {
+        req.flash('success', 'Already Logged In');
+        return res.redirect("/adminHome");
     }
     next();
 }

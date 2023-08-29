@@ -22,7 +22,11 @@
         <h1>Users</h1>
     </div>
     <div class="userBox">
-        <%let i = 1; for (const it of userData) { if(i==6){i=1;}%>
+        <% if(userData.length === 0){ %>
+        <div class="alert alert-info my-3 mx-3 emptyAlert" role="alert">
+            No Users Registered Yet, Please come Back Later.
+        </div>
+        <%}else{let i = 1; for (const it of userData) { if(i==6){i=1;}%>
         <div class="userContent">
             <div class="userHeader">
                 <div class="userImage">
@@ -96,6 +100,6 @@
                 </div>
             </div>
         </div>
-        <% } %>
+        <% } }%>
     </div>
 </section>

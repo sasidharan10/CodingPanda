@@ -81,7 +81,7 @@ router.post('/addInstructor', isLoggedInAdmin, validateInstructorSchema, asyncEr
     }
     catch (error) {
         req.flash('error', error.message);
-        res.redirect("/viewInstructors");
+        res.redirect("/addInstructor");
     }
 }));
 
@@ -109,7 +109,7 @@ router.put('/UpdateInstructor/:instructorId', isLoggedInAdmin, validateInstructo
         res.redirect('/viewInstructors');
     } catch (error) {
         req.flash('error', "Erro while Updating Instructor data");
-        res.redirect("/viewInstructors");
+        res.redirect(`/editInstructor/${instructorId}`);
     }
 }));
 
@@ -196,7 +196,7 @@ router.put('/UpdateCourse/:courseId/:instructorId', isLoggedInAdmin, validateCou
         dt = await getVideoData(req.body.videoId);
     } catch (error) {
         req.flash('error', "Youtube video ID doesn't exists, Please provide Valid Video ID");
-        res.redirect("/addCourse");
+        res.redirect(`/editCourse/${courseId}`);
         return;
     }
     req.body.duration = dt.duration;
@@ -208,8 +208,8 @@ router.put('/UpdateCourse/:courseId/:instructorId', isLoggedInAdmin, validateCou
         req.flash('success', 'Successfully Updated the Course');
         res.redirect('/viewCourses');
     } catch (error) {
-        req.flash('error', "Error while Updating the Course");
-        res.redirect("/viewCourses");
+        req.flash('error', error.message);
+        res.redirect(`/editCourse/${courseId}`);
     }
 }));
 

@@ -75,6 +75,11 @@
     height: 25px;
 }
 
+#userSection .userContent .userFooter .linkIcon {
+    width: 15px;
+    height: 15px;
+}
+
 #userSection .userContent .userFooter .userDetails {
     display: flex;
     flex-direction: row;
@@ -86,7 +91,7 @@
 #userSection .userContent .userFooter .userDetails p {
     font-size: 1.3rem;
     font-weight: 400;
-    margin: 0 15px;
+    margin: 0px 15px;
 }
 
 
@@ -130,6 +135,11 @@
     #userSection .userContent .userFooter .descIcon {
         width: 15px;
         height: 15px;
+    }
+
+    #userSection .userContent .userFooter .linkIcon {
+        width: 7px;
+        height: 7px;
     }
 
     #userSection .userContent .userFooter .userDetails {
@@ -181,6 +191,11 @@
     #userSection .userContent .userFooter .descIcon {
         width: 20px;
         height: 20px;
+    }
+
+    #userSection .userContent .userFooter .linkIcon {
+        width: 10px;
+        height: 10px;
     }
 
     #userSection .userContent .userFooter .userDetails {

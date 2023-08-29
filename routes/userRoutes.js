@@ -74,7 +74,7 @@ router.put('/profileUpdate/:userId', isLoggedInUser, isUser, validateEditUserSch
     }
     catch (error) {
         req.flash('error', error.message);
-        return res.redirect(`/profile/${userId}`);
+        return res.redirect(`/profileEdit/${userId}`);
     }
 }));
 

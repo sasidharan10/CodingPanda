@@ -57,8 +57,9 @@
                 <div class="userDetails">
                     <img class="descIcon" src="../static/img/logo/git.png" alt="mail">
                     <% if(it.github){%>
-                    <p><a href="https://github.com/<%= it.github %>" target="_blank" class="btn btn-dark"
-                            role="button">@<%= it.github %></a></p>
+                    <p><%= it.github %></p>
+                    <a href="https://github.com/<%= it.github %>" target="_blank"><img class="linkIcon"
+                            src="../../static/img/logo/linkIcon.png" alt="Link Icon"></a>
                     <%}else{%>
                     <p>-----</p>
                     <% } %>
@@ -66,8 +67,9 @@
                 <div class="userDetails">
                     <img class="descIcon" src="../static/img/logo/lc.png" alt="mail">
                     <% if(it.leetcode){%>
-                    <p><a href="https://leetcode.com/<%=it.leetcode%>/" target="_blank" class="btn btn-dark"
-                            role="button">@<%= it.leetcode %></a></p>
+                    <p><%= it.leetcode %></p>
+                    <a href="https://leetcode.com/<%=it.leetcode%>/" target="_blank"><img class="linkIcon"
+                            src="../../static/img/logo/linkIcon.png" alt="Link Icon"></a>
                     <%}else{%>
                     <p>-----</p>
                     <% } %>

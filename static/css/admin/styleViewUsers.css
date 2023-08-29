@@ -84,6 +84,11 @@
     height: 25px;
 }
 
+#userSection .userContent .userFooter .linkIcon {
+    width: 15px;
+    height: 15px;
+}
+
 #userSection .userContent .userFooter .userDetails {
     display: flex;
     flex-direction: row;
@@ -147,6 +152,11 @@
         height: 15px;
     }
 
+    #userSection .userContent .userFooter .linkIcon {
+        width: 7px;
+        height: 7px;
+    }
+
     #userSection .userContent .userFooter .userDetails {
         margin: 5px 0px;
     }
@@ -206,6 +216,11 @@
         height: 20px;
     }
 
+    #userSection .userContent .userFooter .linkIcon {
+        width: 10px;
+        height: 10px;
+    }
+
     #userSection .userContent .userFooter .userDetails {
         margin: 10px 0px;
     }
@@ -263,6 +278,11 @@
     #userSection .userContent .userFooter .descIcon {
         width: 20px;
         height: 20px;
+    }
+
+    #userSection .userContent .userFooter .linkIcon {
+        width: 10px;
+        height: 10px;
     }
 
     #userSection .userContent .userFooter .userDetails {

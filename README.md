@@ -1,5 +1,6 @@
-# [CodingPanda](https://codingpanda-r7xt.onrender.com)
+# CodingPanda
 
+[Live link](https://codingpanda-r7xt.onrender.com)
 
 • Developed a fully responsive online learning platform that allows users to access and learn from educational
 YouTube tutorials.
